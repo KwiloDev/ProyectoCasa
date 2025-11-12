@@ -1,0 +1,103 @@
+/* Fondo general */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8e9d2; /* Color crema */
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: #4a2c1d; /* Marrón oscuro */
+  position: relative;
+  padding: 20px;
+}
+
+/* Logo superior derecho */
+.welcome-header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.welcome-header img {
+  height: 70px; /* Ajusta según proporción */
+}
+
+/* Contenido principal */
+.welcome-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1100px;
+  margin-top: 80px;
+}
+
+/* Texto principal */
+.welcome-text h1 {
+  font-size: 2.8rem;
+  line-height: 1.3;
+  margin-bottom: 25px;
+}
+
+.welcome-text h1 strong {
+  font-weight: bold;
+  color: #4a2c1d;
+}
+
+.welcome-text h1 span {
+  font-weight: bold;
+  color: #4a2c1d;
+  font-size: 3rem;
+}
+
+/* Caja del mensaje */
+.welcome-message {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 18px 28px;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  color: #4a2c1d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  position: relative;
+}
+
+/* Flecha estilo bocadillo */
+.welcome-message::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 20px solid #fff;
+}
+
+/* Botón */
+.welcome-button {
+  background-color: #e6a85b; /* Mostaza */
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 36px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.welcome-button:hover {
+  background-color: #d9964a;
+}
+
+/* Imagen del personaje */
+.welcome-image img {
+  max-height: 380px;
+  object-fit: contain;
+    margin-left: 40px;              
+}

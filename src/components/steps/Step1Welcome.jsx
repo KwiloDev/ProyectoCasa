@@ -1,23 +1,39 @@
-import React from 'react'
+import React from 'react';
+import './Step1Welcome.css';
 
-export default function Step1Welcome({next}){
+export default function Step1Welcome({ next }) {
   return (
-    <div className="space-y-4">
-      <div className="flex gap-4 items-center">
-        <img src="/src/assets/logo.png" alt="logo" className="w-20 h-20 object-contain" />
-        <div>
-          <h2 className="text-2xl font-bold" style={{color:'#503629'}}>¡En Crepes & Waffles queremos ayudarte a cumplir tus metas!</h2>
-          <p className="text-sm opacity-80 mt-1">Empezar el proceso de compra de vivienda es un paso grande. Te guiamos.</p>
+    <div className="welcome-container">
+      {/* Logo superior derecho */}
+      <div className="welcome-header">
+        <img src="/src/assets/logos/Logo Moneda - Tu Casa.png" alt="logo tu casa tu futuro" />
+
+      </div>
+
+      {/* Contenido principal */}
+      <div className="welcome-content">
+        <div className="welcome-text">
+          <h1>
+            <strong>Bienvenido a</strong><br />
+            <span>TU CASA, TU FUTURO</span>
+          </h1>
+
+          <div className="welcome-message">
+            <p>
+              Queremos acompañarte en el camino para cumplir tu{' '}
+              <strong>sueño de tener casa propia.</strong>
+            </p>
+          </div>
+
+          <button onClick={next} className="welcome-button">
+            Empezar
+          </button>
+        </div>
+
+        <div className="welcome-image">
+          <img src="/src/assets/Personajes/Personaje 1.png" alt="asesora" />
         </div>
       </div>
-
-      <div className="mt-4">
-        <p className="text-sm">TU CASA, TU FUTURO</p>
-      </div>
-
-      <div className="mt-6 flex justify-end">
-        <button onClick={next} className="btn-primary">Empezar</button>
-      </div>
     </div>
-  )
+  );
 }

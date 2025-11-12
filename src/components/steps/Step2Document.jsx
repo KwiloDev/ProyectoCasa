@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import './Step2Document.css'
+
 
 export default function Step2Document({ data, update, next }){
   const [doc, setDoc] = useState(data.document || '')
