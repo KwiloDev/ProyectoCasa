@@ -1,0 +1,126 @@
+:root {
+  --background-color: #f8f0e5; /* Fondo crema */
+  --text-color: #503629;       /* Marrón oscuro */
+  --accent-color: #e5a44a;     /* Mostaza cálido */
+  --button-bg: #f0c377;        /* Botón beige-mostaza */
+  --button-hover: #f5d197;     /* Hover claro */
+  --card-bg: #ffffff;
+  --border-color: #e3c9a8;
+}
+
+/* Contenedor principal */
+.step8-budget {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--text-color);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Título */
+.step8-budget h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Contenedor de opciones */
+.step8-budget .grid {
+  width: 100%;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Tarjetas */
+.step8-budget .grid > div {
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.8rem 1.2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.step8-budget .grid > div:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Títulos de las tarjetas */
+.step8-budget h4 {
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Texto descriptivo */
+.step8-budget p {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Botones principales */
+.btn-primary {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: var(--button-hover);
+}
+
+/* Botón volver */
+.btn-ghost {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.btn-ghost:hover {
+  color: var(--text-color);
+}
+
+/* Footer */
+.step8-budget .mt-6 {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 2.5rem;
+}
+
+/* Adaptación móvil */
+@media (max-width: 600px) {
+  .step8-budget {
+    padding: 2rem 1rem;
+  }
+
+  .step8-budget h3 {
+    font-size: 1.2rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}

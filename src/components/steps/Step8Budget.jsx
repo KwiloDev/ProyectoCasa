@@ -1,10 +1,13 @@
 import React from 'react'
+import './Step8Budget.css'
+
 
 export default function Step8Budget({ data, update, next, prev }){
   const choose = (val) => { update({ budgetChoice: val }); next() }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 step8-budget">
+
       <h3 className="text-lg font-semibold" style={{color:'#503629'}}>Ahora que ya sabes el tipo de vivienda, veamos tu presupuesto</h3>
       <div className="mt-3 grid sm:grid-cols-2 gap-4">
         <div className="p-3 border rounded">

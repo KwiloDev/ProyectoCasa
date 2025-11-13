@@ -1,18 +1,33 @@
 import React from 'react'
+import './Step4HasHome.css'
 
-export default function Step4HasHome({ onChoose, prev }){
+export default function Step4HasHome({ onChoose, prev }) {
   return (
-    <div className="space-y-4">
-      <p className="text-base font-medium" style={{color:'#503629'}}>1. ¿Actualmente cuentas con vivienda propia?</p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
-        <button onClick={()=>onChoose('si')} className="p-3 rounded-md border hover:shadow-sm text-left">a) Sí</button>
-        <button onClick={()=>onChoose('no')} className="p-3 rounded-md border hover:shadow-sm text-left">b) No</button>
-        <button onClick={()=>onChoose('parcialmente')} className="p-3 rounded-md border hover:shadow-sm text-left">c) Parcialmente (compartida, en proceso...)</button>
+    <div className="step4-container">
+      {/* Pregunta principal */}
+      <p className="step4-question">
+        1. ¿Actualmente cuentas con vivienda propia?
+      </p>
+
+      {/* Opciones */}
+      <div className="step4-options">
+        <button onClick={() => onChoose('si')} className="step4-option">
+          a) Sí
+        </button>
+        <button onClick={() => onChoose('no')} className="step4-option">
+          b) No
+        </button>
+        <button onClick={() => onChoose('parcialmente')} className="step4-option">
+          c) Parcialmente (compartida, en proceso...)
+        </button>
       </div>
 
-      <div className="mt-4 flex justify-between">
-        <button onClick={prev} className="btn-ghost">Volver</button>
-        <div className="text-sm opacity-70">Elige la opción que aplica</div>
+      {/* Navegación */}
+      <div className="step4-footer">
+        <button onClick={prev} className="btn-back">
+          ← Volver
+        </button>
+        <div className="step4-hint">Elige la opción que aplica</div>
       </div>
     </div>
   )
