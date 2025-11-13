@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Step0Initial from './steps/Step0Initial'
 import Step1Welcome from './steps/Step1Welcome'
 import Step2Document from './steps/Step2Document'
 import Step3Hello from './steps/Step3Hello'
@@ -11,8 +12,9 @@ import Step9Finance from './steps/Step9Finance'
 import Step10Extras from './steps/Step10Extras'
 import Step11Final from './steps/Step11Final'
 
+
 const stepsOrder = [
-  'welcome','doc','hello','hasHome','benefits_or_next','subsidy','types','budget','finance','extras','final'
+  'logos','welcome','doc','hello','hasHome','benefits_or_next','subsidy','types','budget','finance','extras','final'
 ]
 
 export default function Survey(){
@@ -74,17 +76,18 @@ export default function Survey(){
       </div>
 
       <div className="min-h-[320px]">
-        {index === 0 && <Step1Welcome next={next} />}
-        {index === 1 && <Step2Document data={data} update={update} next={() => goTo('hello')} />}
-        {index === 2 && <Step3Hello data={data} next={() => goTo('hasHome')} />}
-        {index === 3 && <Step4HasHome onChoose={handleAfterHasHome} prev={() => goTo('doc')} />}
-        {index === 4 && data.hasHome === 'si' && <Step5Benefits next={() => goTo('final')} prev={() => goTo('hasHome')} />}
-        {index === 5 && <Step6Subsidy data={data} update={update} next={() => goTo('types')} openModal={(content)=>setModal({open:true,content})} prev={() => goTo('hasHome')} />}
-        {index === 6 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
-        {index === 7 && <Step8Budget data={data} update={update} next={() => goTo('finance')} prev={() => goTo('types')} />}
-        {index === 8 && <Step9Finance data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
-        {index === 9 && <Step10Extras data={data} update={update} next={() => goTo('final')} prev={() => goTo('finance')} />}
-        {index === 10 && <Step11Final data={data} prev={() => {
+        {index === 0 && <Step0Initial next={next} />}
+        {index === 1 && <Step1Welcome next={next} />}
+        {index === 2 && <Step2Document data={data} update={update} next={() => goTo('hello')} />}
+        {index === 3 && <Step3Hello data={data} next={() => goTo('hasHome')} />}
+        {index === 4 && <Step4HasHome onChoose={handleAfterHasHome} prev={() => goTo('doc')} />}
+        {index === 5 && data.hasHome === 'si' && <Step5Benefits next={() => goTo('final')} prev={() => goTo('hasHome')} />}
+        {index === 6 && <Step6Subsidy data={data} update={update} next={() => goTo('types')} openModal={(content)=>setModal({open:true,content})} prev={() => goTo('hasHome')} />}
+        {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
+        {index === 8 && <Step8Budget data={data} update={update} next={() => goTo('finance')} prev={() => goTo('types')} />}
+        {index === 9 && <Step9Finance data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
+        {index === 10 && <Step10Extras data={data} update={update} next={() => goTo('final')} prev={() => goTo('finance')} />}
+        {index === 11 && <Step11Final data={data} prev={() => {
           // si venimos de rama propietario, volver a benefits, si no, a extras
           if(data.hasHome === 'si') goTo('benefits_or_next')
           else goTo('extras')
