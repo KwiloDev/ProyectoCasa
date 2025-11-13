@@ -96,6 +96,14 @@
   background-color: #d9964a;
 }
 
+/* Imagen del personaje */
+.welcome-image img {
+  max-height: 380px;
+  object-fit: contain;
+  margin-left: 40px;              
+}
+
+
 /* Contenedor principal 0*/
 .welcome-content0 {
   display: flex;
