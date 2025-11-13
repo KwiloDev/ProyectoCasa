@@ -1,0 +1,97 @@
+:root {
+  --background-color: #f8f0e5; /* Fondo crema */
+  --text-color: #503629;       /* Marrón oscuro */
+  --accent-color: #e5a44a;     /* Mostaza cálido */
+  --button-bg: #f0c377;        /* Botón beige-mostaza */
+  --button-hover: #f5d197;     /* Hover claro */
+}
+
+/* Fondo general */
+.step4-container {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--text-color);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Pregunta principal */
+.step4-question {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+}
+
+/* Contenedor de opciones */
+.step4-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+@media (min-width: 640px) {
+  .step4-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Botones de opciones */
+.step4-option {
+  background-color: #fff;
+  border: 2px solid #e3c9a8;
+  border-radius: 12px;
+  padding: 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.step4-option:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.02);
+  border-color: var(--accent-color);
+}
+
+/* Pie de página */
+.step4-footer {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Botón "Volver" */
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.btn-back:hover {
+  color: var(--text-color);
+}
+
+/* Texto guía */
+.step4-hint {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
