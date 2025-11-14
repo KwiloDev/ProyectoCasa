@@ -1,34 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Step6Subsidy.css'
 import Personaje from '../../assets/Personajes/Personaje 4.png'
 
-export default function Step6Subsidy({ data, update, next, prev, openModal }) {
+export default function Step6Subsidy({ data, update, next, prev }) {
+
+  const [alertData, setAlertData] = useState(null)
 
   const set = (field, val) => update({ [field]: val })
 
-  //* ➤ Pregunta 1 (abre modal si dice "sí")
+  // ➤ Pregunta 1
   const handleAffiliation = (val) => {
     set('affiliatedToCaja', val)
 
     if (val === 'si') {
-      openModal(
-        <div className="modal-wrapper">
-          <p className="modal-text">
+      setAlertData({
+        title: "Información importante",
+        message: (
+          <>
             Al tocar <strong>"Siguiente"</strong> accederás a la página de
-            <strong> Compensar para afiliar a tus beneficiarios.</strong>
+            <strong> Compensar</strong> para afiliar a tus beneficiarios.
             Se abrirá una <strong>nueva pestaña</strong>, entonces
             <strong> no perderás tu avance.</strong>
-          </p>
-
-          <button className="modal-close-btn" onClick={() => openModal(null)}>
-            Cerrar
-          </button>
-        </div>
-      )
+          </>
+        ),
+        confirmText: "Cerrar",
+        onConfirm: () => setAlertData(null),
+      })
     }
   }
 
-  // ➤ Botón siguiente
+  // ➤ Botón Siguiente 
   const handleNext = () => {
     const allMatch =
       data.affiliatedToCaja === 'no' &&
@@ -39,33 +40,21 @@ export default function Step6Subsidy({ data, update, next, prev, openModal }) {
       data.hadSubsidyBefore === 'no'
 
     if (allMatch) {
-      openModal(
-        <div className="modal-wrapper">
-
-          <p className="modal-text">
-            Al tocar el botón <strong>“Siguiente”</strong>, accederás a la página
+      setAlertData({
+        title: "Antes de continuar",
+        message: (
+          <>
+            Al tocar <strong>“Siguiente”</strong> accederás a la página
             de <strong>Compensar</strong> para afiliar a tus beneficiarios.
-          </p>
-
-          <p className="modal-text" style={{ marginTop: '10px' }}>
-            Se abrirá una <strong>nueva pestaña</strong>, entonces
-            <strong> no perderás tu avance en la compra de tu vivienda.</strong>
-          </p>
-
-          <div className="modal-buttons">
-            <button
-              className="btn-back"
-              onClick={() => openModal(null)}
-            >
-              Volver
-            </button>
-
-            <button className="btn-next" onClick={next}>
-              Siguiente
-            </button>
-          </div>
-        </div>
-      )
+            <br /><br />
+            Se abrirá una <strong>nueva pestaña</strong>, entonces<strong><i> no perderás tu avance en la compra de tu vivienda.</i></strong>
+          </>
+        ),
+        cancelText: "Volver",
+        confirmText: "Siguiente",
+        onCancel: () => setAlertData(null),
+        onConfirm: next
+      })
     } else {
       next()
     }
@@ -73,6 +62,30 @@ export default function Step6Subsidy({ data, update, next, prev, openModal }) {
 
   return (
     <div className="step6-container">
+
+      {/* Alert Modal */}
+      {alertData && (
+        <div className="alert-overlay">
+          <div className="alert-box">
+
+            <h3 className="alert-title">{alertData.title}</h3>
+
+            <p className="alert-message">{alertData.message}</p>
+
+            <div className="alert-buttons">
+              {alertData.cancelText && (
+                <button className="btn-back" onClick={alertData.onCancel}>
+                  {alertData.cancelText}
+                </button>
+              )}
+
+              <button className="btn-next" onClick={alertData.onConfirm}>
+                {alertData.confirmText}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <i>
         <p className="welcome-title">

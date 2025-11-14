@@ -119,7 +119,6 @@
   background: #e8b56e;
 }
 
-/* Marca visual cuando una opción está seleccionada */
 .option-btn.selected {
   background: var(--accent-color) !important;
   color: white !important;
@@ -167,80 +166,54 @@
 }
 
 /* ================================
-   MODAL OVERLAY (NUEVO)
+   ALERT MODAL (NUEVO)
 ================================ */
-.modal-overlay {
+/* Fondo oscuro del alert */
+.alert-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.55);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
-  backdrop-filter: blur(3px);
-  animation: fadeIn 0.25s ease-out;
+  z-index: 9999; /* por si hay otros modales */
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to   { opacity: 1; }
+  to { opacity: 1; }
 }
 
-/* ================================
-   MODAL BOX (NUEVO)
-================================ */
-.modal-box {
-  background: white;
-  padding: 25px 35px;
-  width: 500px;
-  max-width: 90%;
-  border-radius: 16px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+/* Caja del alert */
+.alert-box {
+  background: #fff;
+  width: 480px;            /* 🔥 Agrandar la ventana */
+  padding: 35px;           /* 🔥 Más aire */
+  border-radius: 15px;
+  border: 4px solid #d4af37;  /* 🔥 Borde dorado */
+  box-shadow: 0 0 25px rgba(212, 175, 55, .7); /* opcional: brillo dorado */
   text-align: center;
-  animation: popup 0.25s ease-out;
 }
 
-@keyframes popup {
-  0%   { transform: scale(0.7); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* Botón de cerrar */
-.modal-close {
-  margin-top: 20px;
-  background: var(--accent-color);
-  border: none;
-  padding: 10px 25px;
-  border-radius: 10px;
-  color: white;
+/* Título más grande */
+.alert-title {
+  font-size: 1.6rem;       /* 🔥 Más grande */
+  margin-bottom: 15px;
   font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
 }
 
-.modal-close:hover {
-  background: #d5923f;
-}
-/* Fondo oscuro detrás del modal */
-.modal-backdrop {
-  background: rgba(0, 0, 0, 0.55);
-}
-
-/* Estilo del botón "Aceptar" del modal */
-.btn-primary {
-  background-color: #f0c377;
-  color: #503629;
-  padding: 0.6rem 1.6rem;
-  border-radius: 12px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s ease;
+/* Texto más grande */
+.alert-message {
+  font-size: 1.2rem;       /* 🔥 Más grande */
+  line-height: 1.5;
+  margin-bottom: 25px;
 }
 
-.btn-primary:hover {
-  background-color: #f5d197;
+.alert-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
