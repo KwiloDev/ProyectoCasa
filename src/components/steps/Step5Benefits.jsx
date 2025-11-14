@@ -1,58 +1,84 @@
 import React from 'react'
 import './Step5Benefits.css'
 
-import mejoraViviendaBox from '../../assets/Cajas/Caja 1.png'
 import mejoraViviendaTool from '../../assets/Iconos/Icono 4.png'
 import mejoraViviendaFolio from '../../assets/Iconos/Icono 5.png'
 import mejoraViviendaMoney from '../../assets/Iconos/Icono 6.png'
+import personaje from '../../assets/Personajes/Personaje 4.png'
 
 export default function Step5Benefits({ next, prev }) {
   return (
-    <div className="container-benefits">
+    <div className="benefits-container">
 
-      <h3 className="title-benefits">
+      <h3 className="benefits-title">
         ¡Como ya cuentas con vivienda propia,
         <br />
         tenemos estos beneficios para ti!
       </h3>
 
-      <div className="cards-grid">
+      {/* Contenedor tarjetas + personaje */}
+      <div className="benefits-content">
 
-        {/* Tarjeta 1 */}
-        <div className="card">
-          <img src={mejoraViviendaBox} className="card-box" />
-          <img src={mejoraViviendaTool} className="card-icon" />
-          <h4 className="card-title">Mejora de vivienda</h4>
-          <p className="card-text">
-            Conoce y solicita los subsidios para mejorar tu vivienda.
-          </p>
+        {/* GRID DE TARJETAS */}
+        <div className="benefits-grid">
+
+          {/* Tarjeta 1 */}
+          <div className="benefit-card">
+            <h4 className="benefit-card-title">Mejora de vivienda</h4>
+
+            <div className="benefit-card-content">
+              <p className="benefit-card-text">
+                Conoce y solicita los subsidios
+                <br />
+                para mejorar tu vivienda.
+              </p>
+
+              <img src={mejoraViviendaTool} className="benefit-card-image" />
+            </div>
+          </div>
+
+          {/* Tarjeta 2 */}
+          <div className="benefit-card">
+            <h4 className="benefit-card-title">Legalización de Documentos</h4>
+
+            <div className="benefit-card-content">
+              <p className="benefit-card-text">
+                Pon al día tus escrituras, impuestos
+                <br />
+                u otros documentos.
+              </p>
+
+              <img src={mejoraViviendaFolio} className="benefit-card-image" />
+            </div>
+          </div>
+
+          {/* Tarjeta 3 */}
+          <div className="benefit-card">
+            <h4 className="benefit-card-title">Administración de viviendas</h4>
+
+            <div className="benefit-card-content">
+              <p className="benefit-card-text">
+                Solicita información en caso de herencia
+                <br />
+                o ayuda para sucesión.
+              </p>
+
+              <img src={mejoraViviendaMoney} className="benefit-card-image" />
+            </div>
+          </div>
+
         </div>
 
-        {/* Tarjeta 2 */}
-        <div className="card">
-          <img src={mejoraViviendaBox} className="card-box" />
-          <img src={mejoraViviendaFolio} className="card-icon" />
-          <h4 className="card-title">Legalización de Documentos</h4>
-          <p className="card-text">
-            Pon al día tus escrituras, impuestos u otros documentos.
-          </p>
-        </div>
-
-        {/* Tarjeta 3 */}
-        <div className="card">
-          <img src={mejoraViviendaBox} className="card-box" />
-          <img src={mejoraViviendaMoney} className="card-icon" />
-          <h4 className="card-title">Administración de viviendas</h4>
-          <p className="card-text">
-            Solicita información en caso de herencia o ayuda para sucesión.
-          </p>
+        {/* PERSONAJE A LA DERECHA */}
+        <div className="benefits-character">
+          <img src={personaje} alt="Personaje" />
         </div>
 
       </div>
 
-      <div className="controls">
-        <button className="btn-back" onClick={prev}>Volver</button>
-        <button className="btn-next" onClick={next}>Finalizar</button>
+      <div className="benefits-controls">
+        <button className="benefits-btn-back" onClick={prev}>Volver</button>
+        <button className="benefits-btn-next" onClick={next}>Finalizar</button>
       </div>
 
     </div>
