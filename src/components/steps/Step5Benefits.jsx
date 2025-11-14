@@ -1,9 +1,18 @@
 import React from 'react'
 import './Step5Benefits.css'
+import Personaje5 from '../../assets/Personajes/Personaje 3.png'; // cambia ruta si es necesario
 
 export default function Step5Benefits({ next, prev }) {
   return (
     <div className="step5-container">
+
+      {/* Imagen decorativa */}
+      <img 
+        src={Personaje5} 
+        alt="Personaje" 
+        className="step5-illustration"
+      />
+
       {/* Título principal */}
       <h3 className="step5-title">
         ¡Como ya cuentas con vivienda propia, tenemos estos beneficios para ti!
