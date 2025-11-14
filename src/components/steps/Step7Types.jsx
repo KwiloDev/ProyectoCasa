@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react' // Importar useState
 import './Step7Types.css'
 
 export default function Step7Types({ data, update, next, prev }) {
+  // 1. Estado para controlar la modal
+  const [alertData, setAlertData] = useState(null)
+
   const choose = (val) => {
     update({ typeOfHousing: val })
     next()
   }
+
+  // Función específica para mostrar la modal de Vivienda No VIS
+  const showNoVisModal = () => {
+    setAlertData({
+      title: 'Vivienda No VIS',
+      // Este es el contenido principal que se mostrará en lugar del <p>alertData.message</p>
+      content: ( 
+        <ul className="modal-list">
+          <li>Solicita estudio en salarios mínimos al año de entrega.</li>
+          <li>Pregunta por pagos adicionales como avalúos y estudios de títulos.</li>
+          <li>Verifica acceso a principales vías y trasporte.</li>
+          <li>Pregunta por banco constructor y tasa preferencial en créditos hipotecarios.</li>
+        </ul>
+      ),
+      confirmText: 'Volver', // Texto del botón en la imagen
+      onConfirm: () => {
+        setAlertData(null); // Cerrar la modal
+      },
+      // No hay botón de "Cancelar" o "Siguiente" en la imagen, por lo que no lo incluimos
+    })
+  }
+  
+  // Función para avanzar al siguiente paso una vez se ha visto la modal
+  const handleNoVisConfirm = () => {
+    setAlertData(null); // Cerrar la modal
+    choose('novis'); // Avanzar al siguiente paso con el valor elegido
+  }
+
 
   return (
     <div className="step7-types">
@@ -19,6 +50,7 @@ export default function Step7Types({ data, update, next, prev }) {
 
         {/* VIS / VIP */}
         <div className="step7-card">
+          {/* ... otros elementos ... */}
           <img
             src="/src/assets/Cajas/Caja 2.png"
             alt="VIS"
@@ -36,6 +68,7 @@ export default function Step7Types({ data, update, next, prev }) {
 
         {/* Usada */}
         <div className="step7-card">
+          {/* ... otros elementos ... */}
           <img
             src="/src/assets/Cajas/Caja 3_1.png"
             alt="Usada"
@@ -51,8 +84,9 @@ export default function Step7Types({ data, update, next, prev }) {
           </button>
         </div>
 
-        {/* No VIS */}
+        {/* No VIS - MODIFICADO */}
         <div className="step7-card">
+          {/* ... otros elementos ... */}
           <img
             src="/src/assets/Cajas/Caja 4.png"
             alt="No VIS"
@@ -63,7 +97,8 @@ export default function Step7Types({ data, update, next, prev }) {
             Proyectos recién construidos con entregas en máximo 2 años
             o disponibles inmediatamente.
           </p>
-          <button onClick={() => choose('novis')} className="btn-house">
+          {/* Llama a la nueva función */}
+          <button onClick={showNoVisModal} className="btn-house"> 
             Descubre proyectos inmobiliarios
           </button>
         </div>
@@ -76,6 +111,34 @@ export default function Step7Types({ data, update, next, prev }) {
           Volver
         </button>
       </div>
+
+      {/* 2. Estructura de la Modal / Alert */}
+      {alertData && ( 
+        <div className="alert-overlay">
+          <div className="alert-box">
+            {/* Imagen de la casa, añadida como un div o directamente como un <img> si tienes la ruta */}
+            <div className="modal-house-icon">
+              {/* Usamos un div placeholder, en producción usarías el componente real o un <img> */}
+              <img src="https://via.placeholder.com/150x120/cc5500/ffffff?text=Casa+No+VIS" alt="Vivienda No VIS" />
+            </div>
+
+            <h3 className="alert-title">{alertData.title}</h3>
+
+            {/* Renderizar el contenido (la lista) */}
+            <div className="alert-content">
+               {alertData.content} 
+            </div>
+
+            <div className="alert-buttons">
+              {/* Botón Volver con el estilo de la imagen */}
+              <button className="btn-modal-volver" onClick={alertData.onConfirm}>
+                {alertData.confirmText}
+              </button>
+            </div>
+            
+          </div>
+        </div>
+      )}
     </div>
   )
 }
