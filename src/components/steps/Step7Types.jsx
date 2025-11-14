@@ -8,52 +8,69 @@ export default function Step7Types({ data, update, next, prev }) {
   }
 
   return (
-    <div className="space-y-4 step7-types">
-      <h3 className="text-lg font-semibold" style={{ color: '#503629' }}>
-        Los tipos de vivienda a los que aplicas son:
-      </h3>
+    <div className="step7-types">
 
-      <div className="grid sm:grid-cols-3 gap-4 mt-3">
-        <div className="p-3 bg-[--s2] rounded-md shadow-sm hover:shadow-md transition">
-          <h4 className="font-semibold">Vivienda VIS / VIP</h4>
-          <p className="text-sm mt-1">
-            Para personas que devengan hasta 3 salarios mínimos.
+      {/* Título grande */}
+      <h3>Los tipos de vivienda a los que aplicas son:</h3>
+      <p className="step7-subtitle">Elige al que quieres aplicar:</p>
+
+      {/* Grid */}
+      <div className="grid sm:grid-cols-3 gap-6 mt-6">
+
+        {/* VIS / VIP */}
+        <div className="step7-card">
+          <img
+            src="/src/assets/Cajas/Caja 2.png"
+            alt="VIS"
+            className="step7-icon"
+          />
+          <h4>Vivienda VIS / VIP</h4>
+          <p>
+            Las Viviendas de interés social (VIS) o prioritario (VIP)
+            aplican para quienes devengan hasta 3 salarios mínimos.
           </p>
-          <button
-            onClick={() => choose('vis')}
-            className="mt-3 btn-primary w-full"
-          >
-            Quiero VIS
+          <button onClick={() => choose('vis')} className="btn-house">
+            Descubre proyectos inmobiliarios
           </button>
         </div>
 
-        <div className="p-3 bg-[--s2] rounded-md shadow-sm hover:shadow-md transition">
-          <h4 className="font-semibold">Vivienda Usada</h4>
-          <p className="text-sm mt-1">
-            Casas o apartamentos disponibles para entrega inmediata.
+        {/* Usada */}
+        <div className="step7-card">
+          <img
+            src="/src/assets/Cajas/Caja 3_1.png"
+            alt="Usada"
+            className="step7-icon"
+          />
+          <h4>Vivienda Usada</h4>
+          <p>
+            Casas o apartamentos ya habitados que están en venta
+            y disponibles para entrega inmediata.
           </p>
-          <button
-            onClick={() => choose('usada')}
-            className="mt-3 btn-primary w-full"
-          >
-            Ver opciones
+          <button onClick={() => choose('usada')} className="btn-house">
+            Descubre opciones de vivienda usada
           </button>
         </div>
 
-        <div className="p-3 bg-[--s2] rounded-md shadow-sm hover:shadow-md transition">
-          <h4 className="font-semibold">Vivienda No VIS</h4>
-          <p className="text-sm mt-1">
-            Proyectos nuevos; consulta condiciones y plazos.
+        {/* No VIS */}
+        <div className="step7-card">
+          <img
+            src="/src/assets/Cajas/Caja 4.png"
+            alt="No VIS"
+            className="step7-icon"
+          />
+          <h4>Vivienda No VIS</h4>
+          <p>
+            Proyectos recién construidos con entregas en máximo 2 años
+            o disponibles inmediatamente.
           </p>
-          <button
-            onClick={() => choose('novis')}
-            className="mt-3 btn-primary w-full"
-          >
-            Interesa
+          <button onClick={() => choose('novis')} className="btn-house">
+            Descubre proyectos inmobiliarios
           </button>
         </div>
+
       </div>
 
+      {/* Botón volver */}
       <div className="mt-6 flex justify-between">
         <button onClick={prev} className="btn-ghost">
           Volver
