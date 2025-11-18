@@ -45,7 +45,7 @@
   justify-content: space-between;  /* Mantiene icono arriba y texto abajo */
   padding: 1rem;
   border-radius: 12px;
-  background: #D89F2D;
+  background: #ffffff;
   min-height: 230px;  /* 🔥 Ajusta esta altura según tu diseño */
 }
 
