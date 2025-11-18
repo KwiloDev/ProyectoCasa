@@ -8,13 +8,14 @@ import Step5Benefits from './steps/Step5Benefits'
 import Step6Subsidy from './steps/Step6Subsidy'
 import Step7Types from './steps/Step7Types'
 import Step8Budget from './steps/Step8Budget'
+import Step81Budget2 from './steps/Step81Budget2'
 import Step9Finance from './steps/Step9Finance'
 import Step10Extras from './steps/Step10Extras'
 import Step11Final from './steps/Step11Final'
 
 
 const stepsOrder = [
-  'logos','welcome','doc','hello','hasHome','benefits_or_next','subsidy','types','budget','finance','extras','final'
+  'logos','welcome','doc','hello','hasHome','benefits_or_next','subsidy','types','budget','budget2','finance','extras','final'
 ]
 
 export default function Survey(){
@@ -84,10 +85,11 @@ export default function Survey(){
         {index === 5 && data.hasHome === 'si' && <Step5Benefits next={() => goTo('final')} prev={() => goTo('hasHome')} />}
         {index === 6 && <Step6Subsidy data={data} update={update} next={() => goTo('types')} openModal={(content)=>setModal({open:true,content})} prev={() => goTo('hasHome')} />}
         {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
-        {index === 8 && <Step8Budget data={data} update={update} next={() => goTo('finance')} prev={() => goTo('types')} />}
-        {index === 9 && <Step9Finance data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
-        {index === 10 && <Step10Extras data={data} update={update} next={() => goTo('final')} prev={() => goTo('finance')} />}
-        {index === 11 && <Step11Final data={data} prev={() => {
+        {index === 8 && <Step8Budget data={data} update={update} next={() => goTo('budget2')} prev={() => goTo('types')} />}
+        {index === 9 && <Step81Budget2 data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
+        {index === 10 && <Step9Finance data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
+        {index === 11 && <Step10Extras data={data} update={update} next={() => goTo('final')} prev={() => goTo('finance')} />}
+        {index === 12 && <Step11Final data={data} prev={() => {
           // si venimos de rama propietario, volver a benefits, si no, a extras
           if(data.hasHome === 'si') goTo('benefits_or_next')
           else goTo('extras')

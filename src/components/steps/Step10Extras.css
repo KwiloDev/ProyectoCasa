@@ -1,0 +1,235 @@
+/* =============================
+      ANIMACIONES
+============================= */
+
+/* Pop + pequeño rebote */
+@keyframes thoughtPop {
+  0%   { transform: scale(0.6) translateY(-20px); opacity: 0; }
+  60%  { transform: scale(1.15) translateY(5px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Movimiento flotante sutil */
+@keyframes floatBubble {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes shiftContentDown {
+  0%   { transform: translateY(-25px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+
+/* =============================
+      LAYOUT GENERAL
+============================= */
+
+.step10-page {
+  width: 100%;
+  min-height: 95vh;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 60px;
+  background-color: #f5dfbb;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+/* =============================
+      COLUMNA IZQUIERDA
+============================= */
+
+.left-column-10 {
+  width: 40%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.personaje-step10 {
+  width: 85%;
+  user-select: none;
+}
+
+
+/* =============================
+      COLUMNA DERECHA
+============================= */
+
+.right-column-10 {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  animation: shiftContentDown 0.8s ease forwards;
+  animation-delay: 0.15s;
+}
+
+
+/* =============================
+      BURBUJA DE PENSAMIENTO
+============================= */
+
+.speech-bubble-10 {
+  position: absolute;
+  top: 6%;
+  left: -18%;
+
+  background: white;
+  padding: 22px 35px;
+  border-radius: 20px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #e5a44a;
+  text-align: center;
+  line-height: 32px;
+  width: 380px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+
+  overflow: visible;
+  z-index: 200;
+
+  animation:
+    thoughtPop 0.7s ease forwards,
+    floatBubble 3s ease-in-out infinite 0.8s;
+}
+
+
+/* =============================
+      COLITA DE PENSAMIENTO
+============================= */
+
+/* BURBUJA GRANDE */
+.speech-bubble-thought {
+  position: absolute;
+  left: -15px;
+  top: 35%;
+  width: 34px;
+  height: 34px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+  z-index: 190;
+
+  animation: floatBubble 3s ease-in-out infinite 0.6s;
+}
+
+/* BURBUJITA INTERMEDIA */
+.speech-bubble-10::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: 48%;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+  z-index: 189;
+
+  animation: floatBubble 3s ease-in-out infinite 0.8s;
+}
+
+/* BURBUJITA PEQUEÑA */
+.speech-bubble-10::after {
+  content: "";
+  position: absolute;
+  left: -60px;
+  top: 60%;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 188;
+
+  animation: floatBubble 3s ease-in-out infinite 1.1s;
+}
+
+
+
+
+/* =============================
+      TEXTO DE LA DERECHA
+============================= */
+
+.extras-title {
+  color: #503629;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 25%;
+}
+
+.extras-list {
+  color: #503629;
+  font-size: 22px;
+  line-height: 32px;
+  margin-bottom: 30px;
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Asegurar que no aparezcan antes que la burbuja */
+.extras-title,
+.extras-list,
+.opciones-image {
+  opacity: 0;
+  animation: shiftContentDown 0.8s ease forwards;
+  animation-delay: 0.7s;
+}
+
+
+/* =============================
+      BOTÓN COMO IMAGEN
+============================= */
+
+.opciones-image {
+  width: 72%;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.opciones-image:hover {
+  transform: scale(1.03);
+  filter: brightness(1.07);
+}
+
+
+/* =============================
+      BOTONES INFERIORES
+============================= */
+
+.bottom-buttons-10 {
+  margin-top: 40px;
+  display: flex;
+  gap: 25px;
+}
+
+.btn-volver10,
+.btn-siguiente10 {
+  padding: 14px 32px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-volver10 {
+  background: white;
+  border: 2px solid #503629;
+  color: #503629;
+}
+
+.btn-siguiente10 {
+  background: #e5a44a;
+  color: #503629;
+}
+
+.btn-volver10:hover,
+.btn-siguiente10:hover {
+  transform: scale(1.05);
+}
