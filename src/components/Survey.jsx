@@ -85,7 +85,7 @@ export default function Survey(){
         {index === 5 && data.hasHome === 'si' && <Step5Benefits next={() => goTo('final')} prev={() => goTo('hasHome')} />}
         {index === 6 && <Step6Subsidy data={data} update={update} next={() => goTo('types')} openModal={(content)=>setModal({open:true,content})} prev={() => goTo('hasHome')} />}
         {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
-        {index === 8 && <Step8Budget data={data} update={update} next={() => goTo('finance')} prev={() => goTo('types')} />}
+        {index === 8 && <Step8Budget data={data} update={update} next={() => goTo('finance')} nextbudget2={() => goTo('budget2')} prev={() => goTo('types')} />}
         {index === 9 && <Step81Budget2 data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
         {index === 10 && <Step9Finance data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
         {index === 11 && <Step10Extras data={data} update={update} next={() => goTo('final')} prev={() => goTo('finance')} />}

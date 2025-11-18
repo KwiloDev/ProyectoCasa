@@ -14,7 +14,7 @@ const COLORS = {
   accent: '#e5a44a',
 }
 
-export default function Step8Budget({ data, update, next, prev }){
+export default function Step8Budget({ data, update, next, nextbudget2, prev }){
   const choose = (val) => { update({ budgetChoice: val }); next() }
 
   return (
@@ -71,7 +71,7 @@ export default function Step8Budget({ data, update, next, prev }){
             {/* Bloque de botones inferiores */}
             <div className="bottom-actions">
                 <button onClick={prev} className="button-volver">Volver</button>
-                <div className="button-continuar-wrapper" onClick={next}>
+                <div className="button-continuar-wrapper" onClick={nextbudget2}>
                     <span className="button-continuar-text">¿Ya tienes todo claro? ¡Continuemos!</span>
                     <span className="hand-icon"></span> {/* Placeholder para el icono de la mano */}
                 </div>

@@ -3,6 +3,33 @@ import './Step81Budget2.css';
 
 export default function Step81Budget2({ data, update, next, prev }) {
 
+  // Función para mostrar el modal de Cuota Inicial
+const handleCuotaInicialClick = () => {
+  setAlertData({
+    title: "¡Atención! Información de Cuota Inicial",
+    message: (
+      <>
+        Al continuar, recibirás información sobre cómo puedes financiar o
+        **gestionar la cuota inicial** de tu vivienda.
+        <br /><br />
+        Esta sección está diseñada para personas que **pagan arriendo** y
+        buscan alternativas para comenzar la **compra de su casa**.
+        <br /><br />
+        Toca **"Continuar"** para ver las opciones disponibles.
+      </>
+    ),
+    confirmText: "Continuar",
+    cancelText: "Cerrar",
+    //  Importante: Usamos onConfirm para la acción principal (choose)
+    onConfirm: () => {
+      setAlertData(null); // Primero cierra el modal
+      choose("cuota-inicial"); // Luego ejecuta la acción de navegación/elección
+    },
+    // Usamos onClose para solo cerrar el modal sin hacer la acción principal
+    onClose: () => setAlertData(null),
+  });
+};
+
   const choose = (val) => { 
     update({ budgetStep81Choice: val });
     next();
@@ -12,26 +39,29 @@ export default function Step81Budget2({ data, update, next, prev }) {
     <div className="step81-page">
       {/* COLUMNA IZQUIERDA */}
       <div className="left-column">
-        {/* SECCIÓN 1 */}
-        <div className="section-block">
-          <h2 className="section-title">
-            Cuota
-            <br />
-            inicial
-          </h2>
+   
 
-          <div className="box-card" onClick={() => choose("cuota-inicial")}>
-            <img
-              src="/src/assets/cajas/Caja 5.png"
-              className="box-image"
-              alt="Caja cuota"
-            />
-            <p className="box-text">
-              Quieres <b>iniciar con la compra de tu vivienda</b>, pero pagas
-              arriendo y <b>no te alcanza para pagar cuota inicial.</b>
-            </p>
-          </div>
-        </div>
+{/* SECCIÓN 1 */}
+<div className="section-block">
+  <h2 className="section-title">
+    Cuota
+    <br />
+    inicial
+  </h2>
+
+  {/* 🖱️ AQUÍ SE REEMPLAZA choose("cuota-inicial") por la nueva función handleCuotaInicialClick */}
+  <div className="box-card" onClick={handleCuotaInicialClick}>
+    <img
+      src="/src/assets/cajas/Caja 5.png"
+      className="box-image"
+      alt="Caja cuota"
+    />
+    <p className="box-text">
+      Quieres <b>iniciar con la compra de tu vivienda</b>, pero pagas
+      arriendo y <b>no te alcanza para pagar cuota inicial.</b>
+    </p>
+  </div>
+</div>
 
         {/* SECCIÓN 2 */}
         <div className="section-block">
