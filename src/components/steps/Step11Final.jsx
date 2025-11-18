@@ -1,20 +1,60 @@
-import React from 'react'
+import React from "react";
+import "./Step11Final.css";
 
-export default function Step11Final({ data, prev }){
+export default function Step11Final({ data, prev }) {
+
+  const finalizar = () => {
+    alert("Gracias por completar el formulario. ¡Pronto nos pondremos en contacto contigo!");
+  };
+
   return (
-    <div className="space-y-4">
-      <h3 className="text-xl font-semibold" style={{color:'#503629'}}>¡Estás a un paso de adquirir tu vivienda!</h3>
-      <p className="text-sm">Si tienes dudas, escríbenos tocando los íconos de contacto o completa la solicitud en la oficina de Bienestar.</p>
+    <div className="step11-page">
 
-      <div className="mt-3">
-        <h4 className="font-semibold">Resumen rápido</h4>
-        <pre className="bg-[--s2] p-3 rounded-md text-sm overflow-auto" style={{whiteSpace:'pre-wrap'}}>{JSON.stringify(data,null,2)}</pre>
+      {/* Izquierda – BURBUJA de diálogo */}
+      <div className="left-column-11">
+        <div className="speech-box-11">
+
+          <h2 className="final-title">¿Tienes dudas?</h2>
+
+          <p className="final-text">
+            Escríbenos tocando los siguientes íconos:
+          </p>
+
+          <div className="icons-row-11">
+            {/* WhatsApp */}
+            <img
+              src="/src/assets/Iconos/Icono 7.png"
+              alt="WhatsApp"
+              className="contact-icon"
+              onClick={() => window.open("https://wa.me/+576016767610", "_blank")}
+            />
+
+            {/* Correo */}
+            <img
+              src="/src/assets/Iconos/Icono 8.png"
+              alt="Correo"
+              className="contact-icon"
+              onClick={() => window.open("https://www.crepesywaffles.com/contacto")}
+            />
+          </div>
+
+        </div>
+
+        {/* BOTÓN FINALIZAR */}
+        <button className="btn-finalizar-11" onClick={finalizar}>
+          Finalizar
+        </button>
       </div>
 
-      <div className="mt-6 flex justify-between">
-        <button onClick={prev} className="btn-ghost">Volver</button>
-        <button onClick={()=>alert('Gracias. Envío simulado. Nos contactamos pronto.')} className="btn-primary">Finalizar</button>
+      {/* Derecha – PERSONAJE */}
+      <div className="right-column-11">
+        <img
+          src="/src/assets/Personajes/Personaje 8.png"
+          alt="Personaje final"
+          className="personaje-11"
+        />
       </div>
+
     </div>
-  )
+  );
 }

@@ -1,0 +1,149 @@
+/* =============================
+      ANIMACIONES
+============================= */
+
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* =============================
+      LAYOUT GENERAL
+============================= */
+
+.step11-page {
+  width: 100%;
+  min-height: 95vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 60px;
+  background-color: #f5dfbb;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+/* =============================
+      COLUMNA IZQUIERDA
+============================= */
+
+.left-column-11 {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* =============================
+      BURBUJA DE DIÁLOGO
+============================= */
+
+.speech-box-11 {
+  width: 85%;
+  background: white;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+  text-align: center;
+  animation: fadeSlideUp 0.6s ease forwards;
+  position: relative;
+}
+
+/* Pico del globo */
+.speech-box-11::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 45%;
+  width: 0;
+  height: 0;
+  border-left: 25px solid white;
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+}
+
+
+/* TÍTULO */
+.final-title {
+  font-size: 34px;
+  color: #e5a44a;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* TEXTO */
+.final-text {
+  font-size: 20px;
+  color: #503629;
+  margin-bottom: 25px;
+}
+
+
+/* =============================
+      ÍCONOS DE CONTACTO
+============================= */
+
+.icons-row-11 {
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  margin-bottom: 10px;
+}
+
+.contact-icon {
+  width: 65px;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+
+.contact-icon:hover {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+
+/* =============================
+      BOTÓN FINALIZAR
+============================= */
+
+.btn-finalizar-11 {
+  margin-top: 35px;
+  padding: 12px 38px;
+  background: #e5a44a;
+  color: #503629;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-finalizar-11:hover {
+  transform: scale(1.05);
+}
+
+
+/* =============================
+      PERSONAJE DERECHA
+============================= */
+
+.right-column-11 {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.personaje-11 {
+  width: 60%;
+  animation: fadeIn 1s ease forwards;
+  user-select: none;
+}
