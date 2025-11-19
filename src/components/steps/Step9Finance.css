@@ -1,206 +1,209 @@
-:root {
-  --background-color: #f8f0e5; /* Fondo crema */
-  --text-color: #503629; 	 /* Marrón oscuro para texto */
-  --title-color: #7b4e3c;    /* Color del título más oscuro */
-  --accent-color: #e5a44a; 	 /* Mostaza cálido */
-  --top-box-bg: #f8e0b6; 	 /* Beige claro/anaranjado para el 100% */
-  --initial-box-bg: #f0c377; /* Botón beige-mostaza para el 30% */
-  --credit-box-bg: #c0874c; 	 /* Marrón mostaza oscuro para el 70% */
-  --button-hover: #f5d197; 	 /* Hover claro */
-  --volver-btn-bg: #f5d197; 	 /* Fondo botón volver */
-  --font-family: 'Georgia', serif; /* Una fuente que parezca más caligráfica/serif */
-}
-
-/* Contenedor principal */
-.step9-finance {
-  background-color: var(--background-color);
+.step9-page {
+  background: #F9EEDF;
+  padding: 40px 20px;
+  text-align: center;
   min-height: 100vh;
-  padding: 3rem 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  color: var(--text-color);
-  font-family: var(--font-family);
-  position: relative; /* Para posicionar el botón Volver */
 }
 
-/* Título */
-.step9-finance .title {
-  font-size: 2rem;
+/* TÍTULO */
+.title-hagamos {
+  color: #503629;
   font-weight: 700;
-  text-align: center;
-  margin-bottom: 3rem;
-  color: var(--title-color);
-  /* Ajuste de fuente para parecerse al de la imagen */
-  font-family: var(--font-family);
-  font-style: italic;
+  font-size: 32px;
+  margin-bottom: 25px;
 }
 
-/* --- Estilos del Diagrama --- */
+/* Caja 100% */
+.block-100 {
+  background: #F6C977;
+  padding: 18px 40px;
+  border-radius: 15px;
+  color: #503629;
+  font-size: 20px;
+  font-weight: bold;
+  width: fit-content;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
 
-.finance-diagram {
+.line-divider {
+  width: 2px;
+  height: 55px;
+  background: #503629;
+  margin: 15px auto;
+}
+
+/* Sección porcentajes */
+.percent-section {
+  display: flex;
+  justify-content: center;
+  gap: 140px;
+  margin-top: 20px;
+}
+
+.percent-box p {
+  color: #503629;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.percent-value {
+  background: #D8943A;
+  color: white;
+  padding: 22px 40px;
+  border-radius: 15px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Botones */
+.btn-open-modal,
+.back-btn {
+  margin-top: 40px;
+  padding: 10px 25px;
+  background: #E3A858;
+  color: #503629;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-btn {
+  margin-top: 20px;
+}
+
+/* ================= MODALES ================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-box.big-modal {
+  background: #C89458;
+  padding: 40px 50px;
+  border-radius: 35px;
+  width: 90%;
+  max-width: 1000px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.modal-title {
+  color: #503629;
+  font-size: 28px;
+  margin-bottom: 35px;
+  font-weight: 700;
+}
+
+/* Modal 1 grid */
+.modal-grid-1 {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 200px);
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.modal-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
+}
+
+.modal-item p {
+  font-size: 16px;
+  color: #503629;
+  font-weight: bold;
+}
+
+/* Modal 2 grid */
+.modal-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* Base tarjeta */
+.modal-card {
+  background: #FDF7EE;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  margin-top: 2rem;
 }
 
-/* Bloque Superior (100%) */
-.block-top {
-  background-color: var(--top-box-bg);
-  color: var(--text-color);
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  text-align: center;
-  font-weight: 600;
-  width: 90%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.modal-card h4 {
+  color: #503629;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-/* Contenedor de Conectores */
-.connectors {
-  position: relative;
-  width: 80%;
-  height: 25px; /* Altura para las líneas verticales */
-  margin-top: 5px;
+.modal-card p {
+  color: #503629;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
-/* Línea horizontal que conecta a los verticales */
-.line-h {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: var(--text-color);
-  margin: 0 auto;
-  width: 100%;
+/* El card grande (documentos) */
+.card-documentos {
+  grid-column: span 2;
 }
 
-/* Línea vertical izquierda */
-.line-v-left {
-  position: absolute;
-  top: 0;
-  left: 10%; /* Ajustar la posición horizontal */
-  width: 2px;
-  height: 100%;
-  background-color: var(--text-color);
-}
-
-/* Línea vertical derecha */
-.line-v-right {
-  position: absolute;
-  top: 0;
-  right: 10%; /* Ajustar la posición horizontal */
-  width: 2px;
-  height: 100%;
-  background-color: var(--text-color);
-}
-
-/* Bloques Inferiores (30% y 70%) */
-.blocks-bottom {
+.card-content-4 {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  margin-top: 0;
-}
-
-.block-left, .block-right {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  width: 45%; /* Para separarlos */
+  margin-top: 10px;
 }
 
-.block-left {
-  margin-left: 20px; /* Separación de la línea vertical */
+/* Lista */
+.document-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.block-right {
-  margin-right: 20px; /* Separación de la línea vertical */
+.document-list li {
+  font-size: 15px;
+  padding-left: 15px;
+  position: relative;
 }
 
-.label {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.percentage-box {
-  padding: 0.8rem 1.5rem;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-}
-
-.initial-percentage {
-  background-color: var(--initial-box-bg); /* 30% */
-}
-
-.credit-percentage {
-  background-color: var(--credit-box-bg); /* 70% */
-}
-
-/* Botón Volver (Posición de la imagen) */
-.btn-volver {
-  background-color: var(--volver-btn-bg);
-  color: var(--text-color);
-  font-weight: 600;
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-  /* Posicionamiento para que se parezca a la imagen */
+.document-list li::before {
+  content: "•";
   position: absolute;
-  bottom: auto; /* Desactivar bottom */
-  left: 20px; /* Ajustar posición izquierda */
-  top: 70%; /* Aproximadamente donde está en la imagen */
+  left: 0;
+  color: #503629;
+  font-weight: bold;
 }
 
-.btn-volver:hover {
-  background-color: var(--button-hover);
+/* Acción */
+.action-box {
+  background: #E3A858;
+  border-radius: 10px;
+  padding: 15px 25px;
+  text-align: center;
+  cursor: pointer;
 }
 
-/* Estilos no utilizados en la imagen (limpieza) */
-.step9-finance p, .step9-finance .mt-6 {
-  display: none; /* Ocultar el texto explicativo y el botón Siguiente */
-}
-
-/* Adaptación móvil (ajustar las líneas de conexión) */
-@media (max-width: 600px) {
-  .step9-finance {
-    padding: 2rem 1rem;
-  }
-
-  .step9-finance .title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-  }
-  
-  .finance-diagram {
-    max-width: 350px;
-  }
-
-  .blocks-bottom {
-    width: 100%;
-  }
-  
-  .block-left, .block-right {
-    width: 40%;
-  }
-
-  .btn-volver {
-    left: 1rem;
-    top: 75%;
-  }
+.modal-btn {
+  margin-top: 30px;
+  padding: 12px 30px;
+  background: #E3A858;
+  color: #503629;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
 }
