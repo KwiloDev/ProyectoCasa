@@ -1,56 +1,59 @@
-import React, { useState } from 'react' // Importar useState
+import React, { useState } from 'react'
 import './Step7Types.css'
 
 export default function Step7Types({ data, update, next, prev }) {
-  // 1. Estado para controlar la modal
+  // Modal principal
   const [alertData, setAlertData] = useState(null)
+
+  // Input dentro del modal
+  const [userResponse, setUserResponse] = useState("")
 
   const choose = (val) => {
     update({ typeOfHousing: val })
     next()
   }
 
-  // Función específica para mostrar la modal de Vivienda No VIS
+  // Modal que se abre al dar clic
   const showNoVisModal = () => {
     setAlertData({
       title: "Tu historia importa: cuéntanos de ti",
-      // Este es el contenido principal que se mostrará en lugar del <p>alertData.message</p>
       content: (
         <p>
-          Queremos conocer a las personas detrás del esfuerzo. Cuéntanos en
-          pocas palabras por qué tu trabajo es excepcional, es la oportunidad
-          para que compartas cómo tu dedicación ha hecho crecer no solo tu
-          camino, sino también el de la empresa.
+          Queremos conocer a las personas detrás del esfuerzo. Cuéntanos en pocas palabras 
+          por qué tu trabajo es excepcional. Es la oportunidad para que compartas cómo tu 
+          dedicación ha hecho crecer no solo tu camino, sino también el de la empresa.
         </p>
       ),
-      confirmText: "Volver", // Texto del botón en la imagen
-      onConfirm: () => {
-        setAlertData(null); // Cerrar la modal
-      },
-      // No hay botón de "Cancelar" o "Siguiente" en la imagen, por lo que no lo incluimos
-    });
-  }
-  
-  // Función para avanzar al siguiente paso una vez se ha visto la modal
-  const handleNoVisConfirm = () => {
-    setAlertData(null); // Cerrar la modal
-    choose('novis'); // Avanzar al siguiente paso con el valor elegido
+      confirmText: "Volver",
+      onConfirm: () => setAlertData(null),
+    })
   }
 
+  // Acción al enviar la respuesta
+  const handleSubmitResponse = () => {
+    console.log("Respuesta enviada:", userResponse)
+
+    // Puedes guardar la respuesta en tu flujo si deseas
+    // update({ userStory: userResponse })
+
+    setUserResponse("")     // limpiar input
+    setAlertData(null)      // cerrar modal
+  }
 
   return (
     <div className="step7-types">
 
       {/* Título grande */}
       <h3>Acompañamos tu sueño en todas las etapas del camino:</h3>
-      <p className="step7-subtitle">Escoge una opción de acuerdo en el proceso que estas: </p>
+      <p className="step7-subtitle">
+        Escoge una opción de acuerdo en el proceso que estas:
+      </p>
 
-      {/* Grid */}
+      {/* Grid principal */}
       <div className="grid sm:grid-cols-3 gap-6 mt-6">
 
-        {/* VIS / VIP */}
+        {/* Semilla de Vivienda */}
         <div className="step7-card">
-          {/* ... otros elementos ... */}
           <img
             src="/src/assets/Cajas/Caja 2.png"
             alt="Semilla de Vivienda"
@@ -59,16 +62,15 @@ export default function Step7Types({ data, update, next, prev }) {
           <h4>Semilla de Vivienda</h4>
           <p>
             Para quienes están dando su primer paso.
-Ideal si estas en búsqueda de un proyecto o si ya elegiste un proyecto. 
+            Ideal si estás en búsqueda de un proyecto o si ya elegiste uno.
           </p>
           <button onClick={showNoVisModal} className="btn-house">
             Descubre proyectos inmobiliarios
           </button>
         </div>
 
-        {/* Usada */}
+        {/* Raíces del hogar */}
         <div className="step7-card">
-          {/* ... otros elementos ... */}
           <img
             src="/src/assets/Cajas/Caja 3_1.png"
             alt="Raíces del hogar"
@@ -77,16 +79,15 @@ Ideal si estas en búsqueda de un proyecto o si ya elegiste un proyecto.
           <h4>Raíces del hogar</h4>
           <p>
             Para quienes ya tienen su sueño en proceso.
-Si llevas adelantado el proceso de pago de cuita inicial, estas próximo a pago de escrituras o entrega del apartamento. 
+            Si llevas adelantado el pago de cuota inicial o estás próximo a escrituras.
           </p>
           <button onClick={showNoVisModal} className="btn-house">
             Descubre opciones de vivienda usada
           </button>
         </div>
 
-        {/* No VIS - MODIFICADO */}
+        {/* Cosechando frutos */}
         <div className="step7-card">
-          {/* ... otros elementos ... */}
           <img
             src="/src/assets/Cajas/Caja 4.png"
             alt="Cosechando frutos"
@@ -94,55 +95,65 @@ Si llevas adelantado el proceso de pago de cuita inicial, estas próximo a pago 
           />
           <h4>Cosechando frutos</h4>
           <p>
-            Para quienes ya recibieron su vivienda en obra gris y están proceso de que su hogar florezca.
+            Para quienes ya recibieron su vivienda en obra gris y están en proceso de
+            hacer que su hogar florezca.
           </p>
-          {/* Llama a la nueva función */}
-          <button onClick={showNoVisModal} className="btn-house"> 
+          <button onClick={showNoVisModal} className="btn-house">
             Descubre proyectos inmobiliarios
           </button>
         </div>
 
       </div>
 
-       {/* Botón volver y botón siguiente */}
+      {/* Botones inferiores */}
       <div className="mt-6 flex justify-between">
-        <button onClick={prev} className="btn-ghost7">
-          Volver
-        </button>
-
-        <button className="btn-ghost7" onClick={next}>
-          Siguiente
-        </button>
+        <button onClick={prev} className="btn-ghost7">Volver</button>
+        <button className="btn-ghost7" onClick={next}>Siguiente</button>
       </div>
 
-
-      {/* 2. Estructura de la Modal / Alert */}
-      {alertData && ( 
+      {/* MODAL */}
+      {alertData && (
         <div className="alert-overlay">
           <div className="alert-box">
-            {/* Imagen de la casa, añadida como un div o directamente como un <img> si tienes la ruta */}
+
+            {/* Imagen izquierda */}
             <div className="modal-house-icon">
-              {/* Usamos un div placeholder, en producción usarías el componente real o un <img> */}
               <img src="/src/assets/Iconos/Icono 1.png" alt="Icono 1" />
             </div>
 
             <h3 className="alert-title">{alertData.title}</h3>
 
-            {/* Renderizar el contenido (la lista) */}
+            {/* Texto dinámico */}
             <div className="alert-content">
-               {alertData.content} 
+              {alertData.content}
             </div>
 
+            {/* INPUT + BOTÓN ENVIAR */}
+            <div className="alert-input-wrapper">
+              <input
+                type="text"
+                className="alert-input"
+                placeholder="Escribe tu mensaje aquí..."
+                value={userResponse}
+                onChange={(e) => setUserResponse(e.target.value)}
+              />
+
+              <button className="btn-modal-submit" onClick={handleSubmitResponse}>
+                Enviar
+              </button>
+            </div>
+
+            {/* Botón volver */}
             <div className="alert-buttons">
-              {/* Botón Volver con el estilo de la imagen */}
               <button className="btn-modal-volver" onClick={alertData.onConfirm}>
                 {alertData.confirmText}
               </button>
             </div>
-            
+
           </div>
         </div>
       )}
+
     </div>
   )
 }
