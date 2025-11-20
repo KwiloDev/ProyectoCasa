@@ -46,6 +46,9 @@ export default function Survey(){
   const update = (patch) => setData(d => ({...d,...patch}))
 
   // lógica de flujo: después de P4 (hasHome)
+  /* DESHABILITADO TEMPORALMENTE
+
+  {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />} REEMPLAZAR EN EL PASO 7 DENTRO DEL RETURN
   const handleAfterHasHome = ({ hasHome, homeGoal }) => {
 
   update({
@@ -58,6 +61,19 @@ export default function Survey(){
   } else {
     goTo('subsidy');
   }
+};
+*/
+
+// lógica de flujo TEMPORAL
+const handleAfterHasHome = ({ hasHome, homeGoal }) => {
+
+  update({
+    hasHome,
+    homeGoal
+  });
+
+  // 🔥 SALTO TEMPORAL DIRECTO AL PASO 7 (types)
+  goTo('types');
 };
 
 
@@ -81,7 +97,16 @@ export default function Survey(){
 
         {index === 5 && data.hasHome === 'si' && <Step5Benefits next={() => goTo('final')} prev={() => goTo('hasHome')} />}
         {index === 6 && <Step6Subsidy data={data} update={update} next={() => goTo('types')} openModal={(content)=>setModal({open:true,content})} prev={() => goTo('hasHome')} />}
-        {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
+       
+        
+        {index === 7 && (
+  <Step7Types 
+    data={data} 
+    update={update} 
+    next={() => goTo('budget')} 
+    prev={() => goTo('hasHome')}   // 👈 NUEVO
+  />
+)}
         {index === 8 && <Step8Budget data={data} update={update} next={() => goTo('finance')} nextbudget2={() => goTo('budget2')} prev={() => goTo('types')} />}
         {index === 9 && <Step81Budget2 data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
         {index === 10 && <Step9Finance data={data} update={update} next={() => goTo('extras')} prev={() => goTo('budget')} />}
