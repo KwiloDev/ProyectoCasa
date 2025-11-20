@@ -45,14 +45,11 @@
   --p2: #FFD394;
   --p3: #CF9644;
 
-  /* Dark Brown */
   --db: #503629;
 
-  /* Soft backgrounds */
   --s1: #F9DDB7;
   --s2: #FDF0DF;
 
-  /* Colores del sistema (compatibles con tus Steps) */
   --background-color: #fdf3e3;
   --text-color: #503629;
   --bubble-color: #ffffff;
@@ -61,7 +58,12 @@
 
   /* Fuente oficial */
   --font-body: "Brandon", sans-serif;
+  --font-regular: "Brandon", sans-serif;
+  --font-italic: "Brandon", sans-serif;
+  --font-bold: "Brandon", sans-serif;
+  --font-bold-italic: "Brandon", sans-serif;
 }
+
 
 /* ============================
    ESTILOS BASE

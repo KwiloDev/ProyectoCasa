@@ -8,8 +8,10 @@
 
 /* Título */
 .benefits-title {
+  font-family: "Brandon", sans-serif;
+  font-weight: 700;      /* Bold */
+  font-style: italic;    /* Italic */
   font-size: 2rem;
-  font-weight: 600;
   color: #D89F2D;
   line-height: 1.3;
 }
@@ -28,7 +30,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
-  align-items: stretch;   /* 🔥 Hace que todas las tarjetas tengan la misma altura */
+  align-items: stretch;
 }
 
 /* Para pantallas grandes → 3 columnas */
@@ -42,17 +44,19 @@
 .benefit-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* Mantiene icono arriba y texto abajo */
+  justify-content: space-between;
   padding: 1rem;
   border-radius: 12px;
   background: #ffffff;
-  min-height: 230px;  /* 🔥 Ajusta esta altura según tu diseño */
+  min-height: 230px;
 }
 
 /* Título de la tarjeta */
 .benefit-card-title {
+  font-family: "Brandon", sans-serif;
+  font-weight: 700;      /* Bold */
+  font-style: italic;    /* Italic */
   font-size: 1.4rem;
-  font-weight: 700;
   color: #503629;
   margin-bottom: 12px;
 }
