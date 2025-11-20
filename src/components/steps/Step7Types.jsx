@@ -13,22 +13,22 @@ export default function Step7Types({ data, update, next, prev }) {
   // Función específica para mostrar la modal de Vivienda No VIS
   const showNoVisModal = () => {
     setAlertData({
-      title: 'Vivienda No VIS',
+      title: "Tu historia importa: cuéntanos de ti",
       // Este es el contenido principal que se mostrará en lugar del <p>alertData.message</p>
-      content: ( 
-        <ul className="modal-list">
-          <li>Solicita estudio en salarios mínimos al año de entrega.</li>
-          <li>Pregunta por pagos adicionales como avalúos y estudios de títulos.</li>
-          <li>Verifica acceso a principales vías y trasporte.</li>
-          <li>Pregunta por banco constructor y tasa preferencial en créditos hipotecarios.</li>
-        </ul>
+      content: (
+        <p>
+          Queremos conocer a las personas detrás del esfuerzo. Cuéntanos en
+          pocas palabras por qué tu trabajo es excepcional, es la oportunidad
+          para que compartas cómo tu dedicación ha hecho crecer no solo tu
+          camino, sino también el de la empresa.
+        </p>
       ),
-      confirmText: 'Volver', // Texto del botón en la imagen
+      confirmText: "Volver", // Texto del botón en la imagen
       onConfirm: () => {
         setAlertData(null); // Cerrar la modal
       },
       // No hay botón de "Cancelar" o "Siguiente" en la imagen, por lo que no lo incluimos
-    })
+    });
   }
   
   // Función para avanzar al siguiente paso una vez se ha visto la modal
@@ -42,8 +42,8 @@ export default function Step7Types({ data, update, next, prev }) {
     <div className="step7-types">
 
       {/* Título grande */}
-      <h3>Los tipos de vivienda a los que aplicas son:</h3>
-      <p className="step7-subtitle">Elige al que quieres aplicar:</p>
+      <h3>Tipos de vivienda:</h3>
+      <p className="step7-subtitle">Acompañamos tu sueño en todas las etapas del camino, escoge una opción de acuerdo en el proceso que estas: </p>
 
       {/* Grid */}
       <div className="grid sm:grid-cols-3 gap-6 mt-6">
@@ -56,12 +56,12 @@ export default function Step7Types({ data, update, next, prev }) {
             alt="VIS"
             className="step7-icon"
           />
-          <h4>Vivienda VIS / VIP</h4>
+          <h4>Semilla de Vivienda</h4>
           <p>
-            Las Viviendas de interés social (VIS) o prioritario (VIP)
-            aplican para quienes devengan hasta 3 salarios mínimos.
+            Para quienes están dando su primer paso.
+Ideal si estas en búsqueda de un proyecto o si ya elegiste un proyecto. 
           </p>
-          <button onClick={() => choose('vis')} className="btn-house">
+          <button onClick={showNoVisModal} className="btn-house">
             Descubre proyectos inmobiliarios
           </button>
         </div>
@@ -74,12 +74,12 @@ export default function Step7Types({ data, update, next, prev }) {
             alt="Usada"
             className="step7-icon"
           />
-          <h4>Vivienda Usada</h4>
+          <h4>Raíces del hogar</h4>
           <p>
-            Casas o apartamentos ya habitados que están en venta
-            y disponibles para entrega inmediata.
+            Para quienes ya tienen su sueño en proceso.
+Si llevas adelantado el proceso de pago de cuita inicial, estas próximo a pago de escrituras o entrega del apartamento. 
           </p>
-          <button onClick={() => choose('usada')} className="btn-house">
+          <button onClick={showNoVisModal} className="btn-house">
             Descubre opciones de vivienda usada
           </button>
         </div>
@@ -92,10 +92,9 @@ export default function Step7Types({ data, update, next, prev }) {
             alt="No VIS"
             className="step7-icon"
           />
-          <h4>Vivienda No VIS</h4>
+          <h4>Cosechando frutos</h4>
           <p>
-            Proyectos recién construidos con entregas en máximo 2 años
-            o disponibles inmediatamente.
+            Para quienes ya recibieron su vivienda en obra gris y están proceso de que su hogar florezca.
           </p>
           {/* Llama a la nueva función */}
           <button onClick={showNoVisModal} className="btn-house"> 
@@ -107,7 +106,7 @@ export default function Step7Types({ data, update, next, prev }) {
 
       {/* Botón volver */}
       <div className="mt-6 flex justify-between">
-        <button onClick={prev} className="btn-ghost">
+        <button onClick={prev} className="btn-ghost7">
           Volver
         </button>
       </div>
@@ -119,7 +118,7 @@ export default function Step7Types({ data, update, next, prev }) {
             {/* Imagen de la casa, añadida como un div o directamente como un <img> si tienes la ruta */}
             <div className="modal-house-icon">
               {/* Usamos un div placeholder, en producción usarías el componente real o un <img> */}
-              <img src="https://via.placeholder.com/150x120/cc5500/ffffff?text=Casa+No+VIS" alt="Vivienda No VIS" />
+              <img src="/src/assets/Iconos/Icono 1.png" alt="Vivienda No VIS" />
             </div>
 
             <h3 className="alert-title">{alertData.title}</h3>
