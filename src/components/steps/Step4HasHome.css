@@ -6,6 +6,7 @@
   padding: 30px;
   background: #F2D9B8;
   min-height: 100vh;
+  font-family: var(--font-regular);
 }
 
 /* Imagen */
@@ -25,6 +26,7 @@
 
 /* Título de preguntas */
 .step4-question {
+  font-family: var(--font-bold);
   font-size: 22px;
   font-weight: 700;
   color: #503629;
@@ -41,14 +43,9 @@
 .step4-options.grid-2 {
   grid-template-columns: 1fr 1fr;
 }
-.step4-option.selected {
-  background-color: #e5a44a;
-  color: #503629;
-  font-weight: 700;
-  transform: scale(1.03);
-}
 
 .step4-option {
+  font-family: var(--font-regular);
   padding: 15px;
   border: 1px solid #d8d8d8;
   border-radius: 8px;
@@ -56,6 +53,14 @@
   background: #fff;
   cursor: pointer;
   transition: 0.2s ease;
+}
+
+.step4-option.selected {
+  background-color: #e5a44a;
+  color: #503629;
+  font-family: var(--font-bold);
+  font-weight: 700;
+  transform: scale(1.03);
 }
 
 .step4-option:hover {
@@ -71,9 +76,10 @@
 
 .btn-back,
 .btn-next {
+  font-family: var(--font-bold);
   background: #E9AE53;
   color: #503629;
-  font-weight: bold;
+  font-weight: 700;
   padding: 10px 25px;
   border-radius: 8px;
   cursor: pointer;

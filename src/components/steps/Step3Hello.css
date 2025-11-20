@@ -1,8 +1,8 @@
 :root {
-  --background-color: #fdf3e3;  /* Fondo crema cálido */
-  --text-color: #503629;        /* Marrón oscuro */
-  --highlight-color: #e8b77d;   /* Dorado suave */
-  --highlight-hover: #d9a86c;   /* Dorado más oscuro */
+  --background-color: #fdf3e3;
+  --text-color: #503629;
+  --highlight-color: #e8b77d;
+  --highlight-hover: #d9a86c;
 }
 
 /* Contenedor general */
@@ -55,8 +55,9 @@
 
 /* Título principal */
 .step3-title {
+  font-family: var(--font-bold);
+  font-weight: 700;
   font-size: 4rem;
-  font-weight: 800;
   color: var(--highlight-color);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -79,6 +80,7 @@
 
 /* Texto del mensaje */
 .step3-message {
+  font-family: var(--font-regular);
   font-size: 1.5rem;
   line-height: 1.7;
   color: var(--text-color);
@@ -88,6 +90,7 @@
 }
 
 .step3-message strong {
+  font-family: var(--font-bold);
   font-weight: 700;
   color: var(--text-color);
 }
@@ -112,6 +115,7 @@
 }
 
 .step3-button {
+  font-family: var(--font-bold);
   background-color: var(--highlight-color);
   color: var(--text-color);
   border: none;

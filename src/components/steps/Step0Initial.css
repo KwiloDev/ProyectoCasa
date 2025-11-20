@@ -1,13 +1,13 @@
 /* === FONDO GENERAL === */
 .welcome-container0 {
-   display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f8e9d2; /* Color crema */
+  background-color: #f8e9d2;
   height: 100vh;
-  font-family: 'Arial', sans-serif;
-  color: #4a2c1d; /* Marrón oscuro */
+  font-family: var(--font-regular);
+  color: #4a2c1d;
   position: relative;
   padding: 20px;
 }
@@ -34,12 +34,10 @@
   align-items: center;
 }
 
-/* Estado inicial (logos visibles) */
 .show-logos0 {
   opacity: 1;
 }
 
-/* Estado final (texto visible con animación) */
 .show-text0 {
   opacity: 1;
   animation: fadeIn 1.2s ease-in forwards;
@@ -75,16 +73,19 @@
 
 /* === MENSAJE FINAL === */
 .welcome-message0 {
-  font-weight: 600;
+  font-family: var(--font-bold);
+  font-weight: 700;
   font-size: 2rem;
   line-height: 1.5;
-  color: #4b2e05; /* marrón oscuro */
+  color: #4b2e05;
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
 }
 
 .welcome-message0 span {
+  font-family: var(--font-bold-italic);
   font-weight: 700;
+  font-style: italic;
   color: #4a2c1d;
 }

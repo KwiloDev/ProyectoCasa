@@ -3,7 +3,7 @@
   background-color: #fdf3e3;
   padding: 3rem 4rem;
   border-radius: 20px;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: var(--font-regular);
   color: #503629;
   display: flex;
   justify-content: space-between;
@@ -43,6 +43,7 @@
 
 /* Título principal */
 .welcome-title {
+  font-family: var(--font-bold);
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.3;
@@ -50,6 +51,7 @@
 
 /* Descripción */
 .welcome-description {
+  font-family: var(--font-regular);
   font-size: 1.1rem;
   opacity: 0.9;
   line-height: 1.5;
@@ -57,8 +59,10 @@
 
 /* Subtítulo / lema */
 .welcome-slogan p {
+  font-family: var(--font-bold-italic);
   font-size: 1.4rem;
   font-weight: 700;
+  font-style: italic;
   text-transform: uppercase;
   color: #503629;
   margin-top: 0.5rem;
@@ -66,6 +70,7 @@
 
 /* Caja de mensaje */
 .welcome-message {
+  font-family: var(--font-regular);
   background-color: #ffffff;
   border-radius: 16px;
   padding: 1rem 1.5rem;
@@ -83,9 +88,10 @@
 
 /* Botón */
 .welcome-button {
+  font-family: var(--font-bold);
   background-color: #e8b77d;
   color: #503629;
-  font-weight: bold;
+  font-weight: 700;
   padding: 0.9rem 2.2rem;
   border: none;
   border-radius: 10px;
