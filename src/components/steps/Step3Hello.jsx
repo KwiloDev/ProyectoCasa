@@ -10,9 +10,11 @@ export default function Step3Hello({ data, next }) {
         <h1 className="step3-title">¡HOLA, {nameToDisplay}!</h1>
 
         <p className="step3-message">
-          Desde el equipo de <strong>Bienestar</strong>, queremos hacerte unas preguntas que nos ayudarán a 
-          <strong> guiarte de forma personalizada </strong> en el proceso de 
-          <strong> compra de vivienda.</strong>
+          Tu sueño de tener vivienda está más cerca de ser una realidad.
+
+Te invitamos a compartir tu información para que seas de los primeros en abrir la puerta a esta nueva oportunidad.
+
+<strong> Prepárate… vienen sorpresas que podrán convertirse en la semilla de tu próximo hogar.</strong>
         </p>
 
         <div className="step3-button-wrapper">
