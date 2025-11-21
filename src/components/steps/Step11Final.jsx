@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Step11Final.css";
 
 export default function Step11Final({ data, prev }) {
 
+  const [showModal, setShowModal] = useState(false);
+
   const finalizar = () => {
-    alert("Gracias por completar el formulario. ¡Pronto nos pondremos en contacto contigo!");
-    
-    // 🔥 Recargar la página y volver al paso inicial (Logos)
+    setShowModal(true);
+  };
+
+  const cerrarModal = () => {
+    // Redirigir al inicio
     window.location.href = window.location.origin;
   };
 
@@ -59,6 +63,27 @@ export default function Step11Final({ data, prev }) {
           className="personaje-11"
         />
       </div>
+
+      {/* 🌟 MODAL ELEGANTE */}
+      {showModal && (
+        <div className="modal-overlay-11">
+          <div className="modal-box-11">
+            <h3 className="modal-title-11">
+              ¡Formulario enviado con éxito!
+            </h3>
+
+            <p className="modal-message-11">
+              Gracias por completar el formulario.  
+              <br />
+              ¡Pronto nos pondremos en contacto contigo!
+            </p>
+
+            <button className="modal-button-11" onClick={cerrarModal}>
+              Aceptar
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );
