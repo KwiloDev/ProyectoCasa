@@ -5,6 +5,7 @@
 .welcome1-container {
   display: flex;
   background: #f8e7cf;
+  min-height: 80vh;
   justify-content: space-between;
   align-items: center;
   padding: 60px 80px;

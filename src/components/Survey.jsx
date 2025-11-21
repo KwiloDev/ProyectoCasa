@@ -97,6 +97,7 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
           <Step4HasHome
             onChoose={handleAfterHasHome}
             prev={() => goTo("doc")}
+            userDocument={data.document} // ⬅️ PASA AQUÍ EL DOCUMENTO
           />
         )}
 
@@ -116,12 +117,12 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
           />
         )}
 
-        {index === 7 && (//REEMPLAZAR EN LA APP COMPLETA, TEMPORALMENTE OMITIDA : {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
+        {index === 7 && ( //REEMPLAZAR EN LA APP COMPLETA, TEMPORALMENTE OMITIDA : {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
           <Step7Types
             data={data}
             update={update}
             next={() => goTo("final")}
-            prev={() => goTo("hasHome")} 
+            prev={() => goTo("hasHome")}
           />
         )}
         {index === 8 && (
@@ -154,7 +155,7 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
             data={data}
             update={update}
             next={() => goTo("final")}
-            prev={() => goTo("finance")}//REEMPLAZAR EN LA APP COMPLETAprev={() => goTo("finance")}
+            prev={() => goTo("finance")} //REEMPLAZAR EN LA APP COMPLETAprev={() => goTo("finance")}
           />
         )}
         {index === 12 && (
@@ -162,7 +163,10 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
             data={data}
             prev={() => {
               // si venimos de rama propietario, volver a benefits, si no, a extras
-              if (data.hasHome === "si") goTo("hasHome");//Condicion anterior app completa:if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
+              if (data.hasHome === "si")
+                goTo(
+                  "hasHome"
+                ); //Condicion anterior app completa:if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
               else goTo("hasHome");
             }}
           />
