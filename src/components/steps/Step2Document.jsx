@@ -8,24 +8,48 @@ export default function Step2Document({ data, update, next }) {
   const [alertData, setAlertData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // 🟡 Consulta si ya existe registro en tu API real
+  // ============================
+  // 1️⃣ Verificar si es empleado
+  // ============================
+  const checkEmployee = async (document) => {
+    try {
+      const url = `https://apialoha.crepesywaffles.com/intellinext2?dui_person=${document}`;
+      const res = await fetch(url);
+      const json = await res.json();
+
+      console.log("Empleado API:", json);
+
+      // API devuelve un array → si tiene datos = es empleado
+      return Array.isArray(json) && json.length > 0;
+
+    } catch (err) {
+      console.error("Error consultando empleado:", err);
+      return false;
+    }
+  };
+
+  // ==========================================
+  // 2️⃣ Verificar si ya tiene registro en Strapi
+  // ==========================================
   const checkIfExists = async (document) => {
-  try {
-    const url = `https://apialoha.crepesywaffles.com/intellinext2?dui_person=${document}`;
-    const res = await fetch(url);
-    const json = await res.json();
+    try {
+      const url = `https://macfer.crepesywaffles.com/api/cvivienas111-del-futuros?filters[documento][$eq]=${document}`;
+      const res = await fetch(url);
+      const json = await res.json();
 
-    console.log("Respuesta API:", json);
+      console.log("Registro Strapi:", json);
 
-    // ✔ Tu API siempre responde un array → solo validamos el length
-    return Array.isArray(json) && json.length > 0;
-  } catch (err) {
-    console.error("Error consultando API:", err);
-    return false;
-  }
-};
+      return json?.data && json.data.length > 0;
 
+    } catch (err) {
+      console.error("Error consultando Strapi:", err);
+      return false;
+    }
+  };
 
+  // ============================
+  // HANDLER PRINCIPAL
+  // ============================
   const handle = async () => {
     if (!doc || doc.length < 6) {
       setError('Ingresa un número de documento válido (mínimo 6 dígitos).');
@@ -34,12 +58,26 @@ export default function Step2Document({ data, update, next }) {
 
     setLoading(true);
 
+    // 1️⃣ Verificar si es empleado
+    const isEmployee = await checkEmployee(doc);
+
+    if (!isEmployee) {
+      setLoading(false);
+      setAlertData({
+        title: "No autorizado",
+        message: `El documento ${doc} no se encuentra registrado como empleado. 
+No es posible continuar con el formulario.`,
+        button: "Cerrar"
+      });
+      return;
+    }
+
+    // 2️⃣ Verificar si ya está registrado en Strapi
     const exists = await checkIfExists(doc);
 
     setLoading(false);
 
     if (exists) {
-      // Mostrar modal personalizado
       setAlertData({
         title: "Formulario Finalizado",
         message: `El documento ${doc} ya tiene un registro activo. 
@@ -49,7 +87,7 @@ No es posible volver a diligenciar el formulario.`,
       return;
     }
 
-    // Si no existe → continuar flujo normal
+    // Si todo está bien → continuar
     update({ document: doc });
     setError('');
     next();
@@ -71,8 +109,11 @@ No es posible volver a diligenciar el formulario.`,
           className="dialog-input"
           type="number"
           value={doc}
-          onChange={e => setDoc(e.target.value.replace(/\s/g, ''))}
+          onChange={(e) => setDoc(e.target.value.replace(/\s/g, ""))}
           placeholder="Número de Documento"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handle();
+          }}
         />
 
         {error && <div className="error-message">{error}</div>}
@@ -82,7 +123,6 @@ No es posible volver a diligenciar el formulario.`,
         </button>
       </div>
 
-
       {/* ============================
             MODAL ALERT
       ============================= */}
@@ -91,20 +131,14 @@ No es posible volver a diligenciar el formulario.`,
           <div className="modal-box">
             <h2 className="modal-title">{alertData.title}</h2>
 
-            <p className="modal-message">
-              {alertData.message}
-            </p>
+            <p className="modal-message">{alertData.message}</p>
 
-            <button
-              className="modal-button"
-              onClick={() => setAlertData(null)}
-            >
+            <button className="modal-button" onClick={() => setAlertData(null)}>
               {alertData.button}
             </button>
           </div>
         </div>
       )}
-
     </div>
   );
 }
