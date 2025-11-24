@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./Step11Final.css";
 
+// 🔥 IMPORTS DE IMÁGENES
+import Icono7 from "../../assets/Iconos/Icono 7.png";
+import Icono8 from "../../assets/Iconos/Icono 8.png";
+import Personaje8 from "../../assets/Personajes/Personaje 8.png";
+
 export default function Step11Final({ data, prev }) {
 
   const [showModal, setShowModal] = useState(false);
@@ -10,14 +15,12 @@ export default function Step11Final({ data, prev }) {
   };
 
   const cerrarModal = () => {
-    // Redirigir al inicio
     window.location.href = window.location.origin;
   };
 
   return (
     <div className="step11-page">
 
-      {/* Izquierda – BURBUJA de diálogo */}
       <div className="left-column-11">
         <div className="speech-box-11">
 
@@ -29,14 +32,14 @@ export default function Step11Final({ data, prev }) {
 
           <div className="icons-row-11">
             <img
-              src="/src/assets/Iconos/Icono 7.png"
+              src={Icono7}
               alt="WhatsApp"
               className="contact-icon"
               onClick={() => window.open("https://wa.me/+576016767610", "_blank")}
             />
 
             <img
-              src="/src/assets/Iconos/Icono 8.png"
+              src={Icono8}
               alt="Correo"
               className="contact-icon"
               onClick={() => window.open("https://www.crepesywaffles.com/contacto")}
@@ -58,13 +61,12 @@ export default function Step11Final({ data, prev }) {
 
       <div className="right-column-11">
         <img
-          src="/src/assets/Personajes/Personaje 8.png"
+          src={Personaje8}
           alt="Personaje final"
           className="personaje-11"
         />
       </div>
 
-      {/* 🌟 MODAL ELEGANTE */}
       {showModal && (
         <div className="modal-overlay-11">
           <div className="modal-box-11">
