@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Survey from "./components/Survey";
-import AdminPanel from "./components/admim/AdminHous"; // FIX definitivo
+import AdminPanel from "./components/admin/AdminHous"; // FIX definitivo
 
 export default function App() {
   return (
