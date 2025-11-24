@@ -1,6 +1,10 @@
+/* ============================
+   PANEL ADMIN
+============================ */
+
 .admin-container {
   padding: 40px;
-  max-width: 1200px; /* Aumentar el ancho máximo del contenedor */
+  max-width: 1200px;
   margin: auto;
   font-family: 'Poppins', sans-serif;
 }
@@ -19,11 +23,11 @@
   font-size: 18px;
 }
 
-/* --- Estilo para el botón "Regresar" --- */
+/* --- Botón Regresar --- */
 .btn-back {
   background: none;
   border: none;
-  color: #a0522d; /* Color para simular la flecha de la imagen */
+  color: #a0522d;
   font-size: 16px;
   cursor: pointer;
   padding: 0;
@@ -37,7 +41,10 @@
   text-decoration: underline;
 }
 
-/* --- Estilos de la tabla ajustados --- */
+/* ============================
+   TABLA
+============================ */
+
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -45,7 +52,7 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  table-layout: fixed; /* Importante para controlar el ancho de columna */
+  table-layout: fixed;
 }
 
 .admin-table th {
@@ -57,31 +64,108 @@
 }
 
 .admin-table td {
-  padding: 12px;
+  padding: 12px 10px;
   border-bottom: 1px solid #eee;
-  /* 🔥 Permitir que el texto se envuelva en varias líneas (para Meta/Respuesta) */
   white-space: normal;
-  word-wrap: break-word; 
+  word-wrap: break-word;
   vertical-align: top;
+  font-size: 14px;
 }
 
+/* Hover elegante */
 .admin-table tr:hover {
   background: #f7efe6;
 }
 
-/* Ajustar el ancho de columnas específicas (suman ~100%) */
-.admin-table th:nth-child(1), .admin-table td:nth-child(1) { width: 5%; }  /* ID */
-.admin-table th:nth-child(2), .admin-table td:nth-child(2) { width: 10%; } /* Documento */
-.admin-table th:nth-child(3), .admin-table td:nth-child(3) { width: 15%; } /* Nombre */
-.admin-table th:nth-child(4), .admin-table td:nth-child(4) { width: 10%; } /* Estado Vivienda */
-.admin-table th:nth-child(5), .admin-table td:nth-child(5) { width: 25%; } /* 🔥 Meta (Más espacio) */
-.admin-table th:nth-child(6), .admin-table td:nth-child(6) { width: 10%; } /* Tipo Vivienda */
-.admin-table th:nth-child(7), .admin-table td:nth-child(7) { width: 15%; } /* Respuesta Usuario */
-.admin-table th:nth-child(8), .admin-table td:nth-child(8) { width: 10%; } /* Fecha Registro */
+/* ============================
+   ANCHOS DE CADA COLUMNA
+============================ */
 
+/* ID */
+.admin-table th:nth-child(1),
+.admin-table td:nth-child(1) {
+  width: 5%;
+}
 
+/* Documento */
+.admin-table th:nth-child(2),
+.admin-table td:nth-child(2) {
+  width: 10%;
+}
 
+/* Foto — Más compacta */
+.admin-table th:nth-child(3),
+.admin-table td:nth-child(3) {
+  width: 8%;
+  text-align: center;
+}
 
+.admin-table td img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Nombre */
+.admin-table th:nth-child(4),
+.admin-table td:nth-child(4) {
+  width: 18%;
+  line-height: 1.3;
+}
+
+/* Estado Vivienda — Reducido */
+.admin-table th:nth-child(5),
+.admin-table td:nth-child(5) {
+  width: 8%;
+ 
+}
+
+/* Meta — Más espacio y mejor lectura */
+.admin-table th:nth-child(6),
+.admin-table td:nth-child(6) {
+  width: 22%;
+  line-height: 1.4;
+  white-space: normal;
+}
+
+/* Tipo Vivienda */
+.admin-table th:nth-child(7),
+.admin-table td:nth-child(7) {
+  width: 10%;
+ 
+}
+
+/* Respuesta Usuario — Más amplia */
+.admin-table th:nth-child(8) {
+ width: 25%;
+  line-height: 1.4;
+  color: #fff;
+}
+.admin-table td:nth-child(8) {
+  width: 25%;
+  line-height: 1.4;
+  color: #6b4a37;
+}
+
+/* Fecha Registro */
+.admin-table th:nth-child(9) {
+  width: 10%;
+  font-size: 14px;
+  color: #fff;
+}
+
+.admin-table td:nth-child(9) {
+  width: 10%;
+  font-size: 13px;
+  color: #503629;
+}
+
+/* ============================
+   LOGIN / GUARDIÁN
+============================ */
 
 .login-box {
   display: flex;
@@ -99,8 +183,6 @@
   font-size: 16px;
 }
 
-
-/* Fondo del modo guardián */
 .guardian-wrapper {
   display: flex;
   justify-content: center;
@@ -108,7 +190,6 @@
   min-height: 100vh;
 }
 
-/* Caja del guardián */
 .guardian-box {
   text-align: center;
   background: #fff7e6;
@@ -121,13 +202,11 @@
   border: 3px solid #e2b572;
 }
 
-/* Icono del waffle guardián */
 .waffle-guardian {
   font-size: 80px;
   animation: float 2.5s ease-in-out infinite;
 }
 
-/* Texto del guardián */
 .guardian-text {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -138,7 +217,6 @@
   font-style: italic;
 }
 
-/* Input */
 .password-input {
   width: 100%;
   padding: 12px;
@@ -155,7 +233,6 @@
   box-shadow: 0 0 6px rgba(139, 90, 43, 0.5);
 }
 
-/* Botón ingresar */
 .btn-enter {
   margin-top: 15px;
   background-color: #8b5a2b;
@@ -173,7 +250,6 @@
   background-color: #6e4521;
 }
 
-/* Animación "no pasas, mortal" */
 .shake {
   animation: shakeAnim 0.5s ease;
 }
@@ -186,20 +262,16 @@
   80% { transform: translateX(8px); }
 }
 
-/* Animación de aparición suave */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Animación flotante del waffle */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 
-
-/* Modal overlay */
 .success-modal-overlay {
   position: fixed;
   top: 0;
@@ -214,7 +286,6 @@
   z-index: 999;
 }
 
-/* Modal box */
 .success-modal {
   background: #fff8e1;
   width: 90%;
@@ -227,13 +298,11 @@
   animation: riseUp 0.5s ease-out;
 }
 
-/* Big waffle */
 .waffle-guardian.big {
   font-size: 100px;
   animation: float 2.5s ease-in-out infinite;
 }
 
-/* Modal text */
 .success-title {
   margin-top: 10px;
   font-size: 28px;
@@ -249,7 +318,6 @@
   font-style: italic;
 }
 
-/* Animations */
 @keyframes riseUp {
   from { transform: translateY(40px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
