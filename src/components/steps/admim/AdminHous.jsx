@@ -4,8 +4,13 @@ import "./AdminHous.css";
 export default function AdminPanel() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
+const [password, setPassword] = useState("");
+const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  // --- 🔥 Las funciones deben estar definidas aquí, antes de ser llamadas en el JSX ---
+
+  const REAL_PASSWORD = "Crepes2025"; // 🔥 Cambia esto a lo que quieras
+
   const fetchData = async () => {
     try {
       const res = await fetch(
@@ -22,25 +27,87 @@ export default function AdminPanel() {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (authorized) fetchData();
+  }, [authorized]);
 
   const goBack = () => {
-    // 🔥 Soluciona: Uncaught ReferenceError: goBack is not defined
     window.location.href = "/";
   };
 
-  // La función shorten se puede eliminar si no se usa, o dejarla si se usa en otro contexto.
-  // La dejo comentada por si la necesitas:
-  /*
-  const shorten = (text, max = 25) =>
-    text && text.length > max ? text.slice(0, max) + "..." : text;
-  */
-  // ---------------------------------------------------------------------------------
+  // --------------------------------------------------------------------
+  // 🔐 Si NO está autorizado, mostramos la pantalla de contraseña
+  // --------------------------------------------------------------------
+  if (!authorized) {
+  return (
+    <div className="admin-container guardian-wrapper">
+      {showSuccessModal && (
+        <div className="success-modal-overlay">
+          <div className="success-modal">
+            <div className="waffle-guardian big">🧇</div>
+            <h2 className="success-title">Acceso Concedido</h2>
+            <p className="success-text">
+              El Waffle Guardián se inclina ante ti.  
+              La masa dorada reconoce tu sabiduría.
+            </p>
 
+            <button
+              className="btn-enter"
+              onClick={() => setAuthorized(true)}
+            >
+              Continuar al Panel
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className="guardian-box">
+        <div className="waffle-guardian">🧇</div>
+
+        <h1 className="admin-title">Acceso Restringido</h1>
+
+        <p className="guardian-text">
+          El Waffle Guardián te observa…  
+          solo la clave verdadera abre sus puertas.
+        </p>
+
+        <input
+          type="password"
+          placeholder="Contraseña secreta..."
+          className="password-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button
+          className="btn-enter"
+          onClick={() => {
+            if (password === REAL_PASSWORD) {
+              setShowSuccessModal(true);
+            } else {
+              const box = document.querySelector(".guardian-box");
+              if (box) {
+                box.classList.add("shake");
+                setTimeout(() => box.classList.remove("shake"), 600);
+              }
+            }
+          }}
+        >
+          Entrar
+        </button>
+
+        <button className="btn-back" onClick={goBack}>
+          ⬅ Regresar
+        </button>
+      </div>
+    </div>
+  );
+}
+
+  // --------------------------------------------------------------------
+  // 🔓 Si la contraseña es correcta, mostramos el panel
+  // --------------------------------------------------------------------
   return (
     <div className="admin-container">
-      {/* Botón de regreso */}
       <button className="btn-back" onClick={goBack}>
         ⬅ Regresar
       </button>
@@ -52,7 +119,6 @@ export default function AdminPanel() {
       ) : (
         <table className="admin-table">
           <thead>
-            {/* 🔥 Sin espacios extraños entre <th> y <tr> para evitar el error de whitespace */}
             <tr>
               <th>ID</th>
               <th>Documento</th>
@@ -70,23 +136,16 @@ export default function AdminPanel() {
               const r = item.attributes.res_v || {};
               const fullResponse = r.userResponse || "—";
               const homeGoal = r.homeGoal || "—";
-              
+
               return (
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.attributes.documento}</td>
                   <td>{item.attributes.nombre}</td>
-                  
                   <td>{r.hasHome || "—"}</td>
-                  
-                  {/* 🔥 Mostrando el texto COMPLETO (sin shorten) */}
                   <td>{homeGoal}</td>
-                  
                   <td>{r.typeOfHousing || "—"}</td>
-                  
-                  {/* 🔥 Mostrando el texto COMPLETO (sin shorten) */}
                   <td>{fullResponse}</td>
-                  
                   <td>
                     {new Date(item.attributes.createdAt).toLocaleDateString()}
                   </td>

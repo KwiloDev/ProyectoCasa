@@ -78,3 +78,179 @@
 .admin-table th:nth-child(6), .admin-table td:nth-child(6) { width: 10%; } /* Tipo Vivienda */
 .admin-table th:nth-child(7), .admin-table td:nth-child(7) { width: 15%; } /* Respuesta Usuario */
 .admin-table th:nth-child(8), .admin-table td:nth-child(8) { width: 10%; } /* Fecha Registro */
+
+
+
+
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.password-input {
+  padding: 10px;
+  width: 250px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+
+/* Fondo del modo guardián */
+.guardian-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Caja del guardián */
+.guardian-box {
+  text-align: center;
+  background: #fff7e6;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+  max-width: 420px;
+  width: 90%;
+  animation: fadeIn 0.6s ease;
+  border: 3px solid #e2b572;
+}
+
+/* Icono del waffle guardián */
+.waffle-guardian {
+  font-size: 80px;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+/* Texto del guardián */
+.guardian-text {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #7a4d17;
+  font-weight: 500;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Input */
+.password-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #d0a36c;
+  border-radius: 10px;
+  font-size: 16px;
+  background: #fff;
+  outline: none;
+  transition: 0.3s;
+}
+
+.password-input:focus {
+  border-color: #8b5a2b;
+  box-shadow: 0 0 6px rgba(139, 90, 43, 0.5);
+}
+
+/* Botón ingresar */
+.btn-enter {
+  margin-top: 15px;
+  background-color: #8b5a2b;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.25s;
+}
+
+.btn-enter:hover {
+  background-color: #6e4521;
+}
+
+/* Animación "no pasas, mortal" */
+.shake {
+  animation: shakeAnim 0.5s ease;
+}
+
+@keyframes shakeAnim {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+}
+
+/* Animación de aparición suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación flotante del waffle */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+/* Modal overlay */
+.success-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease;
+  z-index: 999;
+}
+
+/* Modal box */
+.success-modal {
+  background: #fff8e1;
+  width: 90%;
+  max-width: 420px;
+  padding: 35px;
+  border-radius: 22px;
+  text-align: center;
+  border: 3px solid #e1b464;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  animation: riseUp 0.5s ease-out;
+}
+
+/* Big waffle */
+.waffle-guardian.big {
+  font-size: 100px;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+/* Modal text */
+.success-title {
+  margin-top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #8b5a2b;
+}
+
+.success-text {
+  color: #6b4520;
+  font-size: 17px;
+  margin: 12px 0 20px;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes riseUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
