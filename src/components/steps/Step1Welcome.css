@@ -13,7 +13,6 @@
   font-family: var(--font-regular);
 }
 
-
 /* =============================
      IZQUIERDA
 ============================= */
@@ -43,7 +42,6 @@
   font-family: var(--font-bold);
 }
 
-
 /* =============================
      BURBUJA MENSAJE
 ============================= */
@@ -70,16 +68,14 @@
   border-bottom: 18px solid transparent;
 }
 
-
 /* =============================
      BOTÓN
 ============================= */
 
-/* Centrar mejor el botón y hacerlo más pequeño */
 .welcome1-button {
   margin-top: 22px;
-  align-self: flex-start;   /* Se alinea justo debajo del texto */
-  padding: 10px 30px;       /* Menos ancho */
+  align-self: flex-start;
+  padding: 10px 30px;
   background: #e5a44a;
   border-radius: 10px;
   color: #503629;
@@ -94,31 +90,27 @@
   transform: scale(1.05);
 }
 
-
-
 /* =============================
      DERECHA
 ============================= */
 
-/* Acercar el personaje a los mensajes */
 .welcome1-right {
-  width: 40%;               /* Reduce ancho para acercarlo */
+  width: 40%;
   display: flex;
-  justify-content: flex-start;  /* Lo mueve más hacia el centro */
+  justify-content: flex-start;
 }
 
 .welcome1-img {
-  width: 310px;             /* Un poco más pequeño para armonizar */
-  margin-left: -40px;       /* Lo acerca aún más a la burbuja */
+  width: 310px;
+  margin-left: -40px;
   margin-top: 10px;
   user-select: none;
 }
 
-
 /* =============================
      LOGOS SUPERIORES
 ============================= */
-/* === LOGO SUPERIOR DERECHO === */
+
 .welcome-header0 {
   position: absolute;
   top: 20px;
@@ -129,4 +121,119 @@
   height: 70px;
   width: auto;
   object-fit: contain;
+}
+
+/* ===========================================================
+     📱 RESPONSIVIDAD PARA TABLETS (max-width: 1024px)
+=========================================================== */
+
+@media (max-width: 1024px) {
+  .welcome1-container {
+    padding: 50px 40px;
+  }
+
+  .welcome1-left {
+    width: 60%;
+  }
+
+  .welcome1-subtitle {
+    font-size: 44px;
+  }
+
+  .welcome1-img {
+    width: 260px;
+    margin-left: 0px;
+  }
+}
+
+/* ===========================================================
+     📱 RESPONSIVIDAD PARA CELULARES (max-width: 768px)
+=========================================================== */
+
+@media (max-width: 768px) {
+  .welcome1-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .welcome1-left {
+    width: 100%;
+    align-items: center;
+  }
+
+  .welcome1-title {
+    font-size: 32px;
+  }
+
+  .welcome1-subtitle {
+    font-size: 38px;
+  }
+
+  .welcome1-bubble {
+    font-size: 18px;
+    max-width: 100%;
+  }
+
+  .welcome1-bubble::after {
+    display: none;
+  }
+
+  .welcome1-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .welcome1-img {
+    width: 240px;
+    margin: 0;
+  }
+
+  .welcome-header0 img {
+    height: 55px;
+  }
+
+  .welcome1-button {
+    align-self: center;
+    font-size: 16px;
+    padding: 10px 26px;
+  }
+}
+
+/* ===========================================================
+     📱 CELULARES PEQUEÑOS (max-width: 480px)
+=========================================================== */
+
+@media (max-width: 480px) {
+  .welcome1-title {
+    font-size: 26px;
+  }
+
+  .welcome1-subtitle {
+    font-size: 30px;
+  }
+
+  .welcome1-bubble {
+    font-size: 16px;
+    padding: 18px 20px;
+  }
+
+  .welcome1-img {
+    width: 200px;
+  }
+
+  .welcome-header0 {
+    top: 10px;
+    right: 10px;
+  }
+
+  .welcome-header0 img {
+    height: 45px;
+  }
+
+  .welcome1-button {
+    font-size: 15px;
+    padding: 8px 22px;
+  }
 }
