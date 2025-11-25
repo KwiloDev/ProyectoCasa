@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './Step4HasHome.css';
 
+// 👉 Importación correcta
+import Personaje3 from '../../assets/Personajes/Personaje 3.png';
+
 export default function Step4HasHome({ onChoose, prev, userDocument }) {
 
   const [hasHome, setHasHome] = useState(null);
@@ -20,17 +23,15 @@ export default function Step4HasHome({ onChoose, prev, userDocument }) {
       homeGoal: homeGoal === 'e) Otro' ? otherGoal : homeGoal
     };
 
-    // 👉 SOLO enviamos las respuestas al flujo global
     if (onChoose) onChoose(respuestas);
-
-    // 👉 NO se envía nada a Strapi aquí
   };
 
   return (
     <div className="step4-wrapper">
 
       <div className="step4-illustration">
-        <img src="/src/assets/Personajes/Personaje 3.png" alt="Personaje" />
+        {/* 👉 Reemplazo la ruta por la importación */}
+        <img src={Personaje3} alt="Personaje" />
       </div>
 
       <div className="step4-card">

@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import './Step7Types.css'
 
+// 👉 Importaciones correctas
+import Caja2 from '../../assets/Cajas/Caja 2.png'
+import Caja3_1 from '../../assets/Cajas/Caja 3_1.png'
+import Caja4 from '../../assets/Cajas/Caja 4.png'
+import Icono1 from '../../assets/Iconos/Icono 1.png'
+
 export default function Step7Types({ data, update, next, prev }) {
 
   const [alertData, setAlertData] = useState(null)
   const [userResponse, setUserResponse] = useState("")
 
-  // Abre el modal y guarda el tipo seleccionado
   const showNoVisModal = (type) => {
 
     update({ typeOfHousing: type })
@@ -25,20 +30,15 @@ export default function Step7Types({ data, update, next, prev }) {
     })
   }
 
-  // 🔥 Enviar TODO a Strapi cuando presionan ENVIAR en el modal
  const handleSubmitResponse = async () => {
-  // Guardar la respuesta del modal dentro del flujo global
   update({ userResponse });
 
   const payload = {
     data: {
-      documento: Number(data.document),   // o data.documento
+      documento: Number(data.document),
       res_v: {
-        //  DATOS DEL PASO 4
         hasHome: data.hasHome,
         homeGoal: data.homeGoal,
-
-        //  DATOS DEL PASO 7
         typeOfHousing: data.typeOfHousing,
         userResponse: userResponse
       }
@@ -80,7 +80,7 @@ export default function Step7Types({ data, update, next, prev }) {
       <div className="grid sm:grid-cols-3 gap-6 mt-6">
 
         <div className="step7-card">
-          <img src="/src/assets/Cajas/Caja 2.png" className="step7-icon" />
+          <img src={Caja2} className="step7-icon" />
           <h4>Semilla de Vivienda</h4>
           <p>Para quienes están dando su primer paso.</p>
           <button onClick={() => showNoVisModal("semilla")} className="btn-house">
@@ -89,7 +89,7 @@ export default function Step7Types({ data, update, next, prev }) {
         </div>
 
         <div className="step7-card">
-          <img src="/src/assets/Cajas/Caja 3_1.png" className="step7-icon" />
+          <img src={Caja3_1} className="step7-icon" />
           <h4>Raíces del hogar</h4>
           <p>Para quienes ya tienen su sueño en proceso.</p>
           <button onClick={() => showNoVisModal("raices")} className="btn-house">
@@ -98,7 +98,7 @@ export default function Step7Types({ data, update, next, prev }) {
         </div>
 
         <div className="step7-card">
-          <img src="/src/assets/Cajas/Caja 4.png" className="step7-icon" />
+          <img src={Caja4} className="step7-icon" />
           <h4>Cosechando frutos</h4>
           <p>Para quienes ya recibieron su vivienda en obra gris.</p>
           <button onClick={() => showNoVisModal("frutos")} className="btn-house">
@@ -113,13 +113,12 @@ export default function Step7Types({ data, update, next, prev }) {
         <button onClick={next} className="btn-ghost7">Siguiente</button>
       </div>
 
-      {/* MODAL */}
       {alertData && (
         <div className="alert-overlay">
           <div className="alert-box">
 
             <div className="modal-house-icon">
-              <img src="/src/assets/Iconos/Icono 1.png" alt="Icono 1" />
+              <img src={Icono1} alt="Icono 1" />
             </div>
 
             <h3 className="alert-title">{alertData.title}</h3>
@@ -135,7 +134,6 @@ export default function Step7Types({ data, update, next, prev }) {
                 onChange={(e) => setUserResponse(e.target.value)}
               />
 
-              {/* POST */}
               <button className="btn-modal-submit" onClick={handleSubmitResponse}>
                 Enviar
               </button>

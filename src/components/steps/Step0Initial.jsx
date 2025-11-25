@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./Step0Initial.css";
 
+// 👉 Importaciones correctas
+import LogoMoneda from "../../assets/logos/Logo Moneda - Tu Casa.png";
+import LogoTuCasa from "../../assets/Logos/Logo Tu casa Tu Futuro.png";
+import LogoCyW from "../../assets/Logos/Logo C&W Horizontal.png";
+
 export default function Step0Initial({ next }) {
   const [showLogos, setShowLogos] = useState(true);
 
   useEffect(() => {
-    // 1️⃣ Muestra los logos por 3 segundos
     const logoTimer = setTimeout(() => setShowLogos(false), 3000);
 
-    // 2️⃣ Luego, después de mostrar el texto 3 segundos más, avanza al siguiente paso
     const nextTimer = setTimeout(() => {
       if (!showLogos) next();
-    }, 3000); // total: 3s logos + 3s texto
+    }, 3000);
 
     return () => {
       clearTimeout(logoTimer);
@@ -24,7 +27,7 @@ export default function Step0Initial({ next }) {
       {/* Logo superior derecho */}
       <div className="welcome-header0">
         <img
-          src="/src/assets/logos/Logo Moneda - Tu Casa.png"
+          src={LogoMoneda}
           alt="logo tu casa tu futuro"
         />
       </div>
@@ -37,14 +40,14 @@ export default function Step0Initial({ next }) {
           <div className="welcome-content0">
             <div className="welcome-image0">
               <img
-                src="/src/assets/Logos/Logo Tu casa Tu Futuro.png"
+                src={LogoTuCasa}
                 alt="Logo Tu casa Tu Futuro"
               />
             </div>
 
             <div className="welcome-image1">
               <img
-                src="/src/assets/Logos/Logo C&W Horizontal.png"
+                src={LogoCyW}
                 alt="Logo C&W Horizontal"
               />
             </div>

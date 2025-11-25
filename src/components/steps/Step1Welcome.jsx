@@ -1,6 +1,10 @@
 import React from 'react';
 import './Step1Welcome.css';
 
+// 👉 Importaciones necesarias
+import Personaje1 from '../../assets/Personajes/Personaje 1.png';
+import LogoMoneda from '../../assets/logos/Logo Moneda - Tu Casa.png';
+
 export default function Step1Welcome({ next }) {
   return (
     <div className="welcome1-container">
@@ -18,7 +22,7 @@ export default function Step1Welcome({ next }) {
 
         {/* Burbuja de mensaje */}
         <div className="welcome1-bubble">
-         Queremos conocer más de ti y acompañarte a cumplir el <strong>sueño de tener casa propia</strong> 
+          Queremos conocer más de ti y acompañarte a cumplir el <strong>sueño de tener casa propia</strong>
         </div>
 
         {/* Botón */}
@@ -30,16 +34,16 @@ export default function Step1Welcome({ next }) {
       {/* DERECHA */}
       <div className="welcome1-right">
         <img
-          src="/src/assets/Personajes/Personaje 1.png"
+          src={Personaje1}
           alt="Personaje"
           className="welcome1-img"
         />
       </div>
 
       {/* LOGOS */}
-     <div className="welcome-header0">
+      <div className="welcome-header0">
         <img
-          src="/src/assets/logos/Logo Moneda - Tu Casa.png"
+          src={LogoMoneda}
           alt="logo tu casa tu futuro"
         />
       </div>
