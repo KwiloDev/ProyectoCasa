@@ -12,7 +12,6 @@
   to   { opacity: 1; }
 }
 
-
 /* =============================
       LAYOUT GENERAL
 ============================= */
@@ -26,8 +25,8 @@
   padding: 40px 60px;
   background-color: #f5dfbb;
   font-family: var(--font-regular);
+  gap: 20px;
 }
-
 
 /* =============================
       COLUMNA IZQUIERDA
@@ -39,7 +38,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 
 /* =============================
       BURBUJA DE DIÁLOGO
@@ -57,42 +55,35 @@
   font-family: var(--font-regular);
 }
 
-/* Pico del globo */
 .speech-box-11::after {
   content: "";
   position: absolute;
   right: -20px;
   top: 45%;
-  width: 0;
-  height: 0;
   border-left: 25px solid white;
   border-top: 18px solid transparent;
   border-bottom: 18px solid transparent;
 }
 
-
 /* =============================
-      TÍTULOS Y TEXTOS
+      TÍTULOS
 ============================= */
 
 .final-title {
   font-size: 34px;
   color: #e5a44a;
   font-family: var(--font-bold);
-  font-weight: 700;
   margin-bottom: 10px;
 }
 
 .final-text {
   font-size: 20px;
   color: #503629;
-  font-family: var(--font-regular);
   margin-bottom: 25px;
 }
 
-
 /* =============================
-      ÍCONOS DE CONTACTO
+      ÍCONOS
 ============================= */
 
 .icons-row-11 {
@@ -104,7 +95,6 @@
 
 .contact-icon {
   width: 65px;
-  cursor: pointer;
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
@@ -113,9 +103,8 @@
   filter: brightness(1.1);
 }
 
-
 /* =============================
-      BOTONES: VOLVER + FINALIZAR
+      BOTONES
 ============================= */
 
 .buttons-row-11 {
@@ -125,16 +114,20 @@
   justify-content: space-between;
 }
 
+.btn-volver-11,
+.btn-finalizar-11 {
+  border: none;
+  cursor: pointer;
+  border-radius: 18px;
+  font-family: var(--font-bold);
+  transition: transform 0.2s ease;
+}
+
 .btn-volver-11 {
   padding: 12px 30px;
   background: #d1b08c;
   color: #503629;
   font-size: 18px;
-  font-family: var(--font-bold);
-  border-radius: 18px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.25s ease;
 }
 
 .btn-volver-11:hover {
@@ -147,18 +140,11 @@
   background: #e5a44a;
   color: #503629;
   font-size: 20px;
-  font-family: var(--font-bold);
-  font-weight: 700;
-  border-radius: 18px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 .btn-finalizar-11:hover {
   transform: scale(1.05);
 }
-
 
 /* =============================
       PERSONAJE DERECHA
@@ -172,16 +158,16 @@
 
 .personaje-11 {
   width: 60%;
-  user-select: none;
   animation: fadeIn 1s ease forwards;
 }
-/* ===== MODAL OVERLAY ===== */
+
+/* =============================
+      MODAL
+============================= */
+
 .modal-overlay-11 {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(80, 80, 80, 0.55);
   display: flex;
   justify-content: center;
@@ -189,19 +175,16 @@
   z-index: 9999;
 }
 
-/* ===== MODAL BOX ===== */
 .modal-box-11 {
-  background: #ffffff;
+  background: white;
   padding: 35px 45px;
   width: 420px;
   border-radius: 18px;
   text-align: center;
-  font-family: 'Nunito', sans-serif;
   animation: fadeInScale 0.3s ease-out;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Título */
 .modal-title-11 {
   font-size: 24px;
   font-weight: 800;
@@ -209,32 +192,123 @@
   margin-bottom: 15px;
 }
 
-/* Mensaje */
 .modal-message-11 {
   font-size: 16px;
   color: #503629;
   margin-bottom: 30px;
-  line-height: 1.4;
 }
 
-/* Botón */
 .modal-button-11 {
   background: #d29a5a;
   color: white;
   padding: 12px 26px;
   border: none;
   border-radius: 10px;
-  font-size: 16px;
   cursor: pointer;
-  transition: 0.25s;
 }
 
 .modal-button-11:hover {
   background: #b87f45;
 }
 
-/* Animación */
 @keyframes fadeInScale {
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* ======================================================
+      RESPONSIVE — TABLETS (≤ 1024px)
+====================================================== */
+
+@media (max-width: 1024px) {
+  .step11-page {
+    padding: 30px 40px;
+    gap: 10px;
+  }
+
+  .final-title {
+    font-size: 28px;
+  }
+
+  .final-text {
+    font-size: 18px;
+  }
+
+  .personaje-11 {
+    width: 70%;
+  }
+}
+
+/* ======================================================
+      RESPONSIVE — CELULARES GRANDES (≤ 768px)
+====================================================== */
+
+@media (max-width: 768px) {
+  .step11-page {
+    flex-direction: column-reverse;
+    padding: 30px 20px;
+  }
+
+  .left-column-11,
+  .right-column-11 {
+    width: 100%;
+  }
+
+  .speech-box-11 {
+    width: 95%;
+    padding: 32px 30px;
+  }
+
+  .buttons-row-11 {
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .personaje-11 {
+    width: 55%;
+    margin-bottom: 15px;
+  }
+}
+
+/* ======================================================
+      RESPONSIVE — CELULARES PEQUEÑOS (≤ 480px)
+====================================================== */
+
+@media (max-width: 480px) {
+  .step11-page {
+    padding: 22px 15px;
+  }
+
+  .speech-box-11 {
+    padding: 25px 20px;
+  }
+
+  .final-title {
+    font-size: 22px;
+  }
+
+  .final-text {
+    font-size: 16px;
+  }
+
+  .contact-icon {
+    width: 52px;
+  }
+
+  .buttons-row-11 {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn-volver-11,
+  .btn-finalizar-11 {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .personaje-11 {
+    width: 65%;
+  }
 }
