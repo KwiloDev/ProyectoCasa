@@ -181,6 +181,7 @@
     width: 250px;
     margin-bottom: 1.5rem;
     animation: none;
+    display: none; /* 👍 Evita recortes */
   }
 
   .dialog-box {
@@ -225,6 +226,7 @@
 
   .step2-illustration {
     width: 200px;
+    display: none; /* 👍 Evita recortes */
   }
 }
 

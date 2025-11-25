@@ -118,6 +118,9 @@
   .step4-card {
     width: 95%;
   }
+  .step4-illustration{
+    display: none;
+  }
 
   .step4-options.grid-2 {
     grid-template-columns: 1fr;
