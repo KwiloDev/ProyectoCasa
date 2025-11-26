@@ -117,14 +117,7 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
           />
         )}
 
-        {index === 7 && ( //REEMPLAZAR EN LA APP COMPLETA, TEMPORALMENTE OMITIDA : {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
-          <Step7Types
-            data={data}
-            update={update}
-            next={() => goTo("final")}
-            prev={() => goTo("hasHome")}
-          />
-        )}
+         {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
         {index === 8 && (
           <Step8Budget
             data={data}
@@ -163,11 +156,7 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
             data={data}
             prev={() => {
               // si venimos de rama propietario, volver a benefits, si no, a extras
-              if (data.hasHome === "si")
-                goTo(
-                  "hasHome"
-                ); //Condicion anterior app completa:if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
-              else goTo("hasHome");
+              if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
             }}
           />
         )}
