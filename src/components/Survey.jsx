@@ -47,10 +47,9 @@ export default function Survey(){
   const update = (patch) => setData(d => ({...d,...patch}))
 
   // lógica de flujo: después de P4 (hasHome)
-  /* DESHABILITADO TEMPORALMENTE
+  
 
-  {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />} REEMPLAZAR EN EL PASO 7 DENTRO DEL RETURN
-  const handleAfterHasHome = ({ hasHome, homeGoal }) => {
+ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
 
   update({
     hasHome,
@@ -63,9 +62,8 @@ export default function Survey(){
     goTo('subsidy');
   }
 };
-*/
 
-// lógica de flujo TEMPORAL
+/* lógica de flujo TEMPORAL Bypass
 const handleAfterHasHome = ({ hasHome, homeGoal }) => {
 
   update({
@@ -76,7 +74,7 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
   // 🔥 SALTO TEMPORAL DIRECTO AL PASO 7 (types)
   goTo('types');
 };
-
+*/
 
   const percent = Math.round((index)/(stepsOrder.length-1)*100)
 
@@ -117,14 +115,7 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
           />
         )}
 
-        {index === 7 && ( //REEMPLAZAR EN LA APP COMPLETA, TEMPORALMENTE OMITIDA : {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
-          <Step7Types
-            data={data}
-            update={update}
-            next={() => goTo("final")}
-            prev={() => goTo("hasHome")}
-          />
-        )}
+         {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
         {index === 8 && (
           <Step8Budget
             data={data}
@@ -163,11 +154,7 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
             data={data}
             prev={() => {
               // si venimos de rama propietario, volver a benefits, si no, a extras
-              if (data.hasHome === "si")
-                goTo(
-                  "hasHome"
-                ); //Condicion anterior app completa:if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
-              else goTo("hasHome");
+              if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
             }}
           />
         )}

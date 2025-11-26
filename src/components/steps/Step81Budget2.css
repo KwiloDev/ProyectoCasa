@@ -305,3 +305,67 @@
 .modal-btn:hover {
   transform: scale(1.05);
 }
+@media (max-width:420px ) {
+  .modal-logos {
+  display: flex;
+  justify-content: column;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 35px;
+}
+}
+
+/* =============================================
+      RESPONSIVE LOGOS EN MODAL
+============================================= */
+
+/* Tablets y celulares grandes */
+@media (max-width: 768px) {
+  .modal-box {
+    width: 80%;
+    padding: 45px 30px;
+  }
+
+  .modal-logos {
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .modal-logos img {
+    height: 38px;
+  }
+}
+
+/* Celulares medianos */
+@media (max-width: 480px) {
+  .modal-box {
+    width: 90%;
+    padding: 40px 25px;
+  }
+
+  .modal-logos {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .modal-logos img {
+    height: 34px;
+  }
+}
+
+/* Celulares pequeños */
+@media (max-width: 380px) {
+  .modal-box {
+    width: 92%;
+    padding: 35px 20px;
+  }
+
+  .modal-logos {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modal-logos img {
+    height: 30px;
+  }
+}
