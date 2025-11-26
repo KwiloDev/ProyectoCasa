@@ -22,6 +22,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  
 }
 
 .welcome1-title {
@@ -124,77 +125,33 @@
 }
 
 /* ===========================================================
-     📱 RESPONSIVIDAD PARA TABLETS (max-width: 1024px)
+     📱 TABLETS (max-width: 1024px)
 =========================================================== */
 
 @media (max-width: 1024px) {
   .welcome1-container {
     padding: 50px 40px;
+    flex-direction: column;
+    justify-content: center;   /* ⬅⬅ CENTRADO VERTICAL */
+    align-items: center;
+    text-align: center;
+    gap: 35px;
+    min-height: 100vh;         /* ⬅ necesario para centrar verticalmente */
   }
 
   .welcome1-left {
-    width: 60%;
-  }
-
-  .welcome1-subtitle {
-    font-size: 44px;
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: -1;
   }
 
   .welcome1-img {
     width: 260px;
-    margin-left: 0px;
+    margin-left: 0;
   }
-}
-
-/* ===========================================================
-     📱 RESPONSIVIDAD PARA CELULARES (max-width: 768px)
-=========================================================== */
-
-@media (max-width: 768px) {
-  .welcome1-container {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding: 40px 20px;
-    gap: 30px;
-  }
-
-  .welcome1-left {
-    width: 100%;
-    align-items: center;
-  }
-
-  .welcome1-title {
-    font-size: 32px;
-  }
-
-  .welcome1-subtitle {
-    font-size: 38px;
-  }
-
-  .welcome1-bubble {
-    font-size: 18px;
-    max-width: 100%;
-  }
-
-  .welcome1-bubble::after {
-    display: none;
-  }
-
-  .welcome1-right {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .welcome1-img {
-    width: 240px;
-    margin: 0;display: none;
-  }
-
-  .welcome-header0 img {
-    height: 55px;
-    
-  }
-
   .welcome1-button {
     align-self: center;
     font-size: 16px;
@@ -202,45 +159,79 @@
   }
 }
 
+
+/* ===========================================================
+     📱 CELULARES (max-width: 768px)
+=========================================================== */
+
+@media (max-width: 768px) {
+  .welcome1-container {
+    flex-direction: column;
+    justify-content: center;   /* ⬅⬅ CENTRAR VERTICALMENTE */
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+    min-height: 100vh;         /* ⬅ necesario */
+  }
+
+  .welcome1-left {
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: -1;
+  }
+
+  .welcome1-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .welcome1-img {
+    width: 240px;
+    margin: 0;
+    display: none;
+  }
+  .welcome1-button {
+    align-self: center;
+    font-size: 16px;
+    padding: 10px 26px;
+  }
+}
+
+
 /* ===========================================================
      📱 CELULARES PEQUEÑOS (max-width: 480px)
 =========================================================== */
 
 @media (max-width: 480px) {
-
- 
-  .welcome1-title {
-    font-size: 26px;
-    
+  
+  .welcome1-container {
+    flex-direction: column;
+    justify-content: center;   /* ⬅⬅ CENTRADO VERTICAL */
+    align-items: center;
+    min-height: 100vh;         /* ⬅ mantiene el centrado vertical */
   }
 
-  .welcome1-subtitle {
-    font-size: 30px;
+  .welcome1-left {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: -1;
   }
 
-  .welcome1-bubble {
-    font-size: 16px;
-   
-  }
-
-  .welcome1-img { 
+  .welcome1-img {
     display: none;
     width: 150px;
-   
-    
   }
-
-  .welcome-header0 {
-    top: 10px;
-    right: 10px;
-  }
-
-  .welcome-header0 img {
-    height: 45px;
-  }
-
-  .welcome1-button {
-    font-size: 15px;
-  
+   .welcome1-button {
+    align-self: center;
+    font-size: 16px;
+    padding: 10px 26px;
   }
 }

@@ -240,6 +240,21 @@
   .step11-page {
     padding: 30px 40px;
     gap: 10px;
+
+    /* 🎯 CENTRAR VERTICAL */
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+  }
+
+  .left-column-11 {
+    /* 🎯 CENTRAR VERTICAL */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
   }
 
   .final-title {
@@ -252,8 +267,10 @@
 
   .personaje-11 {
     width: 70%;
+    display: none;
   }
 }
+
 
 /* ======================================================
       RESPONSIVE — CELULARES GRANDES (≤ 768px)
@@ -263,9 +280,24 @@
   .step11-page {
     flex-direction: column-reverse;
     padding: 30px 20px;
+
+    /* 🎯 CENTRAR VERTICAL */
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
   }
 
-  .left-column-11,
+  .left-column-11 {
+    width: 100%;
+
+    /* 🎯 CENTRAR VERTICAL */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
   .right-column-11 {
     width: 100%;
   }
@@ -288,6 +320,7 @@
   }
 }
 
+
 /* ======================================================
       RESPONSIVE — CELULARES PEQUEÑOS (≤ 480px)
 ====================================================== */
@@ -295,6 +328,20 @@
 @media (max-width: 480px) {
   .step11-page {
     padding: 22px 15px;
+
+    /* 🎯 CENTRAR VERTICAL */
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+  }
+
+  .left-column-11 {
+    /* 🎯 CENTRAR VERTICAL */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   .speech-box-11 {

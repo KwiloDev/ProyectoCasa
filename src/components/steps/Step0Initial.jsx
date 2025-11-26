@@ -10,11 +10,11 @@ export default function Step0Initial({ next }) {
   const [showLogos, setShowLogos] = useState(true);
 
   useEffect(() => {
-    const logoTimer = setTimeout(() => setShowLogos(false), 3000);
+    const logoTimer = setTimeout(() => setShowLogos(false), 2000);
 
     const nextTimer = setTimeout(() => {
       if (!showLogos) next();
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearTimeout(logoTimer);
