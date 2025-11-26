@@ -32,12 +32,18 @@ export default function Step11Final({ data, prev }) {
 
      <div className="icons-row-11">
 
-  <img
-    src={Icono7}
-    alt="WhatsApp"
-    className="icon-whatsapp"
-    onClick={() => window.open("https://wa.me/+576016767610", "_blank")}
-  />
+  <img 
+  src={Icono7}
+  alt="WhatsApp"
+  className="icon-whatsapp"
+  onClick={() =>
+    window.open(
+      "https://wa.me/573203942723?text=%20%21%20Hola%2C%20quiero%20saber%20m%C3%A1s%20acerca%20del%20proyecto%20de%20vivienda.%21",
+      "_blank"
+    )
+  }
+/>
+
 
   <img
     src={Icono8}

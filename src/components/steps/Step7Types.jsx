@@ -75,7 +75,7 @@ export default function Step7Types({ data, update, next, prev }) {
     <div className="step7-types">
 
       <h3>Acompañamos tu sueño en todas las etapas del camino:</h3>
-      <p className="step7-subtitle">Escoge una opción de acuerdo en el proceso que estas:</p>
+      <p className="step7-subtitle">Escoge una opción de acuerdo al proceso que estas:</p>
 
       <div className="grid sm:grid-cols-3 gap-6 mt-6">
 

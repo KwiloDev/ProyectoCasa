@@ -109,6 +109,7 @@
 
 /* Ícono de Correo */
 .icon-mail {
+  display: none;
   width: 160px;     /* AJUSTA POR SEPARADO */
   height: 100px;    /* AJUSTA POR SEPARADO */
   object-fit: contain;
