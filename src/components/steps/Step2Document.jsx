@@ -88,8 +88,8 @@ No es posible volver a diligenciar el formulario.`,
       />
 
       <div className="dialog-box">
-        <p className="dialog-small">Ingresa tu</p>
-        <h1 className="dialog-title">número de documento</h1>
+        <p className="dialog-small">Ingresa tu:</p>
+        <h1 className="dialog-title">Número de documento</h1>
 
         <input
           className="dialog-input"
