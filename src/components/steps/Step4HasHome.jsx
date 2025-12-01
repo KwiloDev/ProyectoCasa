@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './Step4HasHome.css';
-
-// 👉 Importación correcta
 import Personaje3 from '../../assets/Personajes/Personaje 3.png';
 
 export default function Step4HasHome({ onChoose, prev, userDocument }) {
@@ -9,6 +7,28 @@ export default function Step4HasHome({ onChoose, prev, userDocument }) {
   const [hasHome, setHasHome] = useState(null);
   const [homeGoal, setHomeGoal] = useState(null);
   const [otherGoal, setOtherGoal] = useState('');
+
+  // 🎯 Opciones originales
+  const goalOptions = [
+    { id: 'a', text: 'a) Comprar mi primera vivienda' },
+    { id: 'b', text: 'b) Mejorar mi vivienda actual' },
+    { id: 'c', text: 'c) Cambiarme a una zona diferente' },
+    { id: 'd', text: 'd) Acceder a subsidios / beneficios' },
+    { id: 'e', text: 'e) Otro' }
+  ];
+
+  // 🎯 Filtro dinámico según la respuesta de la primera pregunta
+  const filteredGoals = goalOptions.filter(option => {
+    if (hasHome === 'si') {
+      // Si tiene vivienda → permitir b, c, e
+      return ['b', 'c', 'e'].includes(option.id);
+    } else if (hasHome === 'no' || hasHome === 'c) En proceso de compra.') {
+      // Si NO tiene vivienda → permitir a, d, e
+      return ['a', 'd', 'e'].includes(option.id);
+    }
+    // Si aún no ha respondido la primera pregunta → no mostrar nada
+    return false;
+  });
 
   const canContinue =
     hasHome !== null &&
@@ -30,11 +50,14 @@ export default function Step4HasHome({ onChoose, prev, userDocument }) {
     <div className="step4-wrapper">
 
       <div className="step4-illustration">
-        {/* 👉 Reemplazo la ruta por la importación */}
         <img src={Personaje3} alt="Personaje" />
       </div>
 
       <div className="step4-card">
+
+        {/* =============================================== */}
+        {/* PREGUNTA 1 */}
+        {/* =============================================== */}
 
         <h3 className="step4-question">
           1. ¿Actualmente cuentas con vivienda propia?
@@ -42,78 +65,75 @@ export default function Step4HasHome({ onChoose, prev, userDocument }) {
 
         <div className="step4-options">
           <button
-            onClick={() => setHasHome('si')}
+            onClick={() => { setHasHome('si'); setHomeGoal(null); }}
             className={`step4-option ${hasHome === 'si' ? 'selected' : ''}`}
           >
             a) Sí
           </button>
 
           <button
-            onClick={() => setHasHome('no')}
+            onClick={() => { setHasHome('no'); setHomeGoal(null); }}
             className={`step4-option ${hasHome === 'no' ? 'selected' : ''}`}
           >
             b) No
           </button>
 
           <button
-            onClick={() => setHasHome('c) En proceso de compra.')}
+            onClick={() => { setHasHome('c) En proceso de compra.'); setHomeGoal(null); }}
             className={`step4-option ${hasHome === 'c) En proceso de compra.' ? 'selected' : ''}`}
           >
             c) En proceso de compra.
           </button>
         </div>
 
-        <h3 className="step4-question mt-6">
-          2. ¿Cuál sería tu objetivo principal respecto a vivienda?
-        </h3>
 
-        <div className="step4-options grid-2">
-          <button
-            onClick={() => setHomeGoal('a) Comprar mi primera vivienda')}
-            className={`step4-option ${homeGoal === 'a) Comprar mi primera vivienda' ? 'selected' : ''}`}
-          >
-            a) Comprar mi primera vivienda
-          </button>
+        {/* =============================================== */}
+        {/* PREGUNTA 2 FILTRADA */}
+        {/* =============================================== */}
 
-          <button
-            onClick={() => setHomeGoal('b) Mejorar mi vivienda actual')}
-            className={`step4-option ${homeGoal === 'b) Mejorar mi vivienda actual' ? 'selected' : ''}`}
-          >
-            b) Mejorar mi vivienda actual
-          </button>
+        {hasHome !== null && (
+          <>
+            <h3 className="step4-question mt-6">
+              2. ¿Cuál sería tu objetivo principal respecto a vivienda?
+            </h3>
 
-          <button
-            onClick={() => setHomeGoal('c) Cambiarme a una zona diferente')}
-            className={`step4-option ${homeGoal === 'c) Cambiarme a una zona diferente' ? 'selected' : ''}`}
-          >
-            c) Cambiarme a una zona diferente
-          </button>
+            <div className="step4-options grid-2">
 
-          <button
-            onClick={() => setHomeGoal('d) Acceder a subsidios / beneficios')}
-            className={`step4-option ${homeGoal === 'd) Acceder a subsidios / beneficios' ? 'selected' : ''}`}
-          >
-            d) Acceder a subsidios / beneficios
-          </button>
+              {goalOptions.map(option => {
+                const disabled = !filteredGoals.includes(option);
 
-          <button
-            onClick={() => setHomeGoal('e) Otro')}
-            className={`step4-option ${homeGoal === 'e) Otro' ? 'selected' : ''}`}
-          >
-            e) Otro
-          </button>
-        </div>
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => !disabled && setHomeGoal(option.text)}
+                    className={`step4-option 
+                      ${homeGoal === option.text ? 'selected' : ''} 
+                      ${disabled ? 'disabled' : ''}`}
+                    disabled={disabled}
+                  >
+                    {option.text}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        )}
 
-       {homeGoal === 'e) Otro' && (
-  <input
-    type="text"
-    className="step4-input"
-    placeholder="Escribe tu opción..."
-    value={otherGoal}
-    onChange={(e) => setOtherGoal(e.target.value)}
-  />
-)}
+        {/* Campo "Otro" */}
+        {homeGoal === 'e) Otro' && (
+          <input
+            type="text"
+            className="step4-input"
+            placeholder="Escribe tu opción..."
+            value={otherGoal}
+            onChange={(e) => setOtherGoal(e.target.value)}
+          />
+        )}
 
+
+        {/* =============================================== */}
+        {/* NAV */}
+        {/* =============================================== */}
 
         <div className="step4-nav">
           <button onClick={prev} className="btn-back">
@@ -130,6 +150,7 @@ export default function Step4HasHome({ onChoose, prev, userDocument }) {
         </div>
 
       </div>
+
     </div>
   );
 }

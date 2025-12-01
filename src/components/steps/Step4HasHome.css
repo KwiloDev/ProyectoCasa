@@ -169,3 +169,17 @@
     text-align: center;
   }
 }
+/* -------- NUEVO: estilos para opciones deshabilitadas -------- */
+
+.step4-option.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #f5f5f5;
+  border-color: #d1d1d1;
+  pointer-events: none; /* ⬅ evita cualquier clic */
+}
+
+.step4-option.disabled:hover {
+  box-shadow: none !important;
+  transform: none !important;
+}
