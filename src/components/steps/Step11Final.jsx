@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./Step11Final.css";
 
 // 🔥 IMPORTS DE IMÁGENES
-import Icono7 from "../../assets/Iconos/Icono 7.png";
-import Icono8 from "../../assets/Iconos/Icono 8.png";
-import Personaje8 from "../../assets/Personajes/Personaje 8.png";
+import Icono7 from "/src/assets/Iconos/Icono 7.png";
+import Icono8 from "/src/assets/Iconos/Icono 8.png";
+import Personaje8 from "/src/assets/Personajes/Personaje 8.png";
 
 export default function Step11Final({ data, prev }) {
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Step4HasHome.css';
 
 // 👉 Importación correcta
-import Personaje3 from '../../assets/Personajes/Personaje 3.png';
+import Personaje3 from '/src/assets/Personajes/Personaje 3.png';
 
 export default function Step4HasHome({ onChoose, prev, userDocument }) {
 

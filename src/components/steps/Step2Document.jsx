@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Step2Document.css';
-import WomanIllustration from '../../assets/Personajes/Personaje 2.png';
+import WomanIllustration from '/src/assets/Personajes/Personaje 2.png';
 
 export default function Step2Document({ data, update, next }) {
   const [doc, setDoc] = useState(data.document || '');

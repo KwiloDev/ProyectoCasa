@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Step6Subsidy.css'
-import Personaje from '../../assets/Personajes/Personaje 4.png'
+import Personaje from '/src/assets/Personajes/Personaje 4.png'
 
 export default function Step6Subsidy({ data, update, next, prev }) {
 
