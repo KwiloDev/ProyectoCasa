@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import './Step7Types.css'
 
 // 👉 Importaciones correctas
-import Caja2 from '../../assets/Cajas/Caja 2.png'
-import Caja3_1 from '../../assets/Cajas/Caja 3_1.png'
-import Caja4 from '../../assets/Cajas/Caja 4.png'
-import Icono1 from '../../assets/Iconos/Icono 1.png'
+import Caja2 from '/src/assets/Cajas/Caja 2.png'
+import Caja3_1 from '/src/assets/Cajas/Caja 3_1.png'
+import Caja4 from '/src/assets/Cajas/Caja 4.png'
+import Icono1 from '/src/assets/Iconos/Icono 1.png'
 
 export default function Step7Types({ data, update, next, prev }) {
 

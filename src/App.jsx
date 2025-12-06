@@ -6,7 +6,7 @@ import AdminPanel from "./components/steps/AdminHous"; // FIX definitivo
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <div className="min-h-screen flex items-center justify-center p-6 bg-[#F9EEDF]">
         <main className="card max-w-3xl w-full">
           <Routes>

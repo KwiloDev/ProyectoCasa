@@ -2,8 +2,8 @@ import React from 'react';
 import './Step1Welcome.css';
 
 // 👉 Importaciones necesarias
-import Personaje1 from '../../assets/Personajes/Personaje 1.png';
-import LogoMoneda from '../../assets/logos/Logo Moneda - Tu Casa.png';
+import Personaje1 from '/src/assets/Personajes/Personaje 1.png';
+import LogoMoneda from '/src/assets/logos/Logo Moneda - Tu Casa.png';
 
 export default function Step1Welcome({ next }) {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Step2Document.css';
-import WomanIllustration from '../../assets/Personajes/Personaje 2.png';
+import WomanIllustration from '/src/assets/Personajes/Personaje 2.png';
 
 export default function Step2Document({ data, update, next }) {
   const [doc, setDoc] = useState(data.document || '');
@@ -94,6 +94,7 @@ No es posible volver a diligenciar el formulario.`,
         <input
           className="dialog-input"
           type="number"
+          min="0"
           value={doc}
           onChange={(e) => setDoc(e.target.value.replace(/\s/g, ""))}
           placeholder="Número de Documento"

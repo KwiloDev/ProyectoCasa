@@ -165,9 +165,9 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
               // si venimos de rama propietario, volver a benefits, si no, a extras
               if (data.hasHome === "si")
                 goTo(
-                  "hasHome"
+                  "types"
                 ); //Condicion anterior app completa:if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
-              else goTo("hasHome");
+              else goTo("types");
             }}
           />
         )}
