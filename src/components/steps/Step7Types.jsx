@@ -34,7 +34,7 @@ export default function Step7Types({ data, update, next, prev }) {
     update({ typeOfHousing: type });
 
     setAlertData({
-      title: "Tu historia importa: cuéntanos de ti",
+      title: "Tu historia importa: Cuéntanos de ti",
       content: (
         <p>
           Queremos conocer a las personas detrás del esfuerzo. Cuéntanos en
