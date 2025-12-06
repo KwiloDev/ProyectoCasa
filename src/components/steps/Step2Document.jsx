@@ -94,6 +94,7 @@ No es posible volver a diligenciar el formulario.`,
         <input
           className="dialog-input"
           type="number"
+          min="0"
           value={doc}
           onChange={(e) => setDoc(e.target.value.replace(/\s/g, ""))}
           placeholder="Número de Documento"
