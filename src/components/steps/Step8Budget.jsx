@@ -1,9 +1,6 @@
 import React from 'react';
 import './Step8Budget.css';
-// Si tu ilustración es un componente de React, impórtalo aquí
-// import WomanIllustration from './WomanIllustration'; 
 
-// Define los colores basados en la imagen para el estilo inline si es necesario
 const COLORS = {
   text: '#503629',
   cardBgLight: '#f0c377', // Mostaza claro para la primera opción
