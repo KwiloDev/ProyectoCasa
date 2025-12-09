@@ -1,4 +1,6 @@
-/* Contenedor principal */
+/* ================================
+   CONTENEDOR PRINCIPAL
+================================ */
 .benefits-container {
   width: 100%;
   max-width: 1100px;
@@ -6,17 +8,21 @@
   text-align: center;
 }
 
-/* Título */
+/* ================================
+   TÍTULO PRINCIPAL
+================================ */
 .benefits-title {
   font-family: "Brandon", sans-serif;
-  font-weight: 700;      /* Bold */
-  font-style: italic;    /* Italic */
-  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 4rem;
   color: #D89F2D;
   line-height: 1.3;
 }
 
-/* Contenedor general de tarjetas + personaje */
+/* ================================
+   CONTENEDOR DE TARJETAS + PERSONAJE
+================================ */
 .benefits-content {
   display: flex;
   justify-content: center;
@@ -25,93 +31,108 @@
   margin-top: 40px;
 }
 
-/* Grid de tarjetas */
+/* ================================
+   GRID DE BENEFICIOS
+================================ */
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  align-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+  align-items: center;
+   margin-top: 40px;   /* separación base */
 }
 
-/* Para pantallas grandes → 3 columnas */
+/* Para pantallas medias/grandes */
 @media (min-width: 768px) {
   .benefits-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Tarjeta */
-.benefit-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
-  border-radius: 12px;
-  background: #ffffff;
-  min-height: 230px;
+/* ================================
+   TARJETA CON CAJA DE FONDO
+================================ */
+.benefit-box {
+  position: relative;
+  width: 260px;
+  height: 340px; /* Ajuste visual exacto */
+  text-align: center;
+  margin: 0 auto;
 }
 
-/* Título de la tarjeta */
-.benefit-card-title {
+/* Imagen de la caja */
+.benefit-box-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Título */
+
+.benefit-box-title {
+  position: absolute;
+  top: -105px;          /* ⬅️ Lo mueve sobre la caja */
+  left: 0;
+  right: 0;
   font-family: "Brandon", sans-serif;
-  font-weight: 700;      /* Bold */
-  font-style: italic;    /* Italic */
-  font-size: 1.4rem;
+  font-weight: 700;
+  font-style: italic;
   color: #503629;
-  margin-bottom: 12px;
-}
-
-/* Contenido */
-.benefit-card-content {
-  background: #FFE3B2;
-  border-radius: 25px;
-  padding: 25px 20px 0 20px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  overflow: hidden;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  text-align: center;
 }
 
 /* Texto */
-.benefit-card-text {
-  font-size: 1rem;
-  font-weight: 500;
+.benefit-box-text {
+  position: absolute;
+  top: 85px;
+  left: 20px;
+  right: 20px;
+  font-size: 1.3rem;
   color: #503629;
-  margin-bottom: 20px;
   line-height: 1.3;
+  text-align: center;
 }
 
-/* Imagen */
-.benefit-card-image {
-  width: 100%;
-  display: block;
-  margin-top: 5px;
+/* Icono */
+.benefit-box-icon {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
 }
 
-/* Contenedor del personaje */
+/* ================================
+   PERSONAJE
+================================ */
 .benefits-character img {
   width: 270px;
   max-height: 420px;
   object-fit: contain;
 }
 
-/* Controles */
+/* ================================
+   CONTROLES
+================================ */
 .benefits-controls {
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
+
 }
 
-.benefits-btn-back,
-.benefits-btn-next {
+.benefits-btn-back {
   padding: 10px 25px;
   border: none;
   font-weight: 600;
   border-radius: 30px;
   cursor: pointer;
   transition: 0.2s ease;
-}
-
-.benefits-btn-back {
-  background: #e0e0e0;
+  background: #D89F2D;
   color: #503629;
 }
 
@@ -119,11 +140,98 @@
   background: #d0d0d0;
 }
 
-.benefits-btn-next {
-  background: #D89F2D;
-  color: white;
+/* ================================
+   RESPONSIVE – TABLET
+================================ */
+@media (max-width: 950px) {
+  .benefits-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .benefits-character img {
+    width: 220px;
+  }
+  .benefit-box-text {
+    font-size: 1.5rem;
+    top: 75px;
+  }
+   .benefit-box-title {
+    font-size: 1.5rem;
+    top: -80px;
+  }
 }
 
-.benefits-btn-next:hover {
-  background: #c58e27;
+/* ================================
+   RESPONSIVE – CELULARES
+================================ */
+@media (max-width: 650px) {
+  .benefits-title {
+    font-size: 1.7rem;
+  }
+
+  .benefit-box {
+    width: 230px;
+    height: 310px;
+  }
+
+  .benefit-box-title {
+    font-size: 1.15rem;
+     top: -60px;
+  }
+
+  .benefit-box-text {
+    font-size: 0.95rem;
+    top: 78px;
+  }
+
+  .benefit-box-icon {
+    width: 100px;
+  }
+
+  .benefits-character img {
+    width: 180px;
+  }
+  .benefits-character img {
+    display: none;
+  }
+}
+
+/* ================================
+   CELULARES PEQUEÑOS
+================================ */
+@media (max-width: 420px) {
+  .benefits-title {
+    font-size: 1.5rem;
+  }
+
+  .benefit-box {
+    width: 210px;
+    height: 300px;
+  }
+
+  .benefit-box-title {
+    top: -55px;
+    font-size: 1.05rem;
+  }
+
+  .benefit-box-text {
+    font-size: 0.9rem;
+    top: 75px;
+  }
+
+  .benefit-box-icon {
+    width: 90px;
+  }
+}
+@media (max-width: 900px) {
+  .benefits-grid {
+    margin-top: 50px; /* más espacio para títulos largos */
+  }
+}
+
+@media (max-width: 600px) {
+  .benefits-grid {
+    margin-top: 60px;
+  }
 }
