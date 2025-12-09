@@ -389,6 +389,74 @@
 .btn-modal-submit:hover {
   background: #b98928;
 }
+/*Spinner btn enviar*/
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffffff;
+  border-top: 3px solid #d39c32;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* ================
+   Ícono de éxito animado
+=================*/
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px auto;
+  border-radius: 50%;
+  background: #28a745;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: popIn 0.4s ease-out forwards;
+  box-shadow: 0 0 12px rgba(40, 167, 69, 0.4);
+}
+
+.checkmark {
+  color: white;
+  font-size: 46px;
+  font-weight: 900;
+  transform: scale(0);
+  animation: checkmarkPop 0.3s 0.2s ease-out forwards;
+}
+
+/* Animación suave del círculo */
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0.2;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Animación del ✔ */
+@keyframes checkmarkPop {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 /* =============================
       🟢 CELULARES (≤ 600px)

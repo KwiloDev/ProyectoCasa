@@ -1,10 +1,10 @@
 import React from 'react'
 import './Step5Benefits.css'
 
-import mejoraViviendaTool from '../../assets/Iconos/Icono 4.png'
-import mejoraViviendaFolio from '../../assets/Iconos/Icono 5.png'
-import mejoraViviendaMoney from '../../assets/Iconos/Icono 6.png'
-import personaje from '../../assets/Personajes/Personaje 4.png'
+import mejoraViviendaTool from '/src/assets/Iconos/Icono 4.png'
+import mejoraViviendaFolio from '/src/assets/Iconos/Icono 5.png'
+import mejoraViviendaMoney from '/src/assets/Iconos/Icono 6.png'
+import personaje from '/src/assets/Personajes/Personaje 4.png'
 
 export default function Step5Benefits({ next, prev }) {
   return (

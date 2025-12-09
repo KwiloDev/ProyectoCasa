@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Step0Initial.css";
 
 // 👉 Importaciones correctas
-import LogoMoneda from "../../assets/logos/Logo Moneda - Tu Casa.png";
-import LogoTuCasa from "../../assets/Logos/Logo Tu casa Tu Futuro.png";
-import LogoCyW from "../../assets/Logos/Logo C&W Horizontal.png";
+import LogoMoneda from "/src/assets/logos/Logo Moneda - Tu Casa.png";
+import LogoTuCasa from "/src/assets/Logos/Logo Tu casa Tu Futuro.png";
+import LogoCyW from "/src/assets/Logos/Logo C&W Horizontal.png";
 
 export default function Step0Initial({ next }) {
   const [showLogos, setShowLogos] = useState(true);

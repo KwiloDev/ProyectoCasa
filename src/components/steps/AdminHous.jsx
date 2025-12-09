@@ -228,7 +228,18 @@ const exportToExcel = async () => {
   const buffer = await workbook.xlsx.writeBuffer();
   saveAs(new Blob([buffer]), "reporte_viviendas.xlsx");
 };
-
+//Controlador de inicio sesion
+const handleLogin = () => {
+  if (password === REAL_PASSWORD) {
+    setShowSuccessModal(true);
+  } else {
+    const box = document.querySelector(".guardian-box");
+    if (box) {
+      box.classList.add("shake");
+      setTimeout(() => box.classList.remove("shake"), 600);
+    }
+  }
+};
 
   // 🔐 SI NO ESTÁ AUTORIZADO
   if (!authorized) {
@@ -240,28 +251,25 @@ const exportToExcel = async () => {
               <div className="waffle-guardian big">🧇</div>
               <h2 className="success-title">Acceso Concedido</h2>
               <p className="success-text">
-                El Waffle Guardián inclina su corona dorada.  
-                Puedes pasar, caminante de datos.
+                El Waffle Guardián inclina su corona dorada. Puedes pasar,
+                caminante de datos.
               </p>
 
-              <button
-                className="btn-enter"
-                onClick={() => setAuthorized(true)}
-              >
+              <button className="btn-enter" onClick={() => setAuthorized(true)}>
                 Entrar al Panel
               </button>
             </div>
           </div>
         )}
 
-          <div className="guardian-box">
-            <div className="waffle-guardian">🧇</div>
+        <div className="guardian-box">
+          <div className="waffle-guardian">🧇</div>
 
-            <h1 className="admin-title">Acceso Restringido</h1>
+          <h1 className="admin-title">Acceso Restringido</h1>
 
           <p className="guardian-text">
-            El Waffle Guardián te mira con ojos de masa tibia.  
-            Solo la clave secreta abre su gruta dorada.
+            El Waffle Guardián te mira con ojos de masa tibia. Solo la clave
+            secreta abre su gruta dorada.
           </p>
 
           <input
@@ -270,32 +278,21 @@ const exportToExcel = async () => {
             className="password-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleLogin();
+            }}
           />
 
-          <button
-            className="btn-enter"
-            onClick={() => {
-              if (password === REAL_PASSWORD) {
-                setShowSuccessModal(true);
-              } else {
-                const box = document.querySelector(".guardian-box");
-                if (box) {
-                  box.classList.add("shake");
-                  setTimeout(() => box.classList.remove("shake"), 600);
-                }
-              }
-            }}
-          >
+          <button className="btn-enter" onClick={handleLogin}>
             Entrar
           </button>
-          
 
-            <button className="btn-back" onClick={goBack}>
-              ⬅ Regresar
-            </button>
-          </div>
+          <button className="btn-back" onClick={goBack}>
+            ⬅ Regresar
+          </button>
         </div>
-      );
+      </div>
+    );
     }
 
   // =====================================================================
