@@ -422,3 +422,29 @@
     padding: 25px;
   }
 }
+
+/* Contenedor scroll */
+.table-wrapper {
+  max-height: 500px;   /* Ajusta la altura según tu diseño */
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 20px;
+  border: 2px solid #e3ccb0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* Mejor experiencia de scroll */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #c5a477;
+  border-radius: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f4e9d8;
+}

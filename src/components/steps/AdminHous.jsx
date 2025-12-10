@@ -311,74 +311,66 @@ const handleLogin = () => {
       </button>
 
       {loading ? (
-        <p className="admin-loading">Cargando registros...</p>
-      ) : (
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Documento</th>
-              <th>Foto</th>
-              <th>Nombre</th>
-              <th>Estado Vivienda</th>
-              <th>Meta</th>
-              <th>Tipo Vivienda</th>
-              <th>Respuesta Usuario</th>
-              <th>Fecha Registro</th>
+  <p className="admin-loading">Cargando registros...</p>
+) : (
+  <div className="table-wrapper">
+    <table className="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Documento</th>
+          <th>Foto</th>
+          <th>Nombre</th>
+          <th>Estado Vivienda</th>
+          <th>Meta</th>
+          <th>Tipo Vivienda</th>
+          <th>Respuesta Usuario</th>
+          <th>Fecha Registro</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {data.map((item) => {
+          const r = item.attributes.res_v || {};
+          const doc = item.attributes.documento;
+          const info = employeeInfo[doc] || {};
+          const fullResponse = r.userResponse || "—";
+          const homeGoal = r.homeGoal || "—";
+
+          return (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{doc}</td>
+              <td>
+                {info.foto ? (
+                  <img
+                    src={info.foto}
+                    alt="Foto"
+                    style={{
+                      width: 45,
+                      height: 45,
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (
+                  "—"
+                )}
+              </td>
+              <td>{info.nombre || "Cargando..."}</td>
+              <td>{r.hasHome}</td>
+              <td>{homeGoal}</td>
+              <td>{r.typeOfHousing}</td>
+              <td>{fullResponse}</td>
+              <td>{new Date(item.attributes.createdAt).toLocaleDateString()}</td>
             </tr>
-          </thead>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+)}
 
-          <tbody>
-            {data.map((item) => {
-              const r = item.attributes.res_v || {};
-              const doc = item.attributes.documento;
-
-              const info = employeeInfo[doc] || {};
-              const fullResponse = r.userResponse || "—";
-              const homeGoal = r.homeGoal || "—";
-
-              return (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td>{doc}</td>
-                  <td>
-                    {info.foto ? (
-                      <img
-                        src={info.foto}
-                        alt="Foto"
-                        style={{
-                          width: 45,
-                          height: 45,
-                          borderRadius: "50%",
-                          objectFit: "cover",
-                        }}
-                      />
-                    ) : (
-                      "—"
-                    )}
-                  </td>
-
-                  {/* Nombre desde BUK */}
-                  <td>{info.nombre || "Cargando..."}</td>
-
-                  {/* Foto profesional desde BUK */}
-                  
-
-                  {/* CAMPOS ORIGINALES — NO CAMBIADOS */}
-                  <td>{r.hasHome }</td>
-                  <td>{homeGoal}</td>
-                  <td>{r.typeOfHousing }</td>
-                  <td>{fullResponse}</td>
-
-                  <td>
-                    {new Date(item.attributes.createdAt).toLocaleDateString()}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      )}
     </div>
   );
 }
