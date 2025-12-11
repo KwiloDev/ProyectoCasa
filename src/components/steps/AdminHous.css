@@ -431,6 +431,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   color: #4b3f32;
+  line-clamp: 2;
 }
 
 .ver-mas-btn {
