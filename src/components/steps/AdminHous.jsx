@@ -8,8 +8,11 @@ export default function AdminPanel() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [authorized, setAuthorized] = useState(false);
-    const [password, setPassword] = useState("");
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [password, setPassword] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showResponseModal, setShowResponseModal] = useState(false);
+  const [selectedResponse, setSelectedResponse] = useState("");
+  
 
   // 📌 NUEVO: nombres y fotos desde BUK
   const [employeeInfo, setEmployeeInfo] = useState({});
@@ -91,155 +94,152 @@ export default function AdminPanel() {
     window.location.href = "/";
   };
 
+  const exportToExcel = async () => {
+    const workbook = new ExcelJS.Workbook();
+    const sheet = workbook.addWorksheet("Reporte");
 
+    const headers = [
+      "ID",
+      "Documento",
+      "Nombre",
+      "Estado_Vivienda",
+      "Meta",
+      "Tipo_Vivienda",
+      "Respuesta_Usuario",
+      "Fecha",
+    ];
 
-const exportToExcel = async () => {
-  const workbook = new ExcelJS.Workbook();
-  const sheet = workbook.addWorksheet("Reporte");
+    // 🎨 COLORES PASTEL POR COLUMNA
+    const columnColors = [
+      "FDEDEC",
+      "EBF5FB",
+      "E9F7EF",
+      "FEF9E7",
+      "F5EEF8",
+      "FDEBD0",
+      "E8F8F5",
+      "FDF2E9",
+    ];
 
-  const headers = [
-    "ID",
-    "Documento",
-    "Nombre",
-    "Estado_Vivienda",
-    "Meta",
-    "Tipo_Vivienda",
-    "Respuesta_Usuario",
-    "Fecha",
-  ];
+    // 🟥 Encabezados fuertes
+    const headerColors = [
+      "C0392B",
+      "2471A3",
+      "1E8449",
+      "B7950B",
+      "6C3483",
+      "CA6F1E",
+      "148F77",
+      "AF601A",
+    ];
 
-  // 🎨 COLORES PASTEL POR COLUMNA
-  const columnColors = [
-    "FDEDEC",
-    "EBF5FB",
-    "E9F7EF",
-    "FEF9E7",
-    "F5EEF8",
-    "FDEBD0",
-    "E8F8F5",
-    "FDF2E9"
-  ];
+    // 🏷️ TÍTULO
+    sheet.mergeCells(1, 1, 1, headers.length);
+    const titleCell = sheet.getCell("A1");
+    titleCell.value = "Reporte General – Viviendas Crepes & Waffles";
+    titleCell.font = { bold: true, size: 22, color: { argb: "1A5276" } };
+    titleCell.alignment = { horizontal: "center" };
 
-  // 🟥 Encabezados fuertes
-  const headerColors = [
-    "C0392B",
-    "2471A3",
-    "1E8449",
-    "B7950B",
-    "6C3483",
-    "CA6F1E",
-    "148F77",
-    "AF601A"
-  ];
+    // SUBTÍTULO
+    sheet.mergeCells(2, 1, 2, headers.length);
+    const sub = sheet.getCell("A2");
+    sub.value = "Exportado automáticamente";
+    sub.font = { italic: true, size: 12, color: { argb: "5D6D7E" } };
+    sub.alignment = { horizontal: "center" };
 
-  // 🏷️ TÍTULO
-  sheet.mergeCells(1, 1, 1, headers.length);
-  const titleCell = sheet.getCell("A1");
-  titleCell.value = "Reporte General – Viviendas Crepes & Waffles";
-  titleCell.font = { bold: true, size: 22, color: { argb: "1A5276" } };
-  titleCell.alignment = { horizontal: "center" };
+    // ENCABEZADOS (fila 4)
+    sheet.addRow(headers);
 
-  // SUBTÍTULO
-  sheet.mergeCells(2, 1, 2, headers.length);
-  const sub = sheet.getCell("A2");
-  sub.value = "Exportado automáticamente";
-  sub.font = { italic: true, size: 12, color: { argb: "5D6D7E" } };
-  sub.alignment = { horizontal: "center" };
-
-  // ENCABEZADOS (fila 4)
-  sheet.addRow(headers);
-
-  headers.forEach((h, i) => {
-    const cell = sheet.getCell(4, i + 1);
-    cell.font = { bold: true, size: 14, color: { argb: "FFFFFF" } };
-    cell.fill = {
-      type: "pattern",
-      pattern: "solid",
-      fgColor: { argb: headerColors[i] },
-    };
-    cell.alignment = { horizontal: "center" };
-    cell.border = {
-      top: { style: "medium" },
-      left: { style: "medium" },
-      bottom: { style: "medium" },
-      right: { style: "medium" },
-    };
-  });
-
-  // CUERPO DE TABLA
-  const excelData = data.map((item) => {
-  const r = item.attributes.res_v || {};
-  const doc = item.attributes.documento;
-
-  const info = employeeInfo[doc] || {};
-
-  return [
-    item.id,
-    doc,
-    info.nombre || "No encontrado",       // ✅ Nombre desde BUK
-    r.hasHome || "—",
-    r.homeGoal || "—",
-    r.typeOfHousing || "—",
-    r.userResponse || "—",
-    new Date(item.attributes.createdAt).toLocaleDateString(),
-  ];
-});
-
-
-  excelData.forEach((row, rowIndex) => {
-    const excelRow = sheet.addRow(row);
-
-    row.forEach((value, colIndex) => {
-      const cell = excelRow.getCell(colIndex + 1);
-
+    headers.forEach((h, i) => {
+      const cell = sheet.getCell(4, i + 1);
+      cell.font = { bold: true, size: 14, color: { argb: "FFFFFF" } };
       cell.fill = {
         type: "pattern",
         pattern: "solid",
-        fgColor: { argb: columnColors[colIndex] },
+        fgColor: { argb: headerColors[i] },
       };
-
-      cell.alignment = { wrapText: true };
+      cell.alignment = { horizontal: "center" };
       cell.border = {
-        top: { style: "thin" },
-        left: { style: "thin" },
-        bottom: { style: "thin" },
-        right: { style: "thin" },
+        top: { style: "medium" },
+        left: { style: "medium" },
+        bottom: { style: "medium" },
+        right: { style: "medium" },
       };
-
-      // 💡 Resaltar "SI" verde, "NO" rojo
-      if (colIndex === 3) {
-        if (String(value).toUpperCase().includes("SI")) {
-          cell.fill.fgColor.argb = "ABEBC6";
-        }
-        if (String(value).toUpperCase().includes("NO")) {
-          cell.fill.fgColor.argb = "F5B7B1";
-        }
-      }
     });
-  });
 
-  // Ancho de columnas
-  sheet.columns = headers.map(() => ({ width: 25 }));
+    // CUERPO DE TABLA
+    const excelData = data.map((item) => {
+      const r = item.attributes.res_v || {};
+      const doc = item.attributes.documento;
 
-  // Fila congelada
-  sheet.views = [{ state: "frozen", ySplit: 4 }];
+      const info = employeeInfo[doc] || {};
 
-  // Generar archivo
-  const buffer = await workbook.xlsx.writeBuffer();
-  saveAs(new Blob([buffer]), "reporte_viviendas.xlsx");
-};
-//Controlador de inicio sesion
-const handleLogin = () => {
-  if (password === REAL_PASSWORD) {
-    setShowSuccessModal(true);
-  } else {
-    const box = document.querySelector(".guardian-box");
-    if (box) {
-      box.classList.add("shake");
-      setTimeout(() => box.classList.remove("shake"), 600);
+      return [
+        item.id,
+        doc,
+        info.nombre || "No encontrado", // ✅ Nombre desde BUK
+        r.hasHome || "—",
+        r.homeGoal || "—",
+        r.typeOfHousing || "—",
+        r.userResponse || "—",
+        new Date(item.attributes.createdAt).toLocaleDateString(),
+      ];
+    });
+
+    excelData.forEach((row, rowIndex) => {
+      const excelRow = sheet.addRow(row);
+
+      row.forEach((value, colIndex) => {
+        const cell = excelRow.getCell(colIndex + 1);
+
+        cell.fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: columnColors[colIndex] },
+        };
+
+        cell.alignment = { wrapText: true };
+        cell.border = {
+          top: { style: "thin" },
+          left: { style: "thin" },
+          bottom: { style: "thin" },
+          right: { style: "thin" },
+        };
+
+        // 💡 Resaltar "SI" verde, "NO" rojo
+        if (colIndex === 3) {
+          if (String(value).toUpperCase().includes("SI")) {
+            cell.fill.fgColor.argb = "ABEBC6";
+          }
+          if (String(value).toUpperCase().includes("NO")) {
+            cell.fill.fgColor.argb = "F5B7B1";
+          }
+        }
+      });
+    });
+
+    // Ancho de columnas
+    sheet.columns = headers.map(() => ({ width: 25 }));
+
+    // Fila congelada
+    sheet.views = [{ state: "frozen", ySplit: 4 }];
+
+    // Generar archivo
+    const buffer = await workbook.xlsx.writeBuffer();
+    saveAs(new Blob([buffer]), "reporte_viviendas.xlsx");
+  };
+  //Controlador de inicio sesion
+  const handleLogin = () => {
+    if (password === REAL_PASSWORD) {
+      setShowSuccessModal(true);
+    } else {
+      const box = document.querySelector(".guardian-box");
+      if (box) {
+        box.classList.add("shake");
+        setTimeout(() => box.classList.remove("shake"), 600);
+      }
     }
-  }
-};
+  };
 
   // 🔐 SI NO ESTÁ AUTORIZADO
   if (!authorized) {
@@ -293,84 +293,123 @@ const handleLogin = () => {
         </div>
       </div>
     );
-    }
+  }
 
   // =====================================================================
   // 📊 PANEL ADMINISTRATIVO
   // =====================================================================
   return (
     <div className="admin-container">
-      <button className="btn-back" onClick={goBack}>
-        ⬅ Regresar
-      </button>
+      <div className="admin-header-grid">
+        <button className="btn-back" onClick={goBack}>
+          ⬅ Regresar
+        </button>
 
-      <h1 className="admin-title">Panel Administrativo</h1>
+        <h1 className="admin-title">Panel Administrativo</h1>
 
-      <button className="btn-excel" onClick={exportToExcel}>
-        📊 Exportar a Excel
-      </button>
-
+        <button className="btn-excel" onClick={exportToExcel}>
+          📊 Exportar a Excel
+        </button>
+      </div>
       {loading ? (
-  <p className="admin-loading">Cargando registros...</p>
-) : (
-  <div className="table-wrapper">
-    <table className="admin-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Documento</th>
-          <th>Foto</th>
-          <th>Nombre</th>
-          <th>Estado Vivienda</th>
-          <th>Meta</th>
-          <th>Tipo Vivienda</th>
-          <th>Respuesta Usuario</th>
-          <th>Fecha Registro</th>
-        </tr>
-      </thead>
+        <p className="admin-loading">Cargando registros...</p>
+      ) : (
+        <div className="table-wrapper">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Documento</th>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Estado Vivienda</th>
+                <th>Meta</th>
+                <th>Tipo Vivienda</th>
+                <th>Respuesta Usuario</th>
+                <th>Fecha Registro</th>
+              </tr>
+            </thead>
 
-      <tbody>
-        {data.map((item) => {
-          const r = item.attributes.res_v || {};
-          const doc = item.attributes.documento;
-          const info = employeeInfo[doc] || {};
-          const fullResponse = r.userResponse || "—";
-          const homeGoal = r.homeGoal || "—";
+            <tbody>
+              {data.map((item) => {
+                const r = item.attributes.res_v || {};
+                const doc = item.attributes.documento;
+                const info = employeeInfo[doc] || {};
+                const fullResponse = r.userResponse || "—";
+                const homeGoal = r.homeGoal || "—";
 
-          return (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{doc}</td>
-              <td>
-                {info.foto ? (
-                  <img
-                    src={info.foto}
-                    alt="Foto"
-                    style={{
-                      width: 45,
-                      height: 45,
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                    }}
-                  />
-                ) : (
-                  "—"
-                )}
-              </td>
-              <td>{info.nombre || "Cargando..."}</td>
-              <td>{r.hasHome}</td>
-              <td>{homeGoal}</td>
-              <td>{r.typeOfHousing}</td>
-              <td>{fullResponse}</td>
-              <td>{new Date(item.attributes.createdAt).toLocaleDateString()}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+                return (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{doc}</td>
+                    <td>
+                      {info.foto ? (
+                        <img
+                          src={info.foto}
+                          alt="Foto"
+                          style={{
+                            width: 45,
+                            height: 45,
+                            borderRadius: "50%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      ) : (
+                        "—"
+                      )}
+                    </td>
+                    <td>{info.nombre || "Cargando..."}</td>
+                    <td>{r.hasHome}</td>
+                    <td>{homeGoal}</td>
+                    <td>{r.typeOfHousing}</td>
+                    <td>
+  <div className="response-preview">
+    {fullResponse}
   </div>
-)}
 
+  {fullResponse.length > 70 && (
+    <button
+      className="ver-mas-btn"
+      onClick={() => {
+        setSelectedResponse(fullResponse);
+        setShowResponseModal(true);
+      }}
+    >
+      … ver más
+    </button>
+  )}
+</td>
+
+
+                    <td>
+                      {new Date(item.attributes.createdAt).toLocaleDateString()}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {showResponseModal && (
+            <div
+              className="modal-overlay"
+              onClick={() => setShowResponseModal(false)}
+            >
+              <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+                <h2 className="modal-title">Respuesta del Usuario</h2>
+
+                <p className="modal-content">{selectedResponse}</p>
+
+                <button
+                  className="modal-close"
+                  onClick={() => setShowResponseModal(false)}
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
