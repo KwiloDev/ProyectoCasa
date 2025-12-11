@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Step3Hello.css";
+import personaje9 from '/src/assets/Personajes/Personaje 9.png';
+
 
 export default function Step3Hello({ data, next }) {
 
@@ -87,7 +89,7 @@ export default function Step3Hello({ data, next }) {
           <img
             src={
               photo ||
-              "/src/assets/Personajes/default-avatar.png"
+              personaje9
             }
             alt="Foto empleado"
             className="step3-photo"
