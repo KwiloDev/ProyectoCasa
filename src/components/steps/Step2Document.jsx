@@ -9,12 +9,24 @@ export default function Step2Document({ data, update, next }) {
   const [loading, setLoading] = useState(false);
 
   // =====================================================
-  // 1️⃣ BÚSQUEDA PRINCIPAL: API ALOHA
+  // 0️⃣ FUNCIÓN PARA TIMEOUT GLOBAL
+  // =====================================================
+  const fetchWithTimeout = (url, options = {}, timeout = 2800) => {
+    return Promise.race([
+      fetch(url, options),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("timeout")), timeout)
+      )
+    ]);
+  };
+
+  // =====================================================
+  // 1️⃣ BÚSQUEDA PRINCIPAL: API ALOHA (con timeout)
   // =====================================================
   const checkEmployeeAloha = async (document) => {
     try {
       const url = `https://apialoha.crepesywaffles.com/intellinext2?dui_person=${document}`;
-      const res = await fetch(url);
+      const res = await fetchWithTimeout(url, {}, 2800);
       const json = await res.json();
       return Array.isArray(json) && json.length > 0;
     } catch (err) {
@@ -24,7 +36,6 @@ export default function Step2Document({ data, update, next }) {
 
   // =====================================================
   // 2️⃣ BÚSQUEDA SECUNDARIA: API BUK
-  // Solo se ejecuta si Aloha NO lo encuentra
   // =====================================================
   const checkEmployeeBuk = async (document) => {
     try {
@@ -34,8 +45,6 @@ export default function Step2Document({ data, update, next }) {
       });
 
       const json = await res.json();
-
-      // BUK responde con data[].length > 0 si existe
       return json?.data && json.data.length > 0;
     } catch (err) {
       return false;
@@ -43,7 +52,7 @@ export default function Step2Document({ data, update, next }) {
   };
 
   // =====================================================
-  // 3️⃣ REVISAR SI YA EXISTE EN STRAPI
+  // 3️⃣ REVISAR EN STRAPI SI YA EXISTE
   // =====================================================
   const checkIfExists = async (document) => {
     try {
@@ -57,7 +66,7 @@ export default function Step2Document({ data, update, next }) {
   };
 
   // =====================================================
-  // 4️⃣ CONTROL PRINCIPAL
+  // 4️⃣ CONTROL PRINCIPAL MEJORADO
   // =====================================================
   const handle = async () => {
     if (!doc || doc.length < 6) {
@@ -66,47 +75,48 @@ export default function Step2Document({ data, update, next }) {
     }
 
     setLoading(true);
+    setError('');
 
-    // Buscar en ALOHA
-    let isEmployee = await checkEmployeeAloha(doc);
+    let isEmployee = false;
 
-    // Si no está en Aloha → Buscar en BUK
-    if (!isEmployee) {
-      const foundInBuk = await checkEmployeeBuk(doc);
-
-      if (foundInBuk) {
-        isEmployee = true; // lo autorizamos
-      }
+    // Intentar ALOHA con timeout
+    try {
+      isEmployee = await checkEmployeeAloha(doc);
+    } catch (_) {
+      isEmployee = false;
     }
 
-    // Si no está en ninguna API → No autorizado
+    // Si ALOHA no lo encontró → intentar BUK
+    if (!isEmployee) {
+      const foundInBuk = await checkEmployeeBuk(doc);
+      if (foundInBuk) isEmployee = true;
+    }
+
+    // Si no existe en ninguna API
     if (!isEmployee) {
       setLoading(false);
       setAlertData({
         title: "No autorizado",
-        message: `El documento ${doc} no se encuentra registrado como empleado. 
-No es posible continuar con el formulario.`,
+        message: `El documento ${doc} no se encuentra registrado como empleado.`,
         button: "Cerrar"
       });
       return;
     }
 
-    // Revisar si ya respondió el formulario
+    // Revisar si ya llenó el formulario
     const exists = await checkIfExists(doc);
     setLoading(false);
 
     if (exists) {
       setAlertData({
         title: "Formulario Finalizado",
-        message: `El documento ${doc} ya tiene un registro activo. 
-No es posible volver a diligenciar el formulario.`,
+        message: `El documento ${doc} ya tiene un registro activo.`,
         button: "Aceptar"
       });
       return;
     }
 
     update({ document: doc });
-    setError('');
     next();
   };
 
@@ -158,7 +168,6 @@ No es posible volver a diligenciar el formulario.`,
           </div>
         </div>
       )}
-
     </div>
   );
 }
