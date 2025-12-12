@@ -326,6 +326,7 @@
   background: #ffffff;
   border-radius: 32px;
   padding: 60px 45px 45px 45px;
+  border: 5px solid #e5a44a;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   animation: modalOpen 0.45s ease forwards;
@@ -361,6 +362,7 @@
 /* Logos */
 .modal-logos {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 28px;
