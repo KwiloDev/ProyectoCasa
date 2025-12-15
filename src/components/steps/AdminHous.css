@@ -473,6 +473,7 @@
   padding: 25px;
   border-radius: 16px;
   animation: fadePop 0.25s ease;
+  border: 5px solid #ffffff;
 }
 
 @keyframes fadePop {
