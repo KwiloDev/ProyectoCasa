@@ -46,6 +46,11 @@ export default function Step9Finance({ data, next, prev }) {
                 <img src="/src/assets/Iconos/Icono 5.png" alt="" />
                 <p>Cesantías</p>
               </div>
+              <div className="modal-item">
+                <p>Solicita tus cesantías</p>
+                <img src="/src/assets/Botones Click/Click 1.png" alt="" />
+                
+              </div>
             </div>
 
             <button className="modal-btn" onClick={closeFirstModal}>
