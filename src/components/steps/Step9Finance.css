@@ -1,183 +1,200 @@
+/* =========================
+   PANTALLA BASE
+========================= */
 .step9-page {
   background: #F9EEDF;
   padding: 40px 20px;
-  text-align: center;
   min-height: 100vh;
+  text-align: center;
+  font-family: var(--font-regular);
 }
 
 /* TÍTULO */
 .title-hagamos {
   color: #503629;
-  font-weight: 700;
   font-size: 32px;
+  font-weight: 700;
   margin-bottom: 25px;
 }
 
-/* Caja 100% */
+/* 100% */
 .block-100 {
   background: #F6C977;
   padding: 18px 40px;
-  border-radius: 15px;
-  color: #503629;
+  border-radius: 18px;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 700;
+  color: #503629;
   width: fit-content;
   margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.18);
 }
 
+/* DIVISOR */
 .line-divider {
   width: 2px;
   height: 55px;
   background: #503629;
-  margin: 15px auto;
+  margin: 18px auto;
 }
 
-/* Sección porcentajes */
+/* PORCENTAJES */
 .percent-section {
   display: flex;
   justify-content: center;
   gap: 140px;
-  margin-top: 20px;
+}
+
+.percent-box {
+  cursor: pointer;
 }
 
 .percent-box p {
-  color: #503629;
-  font-weight: 600;
   font-size: 18px;
-  margin-bottom: 10px;
+  font-weight: 600;
+  color: #503629;
 }
 
 .percent-value {
   background: #D8943A;
-  color: white;
-  padding: 22px 40px;
-  border-radius: 15px;
+  color: #fff;
+  padding: 22px 45px;
+  border-radius: 16px;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
-/* Botones */
-.btn-open-modal,
+/* BOTÓN */
 .back-btn {
-  margin-top: 40px;
-  padding: 10px 25px;
+  margin-top: 35px;
+  padding: 10px 28px;
   background: #E3A858;
-  color: #503629;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
 }
 
-.back-btn {
-  margin-top: 20px;
-}
-
-/* ================= MODALES ================= */
-
+/* =========================
+   MODAL OVERLAY
+========================= */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,.45);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
+  padding: 20px;
 }
 
+/* MODAL CAJA */
 .modal-box.big-modal {
-  background: #C89458;
-  padding: 40px 50px;
-  border-radius: 35px;
-  width: 90%;
-  max-width: 1000px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  background: #E1AF5B;
+  border-radius: 32px;
+  padding: 40px 45px;
+  max-width: 1050px;
+  width: 100%;
+  border: 4px solid rgba(255,255,255,.7);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
 }
 
+/* TÍTULO MODAL */
 .modal-title {
-  color: #503629;
-  font-size: 28px;
-  margin-bottom: 35px;
+  color: #fff;
+  font-size: 26px;
   font-weight: 700;
+  font-style: italic;
+  margin-bottom: 30px;
 }
 
-/* Modal 1 grid */
+/* =========================
+   MODAL 1 – GRID FUENTES
+========================= */
 .modal-grid-1 {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(2, 200px);
-  gap: 25px;
-  margin-bottom: 25px;
-}
-
-.modal-item img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin: 0 auto 10px;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
-}
-
-.modal-item p {
-  font-size: 16px;
-  color: #503629;
-  font-weight: bold;
-}
-
-/* Modal 2 grid */
-.modal-grid-2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
+  justify-items: center;
+  margin-bottom: 25px;
 }
 
-/* Base tarjeta */
-.modal-card {
-  background: #FDF7EE;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+/* TARJETAS BLANCAS */
+.modal-item {
+  background: #FFF5E8;
+  border-radius: 22px;
+  padding: 18px 20px;
+  width: 100%;
+  max-width: 230px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,.18);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-item img {
+  width: 70px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.modal-item p {
+  font-size: 15px;
+  font-weight: 600;
+  color: #503629;
+}
+
+/* =========================
+   MODAL 2
+========================= */
+.modal-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.modal-card {
+  background: #FFF5E8;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.2);
 }
 
 .modal-card h4 {
   color: #503629;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .modal-card p {
+  font-size: 14.5px;
   color: #503629;
-  font-size: 15px;
   line-height: 1.4;
 }
 
-/* El card grande (documentos) */
 .card-documentos {
   grid-column: span 2;
 }
 
 .card-content-4 {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 15px;
   margin-top: 10px;
 }
 
-/* Lista */
 .document-list {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .document-list li {
-  font-size: 15px;
-  padding-left: 15px;
+  font-size: 14px;
+  padding-left: 14px;
   position: relative;
 }
 
@@ -186,24 +203,80 @@
   position: absolute;
   left: 0;
   color: #503629;
-  font-weight: bold;
 }
 
-/* Acción */
+/* ACCIÓN */
 .action-box {
   background: #E3A858;
-  border-radius: 10px;
-  padding: 15px 25px;
+  border-radius: 12px;
+  padding: 14px;
   text-align: center;
+  font-weight: 600;
   cursor: pointer;
 }
 
+/* BOTÓN MODAL */
 .modal-btn {
   margin-top: 30px;
-  padding: 12px 30px;
+  padding: 12px 32px;
   background: #E3A858;
-  color: #503629;
-  border-radius: 12px;
+  border-radius: 14px;
   border: none;
   cursor: pointer;
+  font-weight: 600;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablets */
+@media (max-width: 900px) {
+  .percent-section {
+    gap: 60px;
+  }
+
+  .modal-grid-1,
+  .modal-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-documentos {
+    grid-column: span 2;
+  }
+}
+
+/* Móviles */
+@media (max-width: 600px) {
+  .title-hagamos {
+    font-size: 24px;
+  }
+
+  .percent-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .modal-box.big-modal {
+    padding: 25px 20px;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .modal-grid-1,
+  .modal-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .card-documentos {
+    grid-column: span 1;
+  }
+}
+
+/* Pantallas bajas */
+@media (max-height: 700px) {
+  .modal-box.big-modal {
+    max-height: 88vh;
+    overflow-y: auto;
+  }
 }

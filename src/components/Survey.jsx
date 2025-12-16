@@ -1,31 +1,42 @@
-import React, { useState } from 'react'
-import Step0Initial from './steps/Step0Initial'
-import Step1Welcome from './steps/Step1Welcome'
-import Step2Document from './steps/Step2Document'
-import Step3Hello from './steps/Step3Hello'
-import Step4HasHome from './steps/Step4HasHome'
-import Step5Benefits from './steps/Step5Benefits'
-import Step6Subsidy from './steps/Step6Subsidy'
-import Step7Types from './steps/Step7Types'
-import Step8Budget from './steps/Step8Budget'
-import Step81Budget2 from './steps/Step81Budget2'
-import Step9Finance from './steps/Step9Finance'
-import Step10Extras from './steps/Step10Extras'
-import Step11Final from './steps/Step11Final'
-
+import React, { useState } from "react";
+import Step0Initial from "./steps/Step0Initial";
+import Step1Welcome from "./steps/Step1Welcome";
+import Step2Document from "./steps/Step2Document";
+import Step3Hello from "./steps/Step3Hello";
+import Step4HasHome from "./steps/Step4HasHome";
+import Step5Benefits from "./steps/Step5Benefits";
+import Step6Subsidy from "./steps/Step6Subsidy";
+import Step7Types from "./steps/Step7Types";
+import Step8Budget from "./steps/Step8Budget";
+import Step81Budget2 from "./steps/Step81Budget2";
+import Step9Finance from "./steps/Step9Finance";
+import Step10Extras from "./steps/Step10Extras";
+import Step11Final from "./steps/Step11Final";
 
 const stepsOrder = [
-  'logos','welcome','doc','hello','hasHome','benefits_or_next','subsidy','types','budget','budget2','finance','extras','final'
-]
+  "logos",
+  "welcome",
+  "doc",
+  "hello",
+  "hasHome",
+  "benefits_or_next",
+  "subsidy",
+  "types",
+  "budget",
+  "budget2",
+  "finance",
+  "extras",
+  "final",
+];
 
-export default function Survey(){
-  const [index, setIndex] = useState(0)
+export default function Survey() {
+  const [index, setIndex] = useState(0);
   const [data, setData] = useState({
-    document: '',
-    name: 'SANTIAGO', // por ahora simulado; luego lo obtendrás desde backend
+    document: "",
+    name: "SANTIAGO",
     hasHome: null, // 'si' | 'no' | 'parcialmente'
     // respuestas de pantallas adicionales
-    modalMessage: "",   // aquí guardaremos lo escrito por el usuario
+    modalMessage: "", // aquí guardaremos lo escrito por el usuario
     incomesUnder4SM: null,
     householdNucleus: null,
     allBeneficiariesAffiliated: null,
@@ -33,37 +44,35 @@ export default function Survey(){
     hadSubsidyBefore: null,
     affiliatedToCaja: null,
     typeOfHousing: null,
-    budgetChoice: null
-  })
-  const [modal, setModal] = useState({open:false, content:''})
+    budgetChoice: null,
+  });
+  const [modal, setModal] = useState({ open: false, content: "" });
 
   const goTo = (id) => {
-    const idx = stepsOrder.indexOf(id)
-    if(idx>=0) setIndex(idx)
-  }
-  const next = () => setIndex(i => Math.min(i+1, stepsOrder.length-1))
-  const prev = () => setIndex(i => Math.max(i-1, 0))
+    const idx = stepsOrder.indexOf(id);
+    if (idx >= 0) setIndex(idx);
+  };
+  const next = () => setIndex((i) => Math.min(i + 1, stepsOrder.length - 1));
+  const prev = () => setIndex((i) => Math.max(i - 1, 0));
 
-  const update = (patch) => setData(d => ({...d,...patch}))
+  const update = (patch) => setData((d) => ({ ...d, ...patch }));
 
   // lógica de flujo: después de P4 (hasHome)
-  
 
- const handleAfterHasHome = ({ hasHome, homeGoal }) => {
+  const handleAfterHasHome = ({ hasHome, homeGoal }) => {
+    update({
+      hasHome,
+      homeGoal,
+    });
 
-  update({
-    hasHome,
-    homeGoal
-  });
+    if (hasHome === "si") {
+      goTo("benefits_or_next");
+    } else {
+      goTo("subsidy");
+    }
+  };
 
-  if (hasHome === 'si') {
-    goTo('benefits_or_next');
-  } else {
-    goTo('subsidy');
-  }
-};
-
-/* lógica de flujo TEMPORAL Bypass
+  /* lógica de flujo TEMPORAL Bypass
 const handleAfterHasHome = ({ hasHome, homeGoal }) => {
 
   update({
@@ -76,13 +85,13 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
 };
 */
 
-  const percent = Math.round((index)/(stepsOrder.length-1)*100)
+  const percent = Math.round((index / (stepsOrder.length - 1)) * 100);
 
   return (
     <div>
       <div className="min-h-[320px]">
         {index === 0 && <Step0Initial next={next} />}
-        {index === 1 && <Step1Welcome next={next} />}
+        {index === 1 && <Step1Welcome next={() => goTo("hello")} />}
         {index === 2 && (
           <Step2Document
             data={data}
@@ -115,7 +124,14 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
           />
         )}
 
-         {index === 7 && <Step7Types data={data} update={update} next={() => goTo('budget')} prev={() => goTo('subsidy')} />}
+        {index === 7 && (
+          <Step7Types
+            data={data}
+            update={update}
+            next={() => goTo("budget")}
+            prev={() => goTo("subsidy")}
+          />
+        )}
         {index === 8 && (
           <Step8Budget
             data={data}
@@ -154,10 +170,8 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
             data={data}
             prev={() => {
               // si venimos de rama propietario, volver a benefits, si no, a extras
-              if (data.hasHome === "si")
-                goTo(
-                  "extras"
-                ); //Condicion anterior app completa:if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
+              if (data.hasHome === "si") goTo("extras");
+              //Condicion anterior app completa:if (data.hasHome === "si") goTo("benefits_or_next"); else goTo("extras");
               else goTo("extras");
             }}
           />

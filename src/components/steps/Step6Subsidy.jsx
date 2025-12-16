@@ -89,8 +89,8 @@ export default function Step6Subsidy({ data, update, next, prev }) {
 
       <i>
         <p className="welcome-title">
-          Para darte <strong>la mejor asesoría en la compra de tu nueva vivienda,</strong>
-          ayúdanos a completar:
+          Para darte <strong>la mejor asesoría en la compra de tu nueva vivienda, </strong> 
+           ayúdanos a completar:
         </p>
       </i>
 
