@@ -395,7 +395,7 @@ export default function AdminPanel() {
               onClick={() => setShowResponseModal(false)}
             >
               <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                <h2 className="modal-title">Respuesta del Usuario</h2>
+                <h2 className="modal-title-adm">Respuesta del Usuario</h2>
 
                 <p className="modal-content">{selectedResponse}</p>
 
