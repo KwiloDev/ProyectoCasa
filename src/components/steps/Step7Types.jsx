@@ -6,6 +6,7 @@ import Caja2 from "/src/assets/Cajas/Caja 2.png";
 import Caja3_1 from "/src/assets/Cajas/Caja 3_1.png";
 import Caja4 from "/src/assets/Cajas/Caja 4.png";
 import Icono1 from "/src/assets/Iconos/Icono 1.png";
+import Caja3 from "/src/assets/Cajas/Caja 3_1.png";
 
 export default function Step7Types({ data, update, next, prev }) {
   const [alertData, setAlertData] = useState(null);
@@ -16,6 +17,7 @@ export default function Step7Types({ data, update, next, prev }) {
   const [loading, setLoading] = useState(false);
   const [successModal, setSuccessModal] = useState(false); 
   const [existsInAPI, setExistsInAPI] = useState(false);
+  const [selectedType, setSelectedType]= useState(null);
 
 
   // 🔍 Verifica si ya existe un registro con ese documento
@@ -31,8 +33,9 @@ export default function Step7Types({ data, update, next, prev }) {
   };
 
   const showNoVisModal = (type) => {
+    setSelectedType(type);    
     update({ typeOfHousing: type });
-
+    
     setAlertData({
       title: "Tu historia importa: Cuéntanos de ti",
       content: (
@@ -44,7 +47,10 @@ export default function Step7Types({ data, update, next, prev }) {
         </p>
       ),
       confirmText: "Volver",
-      onConfirm: () => setAlertData(null),
+      onConfirm: () => {
+      setAlertData(null);
+      setSelectedType(null);
+    },
     });
   };
 
@@ -116,6 +122,18 @@ export default function Step7Types({ data, update, next, prev }) {
   verify();
 }, []);
 
+const getModalImage = () => {
+  switch (selectedType) {
+    case "semilla":
+      return Caja2;
+    case "raices":
+      return Caja3;
+    case "frutos":
+      return Caja4;
+    default:
+      return Icono1;
+  }
+};
 
   return (
     <div className="step7-types">
@@ -168,28 +186,28 @@ export default function Step7Types({ data, update, next, prev }) {
         </button>
 
         <button
-  className={`btn-ghost7 ${(!completed && !existsInAPI) ? "btn-disabled" : ""}`}
-  onClick={async () => {
+          className={`btn-ghost7 ${
+            !completed && !existsInAPI ? "btn-disabled" : ""
+          }`}
+          onClick={async () => {
+            // Si ya existe en API → permitir continuar
+            if (existsInAPI) {
+              next();
+              return;
+            }
 
-    // Si ya existe en API → permitir continuar
-    if (existsInAPI) {
-      next();
-      return;
-    }
+            // Si ya completó en este paso → permitir continuar
+            if (completed) {
+              next();
+              return;
+            }
 
-    // Si ya completó en este paso → permitir continuar
-    if (completed) {
-      next();
-      return;
-    }
-
-    // Si NO existe y NO completó → bloquear
-    setAlertRequired(true);
-  }}
->
-  Siguiente
-</button>
-
+            // Si NO existe y NO completó → bloquear
+            setAlertRequired(true);
+          }}
+        >
+          Siguiente
+        </button>
       </div>
 
       {/* 🟧 Modal principal */}
@@ -197,7 +215,7 @@ export default function Step7Types({ data, update, next, prev }) {
         <div className="alert-overlay">
           <div className="alert-box">
             <div className="modal-house-icon">
-              <img src={Icono1} alt="Icono 1" />
+              <img src={getModalImage()} alt="Tipo de vivienda" />
             </div>
 
             <h3 className="alert-title">{alertData.title}</h3>
