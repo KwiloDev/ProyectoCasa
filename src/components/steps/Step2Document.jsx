@@ -159,8 +159,8 @@ export default function Step2Document({ data, update, next }) {
 
       {alertData && (
         <div className="modal-overlay">
-          <div className="modal-box">
-            <h2 className="modal-title">{alertData.title}</h2>
+          <div className="modal-boxStp2">
+            <h2 className="modal-titleStp2">{alertData.title}</h2>
             <p className="modal-message">{alertData.message}</p>
             <button className="modal-button" onClick={() => setAlertData(null)}>
               {alertData.button}

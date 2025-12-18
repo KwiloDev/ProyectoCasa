@@ -266,8 +266,8 @@
   z-index: 999;
 }
 
-.modal-box {
-  background: #c9dcd8;
+.modal-boxStp2 {
+  background: #FFD394;
   padding: 35px 45px;
   border-radius: 18px;
   width: 420px;
@@ -276,10 +276,10 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.modal-title {
+.modal-titleStp2 {
   font-size: 24px;
   font-weight: 800;
-  color: #2f4b46;
+  color: #000000;
 }
 
 .modal-message {

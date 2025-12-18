@@ -58,6 +58,10 @@
   height: 340px; /* Ajuste visual exacto */
   text-align: center;
   margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+.benefit-box:hover {
+  transform: scale(1.08);
 }
 
 /* Imagen de la caja */
