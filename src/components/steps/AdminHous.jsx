@@ -12,7 +12,8 @@ export default function AdminPanel() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showResponseModal, setShowResponseModal] = useState(false);
   const [selectedResponse, setSelectedResponse] = useState("");
-  
+  const [showQuizModal, setShowQuizModal] = useState(false);
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
 
   // 📌 NUEVO: nombres y fotos desde BUK
   const [employeeInfo, setEmployeeInfo] = useState({});
@@ -99,39 +100,61 @@ export default function AdminPanel() {
     const sheet = workbook.addWorksheet("Reporte");
 
     const headers = [
-      "ID",
-      "Documento",
-      "Nombre",
-      "Estado_Vivienda",
-      "Meta",
-      "Tipo_Vivienda",
-      "Respuesta_Usuario",
-      "Fecha",
-    ];
+  "ID",
+  "Documento",
+  "Nombre",
+  "Tiene Vivienda",
+  "Meta Vivienda",
+  "Tipo Vivienda",
+  "Afiliado a Caja",
+  "Ingresos < 4 SMLMV",
+  "Núcleo Familiar",
+  "Todos Afiliados",
+  "Es Propietario",
+  "Subsidio Anterior",
+  "Respuesta Usuario",
+  "Fecha Registro",
+];
+
 
     // 🎨 COLORES PASTEL POR COLUMNA
     const columnColors = [
-      "FDEDEC",
-      "EBF5FB",
-      "E9F7EF",
-      "FEF9E7",
-      "F5EEF8",
-      "FDEBD0",
-      "E8F8F5",
-      "FDF2E9",
-    ];
+  "FDEDEC", // ID
+  "EBF5FB", // Documento
+  "E9F7EF", // Nombre
+  "FEF9E7", // Tiene Vivienda
+  "F5EEF8", // Meta
+  "FDEBD0", // Tipo Vivienda
+  "E8F8F5", // Afiliado Caja
+  "FDF2E9", // Ingresos
+  "EBDEF0", // Núcleo
+  "FADBD8", // Todos afiliados
+  "EAEDED", // Propietario
+  "FCF3CF", // Subsidio
+  "E8F6F3", // Respuesta
+  "FDF2E9", // Fecha
+];
+
 
     // 🟥 Encabezados fuertes
-    const headerColors = [
-      "C0392B",
-      "2471A3",
-      "1E8449",
-      "B7950B",
-      "6C3483",
-      "CA6F1E",
-      "148F77",
-      "AF601A",
-    ];
+ const headerColors = [
+  "7B241C", // ID
+  "1F618D", // Documento
+  "196F3D", // Nombre
+  "9A7D0A", // Tiene Vivienda
+  "6C3483", // Meta
+  "AF601A", // Tipo
+  "117A65", // Afiliado
+  "935116", // Ingresos
+  "1A5276", // Núcleo
+  "943126", // Todos
+  "616A6B", // Propietario
+  "7D6608", // Subsidio
+  "148F77", // Respuesta
+  "AF601A", // Fecha
+];
+
+
 
     // 🏷️ TÍTULO
     sheet.mergeCells(1, 1, 1, headers.length);
@@ -175,15 +198,22 @@ export default function AdminPanel() {
       const info = employeeInfo[doc] || {};
 
       return [
-        item.id,
-        doc,
-        info.nombre || "No encontrado", // ✅ Nombre desde BUK
-        r.hasHome || "—",
-        r.homeGoal || "—",
-        r.typeOfHousing || "—",
-        r.userResponse || "—",
-        new Date(item.attributes.createdAt).toLocaleDateString(),
-      ];
+  item.id,
+  doc,
+  info.nombre || "No encontrado",
+  r.hasHome || "—",
+  r.homeGoal || "—",
+  r.typeOfHousing || "—",
+  r.affiliatedToCaja || "—",
+  r.incomesUnder4SM || "—",
+  r.householdNucleus || "—",
+  r.allAffiliated || "—",
+  r.houseOwner || "—",
+  r.hadSubsidyBefore || "—",
+  r.userResponse || "—",
+  new Date(item.attributes.createdAt).toLocaleDateString(),
+];
+
     });
 
     excelData.forEach((row, rowIndex) => {
@@ -228,7 +258,9 @@ export default function AdminPanel() {
     const buffer = await workbook.xlsx.writeBuffer();
     saveAs(new Blob([buffer]), "reporte_viviendas.xlsx");
   };
-  //Controlador de inicio sesion
+
+
+  //Controlador de inicio sesion____________*****************_____________________________////////////////////////
   const handleLogin = () => {
     if (password === REAL_PASSWORD) {
       setShowSuccessModal(true);
@@ -323,8 +355,6 @@ export default function AdminPanel() {
                 <th>Foto</th>
                 <th>Nombre</th>
                 <th>Estado Vivienda</th>
-                <th>Meta</th>
-                <th>Tipo Vivienda</th>
                 <th>Respuesta Usuario</th>
                 <th>Fecha Registro</th>
               </tr>
@@ -359,27 +389,33 @@ export default function AdminPanel() {
                       )}
                     </td>
                     <td>{info.nombre || "Cargando..."}</td>
-                    <td>{r.hasHome}</td>
-                    <td>{homeGoal}</td>
-                    <td>{r.typeOfHousing}</td>
                     <td>
-  <div className="response-preview">
-    {fullResponse}
-  </div>
+                      <button
+                        className="ver-mas-btn"
+                        onClick={() => {
+                          setSelectedQuiz(r);
+                          setShowQuizModal(true);
+                        }}
+                      >
+                        Ver
+                      </button>
+                    </td>
 
-  {fullResponse.length > 70 && (
-    <button
-      className="ver-mas-btn"
-      onClick={() => {
-        setSelectedResponse(fullResponse);
-        setShowResponseModal(true);
-      }}
-    >
-      … ver más
-    </button>
-  )}
-</td>
+                    <td>
+                      <div className="response-preview">{fullResponse}</div>
 
+                      {fullResponse.length > 70 && (
+                        <button
+                          className="ver-mas-btn"
+                          onClick={() => {
+                            setSelectedResponse(fullResponse);
+                            setShowResponseModal(true);
+                          }}
+                        >
+                          … ver más
+                        </button>
+                      )}
+                    </td>
 
                     <td>
                       {new Date(item.attributes.createdAt).toLocaleDateString()}
@@ -402,6 +438,62 @@ export default function AdminPanel() {
                 <button
                   className="modal-close"
                   onClick={() => setShowResponseModal(false)}
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          )}
+          {showQuizModal && selectedQuiz && (
+            <div
+              className="modal-overlay"
+              onClick={() => setShowQuizModal(false)}
+            >
+              <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+                <h2 className="modal-title-adm">Cuestionario de Vivienda</h2>
+
+                <div className="quiz-list">
+                  <p>
+                    <strong>Tiene vivienda:</strong>{" "}
+                    {selectedQuiz.hasHome || "—"}
+                  </p>
+                  <p>
+                    <strong>Meta de vivienda:</strong>{" "}
+                    {selectedQuiz.homeGoal || "—"}
+                  </p>
+                  <p>
+                    <strong>Tipo de vivienda:</strong>{" "}
+                    {selectedQuiz.typeOfHousing || "—"}
+                  </p>
+                  <p>
+                    <strong>Afiliado a Caja:</strong>{" "}
+                    {selectedQuiz.affiliatedToCaja || "—"}
+                  </p>
+                  <p>
+                    <strong>Ingresos menores a 4 SMLMV:</strong>{" "}
+                    {selectedQuiz.incomesUnder4SM || "—"}
+                  </p>
+                  <p>
+                    <strong>Núcleo familiar:</strong>{" "}
+                    {selectedQuiz.householdNucleus || "—"}
+                  </p>
+                  <p>
+                    <strong>Todos afiliados:</strong>{" "}
+                    {selectedQuiz.allAffiliated || "—"}
+                  </p>
+                  <p>
+                    <strong>Es propietario:</strong>{" "}
+                    {selectedQuiz.houseOwner || "—"}
+                  </p>
+                  <p>
+                    <strong>Subsidio anterior:</strong>{" "}
+                    {selectedQuiz.hadSubsidyBefore || "—"}
+                  </p>
+                </div>
+
+                <button
+                  className="modal-close"
+                  onClick={() => setShowQuizModal(false)}
                 >
                   Cerrar
                 </button>
