@@ -74,10 +74,45 @@ export default function Step7Types({ data, update, next, prev }) {
     // 👉 Paso 2: Enviar respuesta normalmente
     update({ userResponse });
 
+   /* const payload = {
+  data: {
+    documento: Number(data.document),
+
+    // =====================
+    // RESPUESTAS STEP 6
+    // =====================
+    subsidyInfo: {
+      affiliatedToCaja: data.affiliatedToCaja,
+      incomesUnder4SM: data.incomesUnder4SM,
+      householdNucleus: data.householdNucleus,
+      allAffiliated: data.allAffiliated,
+      houseOwner: data.houseOwner,
+      hadSubsidyBefore: data.hadSubsidyBefore,
+    },
+
+    // =====================
+    // RESPUESTAS STEP 7
+    // =====================
+    housingProcess: {
+      hasHome: data.hasHome,
+        homeGoal: data.homeGoal,
+      typeOfHousing: data.typeOfHousing,
+      userResponse: userResponse,
+    }
+  }
+};*/
+
+
     const payload = {
       data: {
         documento: Number(data.document),
         res_v: {
+          affiliatedToCaja: data.affiliatedToCaja,
+          incomesUnder4SM: data.incomesUnder4SM,
+          householdNucleus: data.householdNucleus,
+          allAffiliated: data.allAffiliated,
+          houseOwner: data.houseOwner,
+          hadSubsidyBefore: data.hadSubsidyBefore,
           hasHome: data.hasHome,
           homeGoal: data.homeGoal,
           typeOfHousing: data.typeOfHousing,
