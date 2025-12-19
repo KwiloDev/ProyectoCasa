@@ -101,7 +101,7 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
 
         {index === 5 && data.hasHome === "si" && (
           <Step5Benefits
-            next={() => goTo("final")}
+            next={() => goTo("types")}
             prev={() => goTo("hasHome")}
           />
         )}

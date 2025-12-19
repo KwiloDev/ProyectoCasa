@@ -76,7 +76,9 @@ export default function Step5Benefits({ next, prev }) {
 
       <div className="benefits-controls">
         <button className="benefits-btn-back" onClick={prev}>Volver</button>
+        <button className="benefits-btn-next" onClick={next}>Continuar</button>
       </div>
+      
 
     </div>
   )
