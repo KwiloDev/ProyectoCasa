@@ -17,6 +17,7 @@ export default function Step11Final({ data, prev }) {
   const cerrarModal = () => {
     window.location.href = window.location.origin;
   };
+const hasHome = data?.hasHome === "si";
 
   return (
     <div className="step11-page">
@@ -58,9 +59,11 @@ export default function Step11Final({ data, prev }) {
         </div>
 
         <div className="buttons-row-11">
-          <button className="btn-volver-11" onClick={prev}>
-            Volver
-          </button>
+         {!hasHome && (
+    <button className="btn-volver-11" onClick={prev}>
+      Volver
+    </button>
+  )}
 
           <button className="btn-finalizar-11" onClick={finalizar}>
             Finalizar

@@ -8,17 +8,16 @@ import Caja4 from "/src/assets/Cajas/Caja 4.png";
 import Icono1 from "/src/assets/Iconos/Icono 1.png";
 import Caja3 from "/src/assets/Cajas/Caja 3_1.png";
 
-export default function Step7Types({ data, update, next, prev }) {
+export default function Step7Types({ data, update, next, prev, goTo }) {
   const [alertData, setAlertData] = useState(null);
   const [userResponse, setUserResponse] = useState("");
   const [completed, setCompleted] = useState(false);
   const [alertRequired, setAlertRequired] = useState(false);
   const [alreadyExists, setAlreadyExists] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [successModal, setSuccessModal] = useState(false); 
+  const [successModal, setSuccessModal] = useState(false);
   const [existsInAPI, setExistsInAPI] = useState(false);
-  const [selectedType, setSelectedType]= useState(null);
-
+  const [selectedType, setSelectedType] = useState(null);
 
   // 🔍 Verifica si ya existe un registro con ese documento
   const checkIfExists = async (document) => {
@@ -33,9 +32,9 @@ export default function Step7Types({ data, update, next, prev }) {
   };
 
   const showNoVisModal = (type) => {
-    setSelectedType(type);    
+    setSelectedType(type);
     update({ typeOfHousing: type });
-    
+
     setAlertData({
       title: "Tu historia importa: Cuéntanos de ti",
       content: (
@@ -48,9 +47,9 @@ export default function Step7Types({ data, update, next, prev }) {
       ),
       confirmText: "Volver",
       onConfirm: () => {
-      setAlertData(null);
-      setSelectedType(null);
-    },
+        setAlertData(null);
+        setSelectedType(null);
+      },
     });
   };
 
@@ -74,7 +73,7 @@ export default function Step7Types({ data, update, next, prev }) {
     // 👉 Paso 2: Enviar respuesta normalmente
     update({ userResponse });
 
-   /* const payload = {
+    /* const payload = {
   data: {
     documento: Number(data.document),
 
@@ -101,7 +100,6 @@ export default function Step7Types({ data, update, next, prev }) {
     }
   }
 };*/
-
 
     const payload = {
       data: {
@@ -147,29 +145,29 @@ export default function Step7Types({ data, update, next, prev }) {
     }
   };
   React.useEffect(() => {
-  const verify = async () => {
-    const exists = await checkIfExists(data.document);
-    if (exists) {
-      setExistsInAPI(true);
-      setCompleted(true); // Permite avanzar automáticamente
+    const verify = async () => {
+      const exists = await checkIfExists(data.document);
+      if (exists) {
+        setExistsInAPI(true);
+        setCompleted(true); // Permite avanzar automáticamente
+      }
+    };
+    verify();
+  }, []);
+
+  const getModalImage = () => {
+    switch (selectedType) {
+      case "semilla":
+        return Caja2;
+      case "raices":
+        return Caja3;
+      case "frutos":
+        return Caja4;
+      default:
+        return Icono1;
     }
   };
-  verify();
-}, []);
-
-const getModalImage = () => {
-  switch (selectedType) {
-    case "semilla":
-      return Caja2;
-    case "raices":
-      return Caja3;
-    case "frutos":
-      return Caja4;
-    default:
-      return Icono1;
-  }
-};
-
+const hasHome = data?.hasHome === "si";
   return (
     <div className="step7-types">
       <h3>Acompañamos tu sueño en todas las etapas del camino:</h3>
@@ -227,13 +225,21 @@ const getModalImage = () => {
           onClick={async () => {
             // Si ya existe en API → permitir continuar
             if (existsInAPI) {
-              next();
+              if (hasHome) {
+                goTo("final");
+              } else {
+                next();
+              }
               return;
             }
 
             // Si ya completó en este paso → permitir continuar
             if (completed) {
-              next();
+              if (hasHome) {
+                goTo("final");
+              } else {
+                next();
+              }
               return;
             }
 
@@ -344,7 +350,15 @@ const getModalImage = () => {
               className="btn-modal-volver"
               onClick={() => {
                 setSuccessModal(false);
-                next(); // Avanzar al siguiente paso
+
+                // 👉 SI TIENE VIVIENDA → IR AL FINAL
+                if (hasHome) {
+                  goTo("final"); // 🔥 salto directo
+                  return;
+                }
+
+                // 👉 FLUJO NORMAL
+                next();
               }}
             >
               Continuar
