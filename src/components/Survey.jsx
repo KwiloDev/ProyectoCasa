@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Estimador from "./steps/Estimador";
 import Step0Initial from "./steps/Step0Initial";
 import Step1Welcome from "./steps/Step1Welcome";
 import Step2Document from "./steps/Step2Document";
@@ -12,6 +13,7 @@ import Step81Budget2 from "./steps/Step81Budget2";
 import Step9Finance from "./steps/Step9Finance";
 import Step10Extras from "./steps/Step10Extras";
 import Step11Final from "./steps/Step11Final";
+
 
 const stepsOrder = [
   "logos",
@@ -86,10 +88,12 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
 */
 
   const percent = Math.round((index / (stepsOrder.length - 1)) * 100);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   return (
     <div>
       <div className="min-h-[320px]">
+        {showCalculator && (<Estimador onBack={() => setShowCalculator(false)} />)}
         {index === 0 && <Step0Initial next={next} />}
         {index === 1 && <Step1Welcome next={next} />}
         {index === 2 && (
@@ -150,20 +154,20 @@ const handleAfterHasHome = ({ hasHome, homeGoal }) => {
             prev={() => goTo("budget")}
           />
         )}
-        {index === 10 && (
-          <Step9Finance
-            data={data}
-            update={update}
-            next={() => goTo("extras")}
-            prev={() => goTo("budget")}
-          />
-        )}
+        {index === 10 && !showCalculator && (
+  <Step9Finance
+    data={data}
+    next={() => goTo("extras")}
+    prev={() => goTo("budget")}
+    openCalculator={() => setShowCalculator(true)} // 👈
+  />
+)}
         {index === 11 && (
           <Step10Extras
             data={data}
             update={update}
             next={() => goTo("final")}
-            prev={() => goTo("finance")} //REEMPLAZAR EN LA APP COMPLETAprev={() => goTo("finance")}
+            prev={() => goTo("budget2")} //REEMPLAZAR EN LA APP COMPLETAprev={() => goTo("finance")}
           />
         )}
         {index === 12 && (
