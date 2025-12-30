@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Step9Finance.css";
 
-export default function Step9Finance({ data, next, prev }) {
+export default function Step9Finance({ data, next, prev ,goToEstimador }) {
   const [showFirstModal, setShowFirstModal] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
   const [showThirdModal, setShowThirdModal] = useState(false); // 🔥 NUEVA MODAL
@@ -164,7 +164,12 @@ export default function Step9Finance({ data, next, prev }) {
       <button className="back-btn" onClick={prev}>
         Volver
       </button>
-
+      <button
+    className="calculator-btn"
+    onClick={goToEstimador}
+  >
+    Calculadora
+  </button>
     </div>
   );
 }

@@ -49,7 +49,10 @@
 .percent-box {
   cursor: pointer;
 }
-
+.percent-box:hover{
+  
+  transform: translateY(-10px);
+}
 .percent-box p {
   font-size: 18px;
   font-weight: 600;
@@ -65,16 +68,6 @@
   font-weight: 700;
 }
 
-/* BOTÓN */
-.back-btn {
-  margin-top: 35px;
-  padding: 10px 28px;
-  background: #E3A858;
-  border: none;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
 
 /* =========================
    MODAL OVERLAY
@@ -225,7 +218,28 @@
   cursor: pointer;
   font-weight: 600;
 }
+/* BOTÓN Calculadora */
+.calculator-btn,
+.back-btn{
+  background: #e5a44a;
+  color: #503629;
+  font-family: var(--font-bold);
+  font-weight: 800;
+  padding: 12px 28px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: all .2s ease;
+}
 
+
+.block-100:hover,
+.calculator-btn:hover,
+.back-btn:hover {
+  background: #d99438;
+  transform: translateY(-2px);
+}
 /* =========================
    RESPONSIVE
 ========================= */
